@@ -50,11 +50,17 @@ if($language == null or $language == 'en'){
   }
 }
 
-
+$resourceUri = $_SERVER['REQUEST_URI'];
+$rootUri = $app->request()->getRootUri();
+$assetUri = $rootUri;
 
 $view = $app->view();
 $view->parserExtensions = array(new \Slim\Views\TwigExtension());
-$view->setData(array(
+$view->appendData(array(
+  'app' => $app,
+  'root' => $rootUri,
+  'asset' => $assetUri,
+  'resource' => $resourceUri,
   'css'  => CSS_FOLDER,
   'js'   => JS_FOLDER,
   'img'  => IMG_FOLDER,
