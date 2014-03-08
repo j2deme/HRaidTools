@@ -1,6 +1,6 @@
 <?php
-include_once "vars.inc.php";
-include_once APP_FOLDER.'arrays.php';
+include_once 'vars.inc.php';
+include_once 'arrays.php';
 include_once LANGS_FOLDER.'lang.common.php';
 
 $app = new \Slim\Slim();

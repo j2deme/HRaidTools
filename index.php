@@ -3,7 +3,8 @@ session_cache_limiter(false);
 session_start();
 date_default_timezone_set('America/Mexico_City');
 require 'vendor/autoload.php';
-require_once ROOT.'config.php';
+require_once 'app/vars.inc.php';
+require_once APP_FOLDER.'config.php';
 
 $auth = function ($app) {
   return function () use ($app) {
