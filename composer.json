@@ -1,21 +1,21 @@
 {
-    "name": "j2deme/seed",
-    "description": "Webapp skeleton using Slim + Twig + Eloquent + Bootstrap",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Jaime Delgado Meraz",
-            "email": "j2deme@gmail.com"
-        }
-    ],
-    "minimum-stability": "stable",
-    "require": {
-      "php": ">=5.3.0",
-      "slim/slim": "2.*",
-      "slim/views": "0.1.*",
-      "twig/twig": "1.*",
-      "illuminate/database": "*",
-      "illuminate/validation": "*",
-      "dhorrigan/capsule": "*"
-    },
+  "name": "j2deme/seed",
+  "description": "Webapp skeleton using Slim + Twig + Eloquent + Bootstrap",
+  "license": "MIT",
+  "authors": [
+      {
+          "name": "Jaime Delgado Meraz",
+          "email": "j2deme@gmail.com"
+      }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "php": ">=5.3.0",
+    "slim/slim": "2.*",
+    "slim/views": "0.1.*",
+    "twig/twig": "1.*",
+    "illuminate/database": "*",
+    "illuminate/validation": "*",
+    "dhorrigan/capsule": "*"
+  }
 }
