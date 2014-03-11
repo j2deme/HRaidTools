@@ -1,9 +1,9 @@
 <?php
 define('TITLE', 'Seed');
 // Folders
-define('ROOT', dirname(__DIR__).'/');
-define('APP_FOLDER', ROOT.'app/');
-define('PUBLIC_FOLDER', ROOT.'public/');
+define('ROOT', basename(dirname(__DIR__)).'/');
+define('APP_FOLDER', 'app/');
+define('PUBLIC_FOLDER', 'public/');
 define('CSS_FOLDER', PUBLIC_FOLDER.'css/');
 define('JS_FOLDER', PUBLIC_FOLDER.'js/');
 define('IMG_FOLDER', PUBLIC_FOLDER.'img/');

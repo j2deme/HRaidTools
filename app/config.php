@@ -49,22 +49,23 @@ if($language == null or $language == 'en'){
       break;
   }
 }
+$app->lang = $locale;
 
-$resourceUri = $_SERVER['REQUEST_URI'];
 $rootUri = $app->request()->getRootUri();
 $assetUri = $rootUri;
+$resourceUri = $_SERVER['REQUEST_URI'];
 
 $view = $app->view();
 $view->parserExtensions = array(new \Slim\Views\TwigExtension());
 $view->appendData(array(
+  'title' => TITLE,
   'app' => $app,
   'root' => $rootUri,
-  'asset' => $assetUri,
-  'resource' => $resourceUri,
+  'assetUri' => $assetUri,
+  'activeUrl' => $resourceUri,
   'css'  => CSS_FOLDER,
   'js'   => JS_FOLDER,
-  'img'  => IMG_FOLDER,
-  'root' => ROOT
+  'img'  => IMG_FOLDER
 ));
 
 use Illuminate\Database\Capsule\Manager as Capsule;
