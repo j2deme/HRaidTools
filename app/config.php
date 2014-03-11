@@ -65,7 +65,8 @@ $view->appendData(array(
   'activeUrl' => $resourceUri,
   'css'  => CSS_FOLDER,
   'js'   => JS_FOLDER,
-  'img'  => IMG_FOLDER
+  'img'  => IMG_FOLDER,
+  'lang' => $locale
 ));
 
 use Illuminate\Database\Capsule\Manager as Capsule;
