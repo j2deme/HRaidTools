@@ -1,6 +1,6 @@
 <?php
 // Errors
-$locale->login_required = 'Login required';
+$locale->login_required = 'Login required!';
 $locale->email_error = 'Sorry, there is no user with an email of "{{ email }}".';
 $locale->password_error = 'Password does not match.';
 // Form elements
@@ -13,4 +13,5 @@ $locale->home_content = <<<TEXT
 <p>This is just PHP so you can use Heredoc for longer text. Heredoc text behaves just like a double-quoted string, without the double quotes. This means that quotes in a heredoc do not need to be escaped, but the escape codes listed above can still be used. Variables are expanded, but the same care must be taken when expressing complex variables inside a heredoc as with strings.</p>
 TEXT;
 $locale->hello = "Hello World!";
+$locale->browsehappy = "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/\">upgrade your browser</a> to improve your experience.";
 ?>
