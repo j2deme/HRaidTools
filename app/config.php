@@ -4,9 +4,9 @@ include_once 'arrays.php';
 include_once LANGS_FOLDER.'lang.common.php';
 
 $app = new \Slim\Slim();
-if (COOKIES_ENABLED) {
+if(COOKIES_ENABLED) {
   $app->add(new \Slim\Middleware\SessionCookie(array(
-    'secret'  => COOKIE_SECRET,
+    'secret'  => md5(COOKIE_SECRET),
     'expires' => COOKIE_DURATION,
     'name'    => COOKIE_NAME
   )));
@@ -37,17 +37,11 @@ $app->notFound(function () use ($app) {
 
 //Language
 $language = $app->getCookie(COOKIE_PREFIX.'.lang');
-if($language == null or $language == 'en'){
-  include_once LANGS_FOLDER.'lang.en.php';
+$default_lang = $locale->langs[0];
+if($language == null){
+  include_once LANGS_FOLDER.'lang.'.$default_lang['suffix'].'.php';
 } else {
-  switch ($language) {
-    case 'es':
-      include_once LANGS_FOLDER.'lang.es.php';
-      break;
-    default:
-      include_once LANGS_FOLDER.'lang.en.php';
-      break;
-  }
+  include_once LANGS_FOLDER.'lang.'.$language.'.php';
 }
 $app->lang = $locale;
 
