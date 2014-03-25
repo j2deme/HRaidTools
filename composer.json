@@ -17,7 +17,6 @@
     "illuminate/database": "*",
     "illuminate/validation": "*",
     "raulfraile/ladybug": "~1.0",
-    "raulfraile/ladybug-theme-modern": "~1.0.0",
-    "raulfraile/ladybug-plugin-extra": "~1.0.0"
+    "symfony/yaml": "~2.1"
   }
 }
