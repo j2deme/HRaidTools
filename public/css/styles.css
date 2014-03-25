@@ -1,0 +1,21 @@
+/***
+* NAVIGATION BAR
+* Remove or change as needed
+***/
+body {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+/***
+* LOADING BAR
+* Change color to match your styles
+***/
+.pace .pace-progress {
+  background: #3498DB;
+  height: 3px;
+}
