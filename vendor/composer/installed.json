@@ -113,213 +113,6 @@
         "homepage": "http://symfony.com"
     },
     {
-        "name": "illuminate/support",
-        "version": "v4.1.23",
-        "version_normalized": "4.1.23.0",
-        "target-dir": "Illuminate/Support",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/support.git",
-            "reference": "3134bebb9997be4963b320da8b7db2752d7cb937"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/support/zipball/3134bebb9997be4963b320da8b7db2752d7cb937",
-            "reference": "3134bebb9997be4963b320da8b7db2752d7cb937",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "require-dev": {
-            "jeremeamia/superclosure": "1.0.*",
-            "mockery/mockery": "0.9.*",
-            "patchwork/utf8": "1.1.*",
-            "phpunit/phpunit": "3.7.*"
-        },
-        "time": "2014-02-27 21:11:13",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "4.1-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Illuminate\\Support": ""
-            },
-            "files": [
-                "Illuminate/Support/helpers.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com",
-                "homepage": "https://github.com/taylorotwell",
-                "role": "Developer"
-            }
-        ]
-    },
-    {
-        "name": "illuminate/container",
-        "version": "v4.1.23",
-        "version_normalized": "4.1.23.0",
-        "target-dir": "Illuminate/Container",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/container.git",
-            "reference": "80383d49aa1c31f36c95abe582eb8fc779a996fc"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/container/zipball/80383d49aa1c31f36c95abe582eb8fc779a996fc",
-            "reference": "80383d49aa1c31f36c95abe582eb8fc779a996fc",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "3.7.*"
-        },
-        "time": "2014-02-26 18:55:58",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "4.1-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Illuminate\\Container": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com",
-                "homepage": "https://github.com/taylorotwell",
-                "role": "Developer"
-            }
-        ]
-    },
-    {
-        "name": "illuminate/validation",
-        "version": "v4.1.23",
-        "version_normalized": "4.1.23.0",
-        "target-dir": "Illuminate/Validation",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/validation.git",
-            "reference": "fd8f7ca0dc536decc688230d121d104a1266967e"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/validation/zipball/fd8f7ca0dc536decc688230d121d104a1266967e",
-            "reference": "fd8f7ca0dc536decc688230d121d104a1266967e",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/container": "4.1.*",
-            "illuminate/support": "4.1.*",
-            "php": ">=5.3.0",
-            "symfony/http-foundation": "2.4.*",
-            "symfony/translation": "2.4.*"
-        },
-        "require-dev": {
-            "illuminate/database": "4.1.*",
-            "mockery/mockery": "0.9.*",
-            "phpunit/phpunit": "3.7.*"
-        },
-        "time": "2014-02-27 20:48:36",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "4.1-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Illuminate\\Validation": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com",
-                "homepage": "https://github.com/taylorotwell",
-                "role": "Developer"
-            }
-        ]
-    },
-    {
-        "name": "illuminate/events",
-        "version": "v4.1.23",
-        "version_normalized": "4.1.23.0",
-        "target-dir": "Illuminate/Events",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/events.git",
-            "reference": "357150eeb29fb9248e0c5fd464098955a61dcbcc"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/events/zipball/357150eeb29fb9248e0c5fd464098955a61dcbcc",
-            "reference": "357150eeb29fb9248e0c5fd464098955a61dcbcc",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/container": "4.1.*",
-            "illuminate/support": "4.1.*",
-            "php": ">=5.3.0"
-        },
-        "require-dev": {
-            "mockery/mockery": "0.9.*",
-            "phpunit/phpunit": "3.7.*"
-        },
-        "time": "2014-02-15 09:27:21",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "4.1-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Illuminate\\Events": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com",
-                "homepage": "https://github.com/taylorotwell",
-                "role": "Developer"
-            }
-        ]
-    },
-    {
         "name": "nesbot/carbon",
         "version": "1.8.0",
         "version_normalized": "1.8.0.0",
@@ -365,70 +158,6 @@
             "date",
             "datetime",
             "time"
-        ]
-    },
-    {
-        "name": "illuminate/database",
-        "version": "v4.1.23",
-        "version_normalized": "4.1.23.0",
-        "target-dir": "Illuminate/Database",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/database.git",
-            "reference": "d695cb6fa8d05501ba402e16d63fce77b5f29f69"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/database/zipball/d695cb6fa8d05501ba402e16d63fce77b5f29f69",
-            "reference": "d695cb6fa8d05501ba402e16d63fce77b5f29f69",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/container": "4.1.*",
-            "illuminate/events": "4.1.*",
-            "illuminate/support": "4.1.*",
-            "nesbot/carbon": "1.*",
-            "php": ">=5.3.0"
-        },
-        "require-dev": {
-            "illuminate/cache": "4.1.*",
-            "illuminate/console": "4.1.*",
-            "illuminate/filesystem": "4.1.*",
-            "illuminate/pagination": "4.1.*",
-            "illuminate/support": "4.1.*",
-            "mockery/mockery": "0.9.*",
-            "phpunit/phpunit": "3.7.*"
-        },
-        "time": "2014-02-28 20:28:45",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "4.1-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Illuminate\\Database": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com",
-                "homepage": "https://github.com/taylorotwell",
-                "role": "Developer"
-            }
-        ],
-        "keywords": [
-            "database",
-            "laravel",
-            "orm",
-            "sql"
         ]
     },
     {
@@ -592,6 +321,799 @@
         "homepage": "http://twig.sensiolabs.org",
         "keywords": [
             "templating"
+        ]
+    },
+    {
+        "name": "illuminate/support",
+        "version": "v4.1.24",
+        "version_normalized": "4.1.24.0",
+        "target-dir": "Illuminate/Support",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/support.git",
+            "reference": "ff32e707fa8b6e975ee46e5277b6270ec2f7029f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/support/zipball/ff32e707fa8b6e975ee46e5277b6270ec2f7029f",
+            "reference": "ff32e707fa8b6e975ee46e5277b6270ec2f7029f",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "jeremeamia/superclosure": "1.0.*",
+            "mockery/mockery": "0.9.*",
+            "patchwork/utf8": "1.1.*",
+            "phpunit/phpunit": "4.0.*"
+        },
+        "time": "2014-03-13 01:02:42",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "4.1-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Illuminate\\Support": ""
+            },
+            "files": [
+                "Illuminate/Support/helpers.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com",
+                "homepage": "https://github.com/taylorotwell",
+                "role": "Developer"
+            }
+        ]
+    },
+    {
+        "name": "illuminate/container",
+        "version": "v4.1.24",
+        "version_normalized": "4.1.24.0",
+        "target-dir": "Illuminate/Container",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/container.git",
+            "reference": "2e2e14d50feb924de7c0a81843fe617dd94aadec"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/container/zipball/2e2e14d50feb924de7c0a81843fe617dd94aadec",
+            "reference": "2e2e14d50feb924de7c0a81843fe617dd94aadec",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.0.*"
+        },
+        "time": "2014-03-07 14:45:01",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "4.1-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Illuminate\\Container": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com",
+                "homepage": "https://github.com/taylorotwell",
+                "role": "Developer"
+            }
+        ]
+    },
+    {
+        "name": "illuminate/events",
+        "version": "v4.1.24",
+        "version_normalized": "4.1.24.0",
+        "target-dir": "Illuminate/Events",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/events.git",
+            "reference": "e7ab5a682832c1e8c76b724158b1524353d6cfd1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/events/zipball/e7ab5a682832c1e8c76b724158b1524353d6cfd1",
+            "reference": "e7ab5a682832c1e8c76b724158b1524353d6cfd1",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/container": "4.1.*",
+            "illuminate/support": "4.1.*",
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "mockery/mockery": "0.9.*",
+            "phpunit/phpunit": "4.0.*"
+        },
+        "time": "2014-03-04 22:56:43",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "4.1-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Illuminate\\Events": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com",
+                "homepage": "https://github.com/taylorotwell",
+                "role": "Developer"
+            }
+        ]
+    },
+    {
+        "name": "illuminate/database",
+        "version": "v4.1.24",
+        "version_normalized": "4.1.24.0",
+        "target-dir": "Illuminate/Database",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/database.git",
+            "reference": "f59ff31c5e2c1cb30bb7064a20819e53d676784b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/database/zipball/f59ff31c5e2c1cb30bb7064a20819e53d676784b",
+            "reference": "f59ff31c5e2c1cb30bb7064a20819e53d676784b",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/container": "4.1.*",
+            "illuminate/events": "4.1.*",
+            "illuminate/support": "4.1.*",
+            "nesbot/carbon": "1.*",
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "illuminate/cache": "4.1.*",
+            "illuminate/console": "4.1.*",
+            "illuminate/filesystem": "4.1.*",
+            "illuminate/pagination": "4.1.*",
+            "illuminate/support": "4.1.*",
+            "mockery/mockery": "0.9.*",
+            "phpunit/phpunit": "4.0.*"
+        },
+        "time": "2014-03-16 17:25:49",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "4.1-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Illuminate\\Database": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com",
+                "homepage": "https://github.com/taylorotwell",
+                "role": "Developer"
+            }
+        ],
+        "keywords": [
+            "database",
+            "laravel",
+            "orm",
+            "sql"
+        ]
+    },
+    {
+        "name": "illuminate/validation",
+        "version": "v4.1.24",
+        "version_normalized": "4.1.24.0",
+        "target-dir": "Illuminate/Validation",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/validation.git",
+            "reference": "b978290d53e6df10038e916d463a5d64c44c9715"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/validation/zipball/b978290d53e6df10038e916d463a5d64c44c9715",
+            "reference": "b978290d53e6df10038e916d463a5d64c44c9715",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/container": "4.1.*",
+            "illuminate/support": "4.1.*",
+            "php": ">=5.3.0",
+            "symfony/http-foundation": "2.4.*",
+            "symfony/translation": "2.4.*"
+        },
+        "require-dev": {
+            "illuminate/database": "4.1.*",
+            "mockery/mockery": "0.9.*",
+            "phpunit/phpunit": "4.0.*"
+        },
+        "time": "2014-03-07 14:45:01",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "4.1-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Illuminate\\Validation": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com",
+                "homepage": "https://github.com/taylorotwell",
+                "role": "Developer"
+            }
+        ]
+    },
+    {
+        "name": "ptachoire/cssembed",
+        "version": "v1.0.2",
+        "version_normalized": "1.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/krichprollsch/phpCssEmbed.git",
+            "reference": "406c6d5b846cafa9186f9944a6210d0e6fed154b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/krichprollsch/phpCssEmbed/zipball/406c6d5b846cafa9186f9944a6210d0e6fed154b",
+            "reference": "406c6d5b846cafa9186f9944a6210d0e6fed154b",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2013-07-22 20:01:48",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "CssEmbed": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Pierre Tachoire",
+                "email": "pierre.tachoire@gmail.com"
+            }
+        ],
+        "description": "Css url embed library.",
+        "homepage": "https://github.com/krichprollsch/phpCssEmbed",
+        "keywords": [
+            "css",
+            "url"
+        ]
+    },
+    {
+        "name": "symfony/filesystem",
+        "version": "v2.4.2",
+        "version_normalized": "2.4.2.0",
+        "target-dir": "Symfony/Component/Filesystem",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/Filesystem.git",
+            "reference": "7e65abb06d3b38f4be89266fe3fb4a759544e713"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/Filesystem/zipball/7e65abb06d3b38f4be89266fe3fb4a759544e713",
+            "reference": "7e65abb06d3b38f4be89266fe3fb4a759544e713",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "time": "2014-01-07 13:28:54",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\Filesystem\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com",
+                "homepage": "http://fabien.potencier.org",
+                "role": "Lead Developer"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Filesystem Component",
+        "homepage": "http://symfony.com"
+    },
+    {
+        "name": "symfony/config",
+        "version": "v2.4.2",
+        "version_normalized": "2.4.2.0",
+        "target-dir": "Symfony/Component/Config",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/Config.git",
+            "reference": "d81bd01eac1514c10dcb3b11eaa9048d6b87dd1f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/Config/zipball/d81bd01eac1514c10dcb3b11eaa9048d6b87dd1f",
+            "reference": "d81bd01eac1514c10dcb3b11eaa9048d6b87dd1f",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3",
+            "symfony/filesystem": "~2.3"
+        },
+        "time": "2014-01-07 13:28:54",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\Config\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com",
+                "homepage": "http://fabien.potencier.org",
+                "role": "Lead Developer"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Config Component",
+        "homepage": "http://symfony.com"
+    },
+    {
+        "name": "symfony/dependency-injection",
+        "version": "v2.4.2",
+        "version_normalized": "2.4.2.0",
+        "target-dir": "Symfony/Component/DependencyInjection",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/DependencyInjection.git",
+            "reference": "dde921399691bdb3b32a3c2557dcb2054db7593a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/DependencyInjection/zipball/dde921399691bdb3b32a3c2557dcb2054db7593a",
+            "reference": "dde921399691bdb3b32a3c2557dcb2054db7593a",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "symfony/config": "~2.2",
+            "symfony/expression-language": "~2.4",
+            "symfony/yaml": "~2.0"
+        },
+        "suggest": {
+            "symfony/config": "",
+            "symfony/proxy-manager-bridge": "Generate service proxies to lazy load them",
+            "symfony/yaml": ""
+        },
+        "time": "2014-02-11 13:52:09",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\DependencyInjection\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com",
+                "homepage": "http://fabien.potencier.org",
+                "role": "Lead Developer"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony DependencyInjection Component",
+        "homepage": "http://symfony.com"
+    },
+    {
+        "name": "symfony/finder",
+        "version": "v2.4.2",
+        "version_normalized": "2.4.2.0",
+        "target-dir": "Symfony/Component/Finder",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/Finder.git",
+            "reference": "b6735d1fc16da13c4c7dddfe78366a4a098cf011"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/Finder/zipball/b6735d1fc16da13c4c7dddfe78366a4a098cf011",
+            "reference": "b6735d1fc16da13c4c7dddfe78366a4a098cf011",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "time": "2014-01-07 13:28:54",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\Finder\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com",
+                "homepage": "http://fabien.potencier.org",
+                "role": "Lead Developer"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Finder Component",
+        "homepage": "http://symfony.com"
+    },
+    {
+        "name": "symfony/console",
+        "version": "v2.4.2",
+        "version_normalized": "2.4.2.0",
+        "target-dir": "Symfony/Component/Console",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/Console.git",
+            "reference": "940f217cbc3c8a33e5403e7c595495c4884400fe"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/Console/zipball/940f217cbc3c8a33e5403e7c595495c4884400fe",
+            "reference": "940f217cbc3c8a33e5403e7c595495c4884400fe",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "symfony/event-dispatcher": "~2.1"
+        },
+        "suggest": {
+            "symfony/event-dispatcher": ""
+        },
+        "time": "2014-02-11 13:52:09",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.4-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Symfony\\Component\\Console\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com",
+                "homepage": "http://fabien.potencier.org",
+                "role": "Lead Developer"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "http://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Console Component",
+        "homepage": "http://symfony.com"
+    },
+    {
+        "name": "raulfraile/ladybug-installer",
+        "version": "v1.0.1",
+        "version_normalized": "1.0.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/raulfraile/ladybug-installer.git",
+            "reference": "04f38f50cac673d3ca93de9c0805889e37804b33"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/raulfraile/ladybug-installer/zipball/04f38f50cac673d3ca93de9c0805889e37804b33",
+            "reference": "04f38f50cac673d3ca93de9c0805889e37804b33",
+            "shasum": ""
+        },
+        "require": {
+            "composer-plugin-api": "*"
+        },
+        "require-dev": {
+            "composer/composer": "1.*",
+            "mockery/mockery": "0.8.0"
+        },
+        "time": "2013-09-21 23:28:23",
+        "type": "composer-plugin",
+        "extra": {
+            "class": "\\Ladybug\\LadybugPlugin"
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Ladybug": [
+                    "src/"
+                ]
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "Unified installer for ladybug addons",
+        "keywords": [
+            "installer",
+            "ladybug",
+            "plugins",
+            "themes"
+        ]
+    },
+    {
+        "name": "raulfraile/ladybug-plugin-extra",
+        "version": "v1.0.1",
+        "version_normalized": "1.0.1.0",
+        "target-dir": "Ladybug/Plugin/Extra",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/raulfraile/ladybug-plugin-extra.git",
+            "reference": "d240770a4c610e26657e5edc0edaace6d07187b2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/raulfraile/ladybug-plugin-extra/zipball/d240770a4c610e26657e5edc0edaace6d07187b2",
+            "reference": "d240770a4c610e26657e5edc0edaace6d07187b2",
+            "shasum": ""
+        },
+        "require": {
+            "raulfraile/ladybug-installer": "~1.0"
+        },
+        "require-dev": {
+            "mockery/mockery": "0.8.0",
+            "raulfraile/ladybug": "~1.0.0"
+        },
+        "time": "2013-09-29 10:19:08",
+        "type": "ladybug-plugin",
+        "extra": {
+            "ladybug_name": "Extra"
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Ladybug\\Plugin\\Extra\\": ""
+            },
+            "files": [
+                "Resources/php/helpers.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "Extra plugin for ladybug",
+        "keywords": [
+            "ladybug",
+            "plugin"
+        ]
+    },
+    {
+        "name": "raulfraile/ladybug-theme-modern",
+        "version": "v1.0.6",
+        "version_normalized": "1.0.6.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/raulfraile/ladybug-theme-modern.git",
+            "reference": "528c9114ca1a82860e8b7025d1fe4f64dc728b72"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/raulfraile/ladybug-theme-modern/zipball/528c9114ca1a82860e8b7025d1fe4f64dc728b72",
+            "reference": "528c9114ca1a82860e8b7025d1fe4f64dc728b72",
+            "shasum": ""
+        },
+        "require": {
+            "raulfraile/ladybug-installer": "~1.0.0"
+        },
+        "time": "2013-10-07 21:55:38",
+        "type": "ladybug-theme",
+        "extra": {
+            "ladybug_name": "Modern"
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "Theme 'modern' for ladybug",
+        "keywords": [
+            "dump",
+            "ladybug",
+            "print_r",
+            "theme",
+            "var_dump"
+        ]
+    },
+    {
+        "name": "raulfraile/ladybug",
+        "version": "v1.0.8",
+        "version_normalized": "1.0.8.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/raulfraile/ladybug.git",
+            "reference": "7878b0fec84041bc6791155b9ec357a1ff8cd3b1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/raulfraile/ladybug/zipball/7878b0fec84041bc6791155b9ec357a1ff8cd3b1",
+            "reference": "7878b0fec84041bc6791155b9ec357a1ff8cd3b1",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0",
+            "ptachoire/cssembed": "v1.0.2",
+            "raulfraile/ladybug-plugin-extra": "~1.0.0",
+            "raulfraile/ladybug-theme-modern": "~1.0.0",
+            "symfony/config": ">=2.0",
+            "symfony/console": ">=2.0",
+            "symfony/dependency-injection": ">=2.0",
+            "symfony/finder": ">=2.0",
+            "twig/twig": ">=1.7.0"
+        },
+        "require-dev": {
+            "fabpot/php-cs-fixer": "0.2.0",
+            "jms/serializer": ">=0.11.0",
+            "mockery/mockery": "0.8.0",
+            "phpdocumentor/reflection-docblock": "2.0.0",
+            "symfony/dom-crawler": ">=2.0.4"
+        },
+        "suggest": {
+            "jms/serializer": "Required to serialize data to XML and JSON",
+            "phpdocumentor/reflection-docblock": "Required to display object methods description",
+            "symfony/yaml": "Required to serialize data to YAML format"
+        },
+        "time": "2013-10-15 09:36:24",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Ladybug\\Theme": [
+                    "../ladybug-themes",
+                    "data/themes"
+                ],
+                "Ladybug\\Plugin": [
+                    "../ladybug-plugins",
+                    "data/plugins"
+                ],
+                "Ladybug": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Raul Fraile",
+                "email": "raulfraile@gmail.com",
+                "homepage": "http://www.raulfb.com/",
+                "role": "Developer"
+            }
+        ],
+        "description": "Simple and Extensible PHP Dumper",
+        "homepage": "https://github.com/raulfraile/ladybug",
+        "keywords": [
+            "dump",
+            "dumper",
+            "ladybug",
+            "print_r",
+            "var_dump"
         ]
     }
 ]
