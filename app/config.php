@@ -14,44 +14,46 @@ if(COOKIES_ENABLED) {
 
 $app->config(array(
   'templates.path' => VIEWS_FOLDER,
-  'view'           => new \Slim\Views\Twig()
+  'view'           => new \Slim\Views\Twig(array('debug' => true))
 ));
 
 $app->configureMode('production', function () use ($app) {
-  $app->config(array(
-    'log.enabled' => true,
-    'debug'       => false
-  ));
+  $app->config(array('log.enabled' => true, 'debug' => false));
 });
 
 $app->configureMode('development', function () use ($app) {
-  $app->config(array(
-    'log.enabled' => false,
-    'debug'       => true
-  ));
+  $app->config(array('log.enabled' => false, 'debug' => true));
 });
 
-$app->notFound(function () use ($app) {
-  $app->render('404.twig');
-});
+$app->notFound(function () use ($app) { $app->render('404.twig'); });
 
 //Language
-$language = $app->getCookie(COOKIE_PREFIX.'.lang');
-$default_lang = $locale->langs[0];
-if($language == null){
-  include_once LANGS_FOLDER.'lang.'.$default_lang['suffix'].'.php';
+$langCookie = COOKIE_PREFIX.'.lang';
+$selectedLang = $app->getCookie($langCookie);
+$selectedLangPath = LANGS_FOLDER.'lang.'.$selectedLang.'.php';
+$defaultLang = $lang->langs[0];
+$defaultLangPath = LANGS_FOLDER.'lang.'.$defaultLang['suffix'].'.php';
+
+if($selectedLang == null){
+  include_once $defaultLangPath;
 } else {
-  include_once LANGS_FOLDER.'lang.'.$language.'.php';
+  include_once $defaultLangPath;
+  if(file_exists($selectedLangPath)){
+    include_once $selectedLangPath;
+  }
 }
-$app->lang = $locale;
+$app->lang = $lang;
 
 $rootUri = $app->request()->getRootUri();
 $assetUri = $rootUri;
 $resourceUri = $_SERVER['REQUEST_URI'];
 
 $view = $app->view();
-$view->parserExtensions = array(new \Slim\Views\TwigExtension());
-$view->appendData(array(
+$app->view->parserExtensions = array(
+    new \Slim\Views\TwigExtension(),
+    new Twig_Extension_Debug()
+);
+$app->view()->appendData(array(
   'title' => TITLE,
   'app' => $app,
   'root' => $rootUri,
@@ -60,7 +62,8 @@ $view->appendData(array(
   'css'  => CSS_FOLDER,
   'js'   => JS_FOLDER,
   'img'  => IMG_FOLDER,
-  'lang' => $locale
+  'lang' => $lang,
+  'langCookie' => $langCookie
 ));
 
 use Illuminate\Database\Capsule\Manager as Capsule;

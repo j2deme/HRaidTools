@@ -10,7 +10,7 @@ $auth = function ($app) {
   return function () use ($app) {
     if (!isset($_SESSION['user'])) {
       $_SESSION['redirectTo'] = $app->request()->getPathInfo();
-      $app->flash('error', $app->lang->login_required);
+      $app->flash('error', $app->lang->loginError);
       $app->flashKeep();
       $app->redirect($app->urlFor('login'));
     }
@@ -45,25 +45,25 @@ $app->get('/login',function() use($app){
     $redirectTo = $_SESSION['redirectTo'];
   }
 
-  $email_value = $email_error = $password_error = '';
+  $emailValue = $emailError = $passwordError = '';
 
   if(isset($flash['email'])) {
-    $email_value = $flash['email'];
+    $emailValue = $flash['email'];
   }
 
   if(isset($flash['errors']['email'])) {
-    $email_error = $flash['errors']['email'];
+    $emailError = $flash['errors']['email'];
   }
 
   if(isset($flash['errors']['password'])) {
-    $password_error = $flash['errors']['password'];
+    $passwordError = $flash['errors']['password'];
   }
 
   $data = array(
     'error' => $error,
-    'email_value' => $email_value,
-    'email_error' => $email_error,
-    'password_error' => $password_error,
+    'emailValue' => $emailValue,
+    'emailError' => $emailError,
+    'passwordError' => $passwordError,
     'redirectTo' => $redirectTo
   );
   $app->render('login.php', $data);
@@ -76,10 +76,10 @@ $app->post('/login',function() use($app){
 
   $errors = array();
   if($email != "j2deme@gmail.com") {//Get it from database
-      $errors['email'] = $app->lang->email_error;
+      $errors['email'] = $app->lang->emailError;
   } elseif ($password != "12345") {//Get it from database
     $app->flash('email', $email);
-    $errors['password'] = $app->lang->password_error;
+    $errors['password'] = $app->lang->passwordError;
   }
 
   if(count($errors) > 0) {
@@ -117,5 +117,8 @@ $app->get('/private/', $auth($app), function () use ($app) {
 });
 */
 
+// DO NOT EDIT
+include_once 'app/navbar.inc.php';
+$app->view()->appendData(array('navbar' => $navbar));
 $app->run();
 ?>
