@@ -1,0 +1,62 @@
+{% import _self as nv %}
+
+{% macro option(item) %}
+  {% if item.sub %}
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% if item.icon is not null %}<i class="{{ item.icon }}"></i> {% endif %}{{ item.text }} <b class="caret"></b></a>
+    <ul class="dropdown-menu">
+    {% if item.sub is iterable %}
+    {% for sub in item.sub %}
+      {% if sub.isDiv %}
+      <li class="divider"></li>
+      {% elseif sub.isHeader %}
+      <li class="dropdown-header">{{ sub.text }}</li>
+      {% else %}
+      <li><a href="{{ sub.url|raw }}" {% if sub.data is iterable %}{% for key,value in sub.data %}data-{{ key }}="{{ value }}"{% endfor %}{% endif %}>{% if sub.icon is not null %}<i class="{{ sub.icon }}"></i> {% endif %}{{ sub.text }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% endif %}
+    </ul>
+  </li>
+  {% else %}
+  <li><a href="{{ item.url|raw }}" {% if item.data is iterable %}{% for key,value in item.data %}data-{{ key }}="{{ value }}"{% endfor %}{% endif %}>{% if item.icon is not null %}<i class="{{ item.icon }}"></i> {% endif %}{{ item.text }}</a></li>
+  {% endif %}
+{% endmacro %}
+
+<div class="navbar navbar-inverse navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ root }}">{{ title|title }}</a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+      {% if (user is defined) and (user is not null) %}
+        {% set nav = navbar.user %}
+      {% else %}
+        {% set nav = navbar.public %}
+      {% endif %}
+      {% if nav.left is iterable and nav.left is not empty %}
+      {% for item in nav.left %}
+        {{ nv.option(item) }}
+      {% endfor %}
+      {% endif %}
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      {% if nav.right is iterable and nav.right is not empty %}
+      {% for item in nav.right %}
+        {{ nv.option(item) }}
+      {% endfor %}
+      {% endif %}
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container-fluid -->
+</div>
+
+{{ lang.user }}
+{{ lang.emailError }}
