@@ -6,8 +6,6 @@ define('DB_HOST', 'localhost');
 define('DB_DATABASE', 'test');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', 'root');
-define('DB_COLLATION', 'utf8_general_ci');//Recommended
-define('DB_CHARSET', 'utf8');//Recommended
 define('DB_PREFIX', '');
 // Slim Vars
 define('COOKIE_PREFIX','seed');//Only lowercase letters[a-z], numbers[0-9] and _
@@ -29,4 +27,6 @@ define('VIEWS_FOLDER', APP_FOLDER.'views/');
 define('CONTROLLERS_FOLDER', APP_FOLDER.'controllers/');
 define('LANGS_FOLDER',APP_FOLDER.'lang/');
 define('COOKIE_NAME', COOKIE_PREFIX);
+define('DB_COLLATION', 'utf8_general_ci');
+define('DB_CHARSET', 'utf8');
 ?>
