@@ -3,8 +3,8 @@ session_cache_limiter(false);
 session_start();
 date_default_timezone_set('America/Mexico_City');
 require 'vendor/autoload.php';
-require_once 'app/vars.inc.php';
-require_once APP_FOLDER.'config.php';
+include_once 'app/vars.inc.php';
+include_once APP_FOLDER.'config.php';
 
 $auth = function ($app) {
   return function () use ($app) {
@@ -117,8 +117,5 @@ $app->get('/private/', $auth($app), function () use ($app) {
 });
 */
 
-// DO NOT EDIT
-include_once 'app/navbar.inc.php';
-$app->view()->appendData(array('navbar' => $navbar));
 $app->run();
 ?>
