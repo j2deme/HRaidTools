@@ -1,11 +1,11 @@
 {% import _self as nv %}
 
 {% macro option(item) %}
-  {% if item.sub %}
+  {% if item.isDrop %}
   <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% if item.icon is not null %}<i class="{{ item.icon }}"></i> {% endif %}{{ item.text }} <b class="caret"></b></a>
     <ul class="dropdown-menu">
-    {% if item.sub is iterable %}
+    {% if item.isDrop %}
     {% for sub in item.sub %}
       {% if sub.isDiv %}
       <li class="divider"></li>
@@ -37,9 +37,9 @@
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
       {% if (user is defined) and (user is not null) %}
-        {% set nav = navbar.user %}
+        {% set nav = lang.navbar.user %}
       {% else %}
-        {% set nav = navbar.public %}
+        {% set nav = lang.navbar.public %}
       {% endif %}
       {% if nav.left is iterable and nav.left is not empty %}
       {% for item in nav.left %}
@@ -57,6 +57,3 @@
     </div><!--/.nav-collapse -->
   </div><!--/.container-fluid -->
 </div>
-
-{{ lang.user }}
-{{ lang.emailError }}

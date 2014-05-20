@@ -1,6 +1,6 @@
 {% extends 'base.twig' %}
 {% block content %}
-{{ lang.hello }}
+{{ lang.hello|replace({ ':url:': activeUrl }) }}
 {% endblock %}
 
 {% block js %}

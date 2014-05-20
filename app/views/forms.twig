@@ -30,7 +30,7 @@
   <label for="{{ name }}" class="control-label">{{ text }}</label>
 {% endmacro %}
 
-{% macro option(val,text = "", selected = false) %}
+{% macro option(val, text = "", selected = false) %}
   <option value="{{ val|e }}" {% if selected %}selected{% endif %}>{{ text|default(val) }}</option>
 {% endmacro %}
 
