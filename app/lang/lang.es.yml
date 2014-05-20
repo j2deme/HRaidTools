@@ -1,29 +1,34 @@
-<?php
-// Errors
-$lang->loginError = '¡Es necesario iniciar sesión!';
-$lang->emailError = 'Lo sentimos, no hay ningún usuario registrado con el correo electrónico "{{ email }}".';
-$lang->passwordError = 'La contraseña no coincide.';
-
-// Form elements
-$lang->loginEmail = 'Correo Electrónico';
-$lang->loginPassword = 'Contraseña';
-$lang->loginSubmit = 'Login';
-
-// Texts
-$lang->homeContent = <<<TEXT
-<p>English © You can see that this is generated with the &copy; html entity.</p>
-<p>This is just PHP so you can use Heredoc for longer text. Heredoc text behaves just like a double-quoted string, without the double quotes. This means that quotes in a heredoc do not need to be escaped, but the escape codes listed above can still be used. Variables are expanded, but the same care must be taken when expressing complex variables inside a heredoc as with strings.</p>
-TEXT;
-$lang->hello = "Hola Mundo!";
-$lang->browsehappy = "Estas usando una versión <strong>obsoleta</strong> de tu navegador. Por favor <a href=\"http://browsehappy.com/\">actualiza tu navegador</a> para mejorar tu experiencia de navegación.";
-$lang->logout = 'Salir';
-
-//Navigation items
-$lang->link1 = 'Enlace 1';
-$lang->link2 = 'Enlace 2';
-$lang->link3 = 'Enlace 3';
-$lang->dropdown = 'Desplegable';
-$lang->navHeader = 'Social';
-$lang->google = 'Google';
-$lang->facebook ='Facebook';
-?>
+---
+loginError: ¡Es necesario iniciar sesión!
+emailError: Lo sentimos, no existe ningún usuario con el correo electrónico "{{ email }}".
+passwordError: La contraseña no coincide
+loginEmail: Correo Electrónico
+loginPassword: Contraseña
+loginSubmit: Login
+homeContent : >
+  <p>English You can see that this is generated with the &copy; html entity.</p>
+  <p>This is just PHP so you can use Heredoc for longer text. Heredoc text behaves just like a double-quoted string, without the double quotes. This means that quotes in a heredoc do not need to be escaped, but the escape codes listed above can still be used. Variables are expanded, but the same care must be taken when expressing complex variables inside a heredoc as with strings.</p>
+hello: Hola Mundo!
+browsehappy: Estás usando un navegador <strong>obsoleto</strong>. Por favor <a href="http://browsehappy.com/?locale=es" target="_blank" class="alert-link">actualiza tu navegador</a> para mejorar tu experiencia de uso.
+# Navigation Bar
+navbar:
+  public:
+    left:
+      - text: Enlace 1
+        url: "#1"
+      - text: Enlace 2
+        url: "#2"
+      - text: Enlace 3
+        url: "#3"
+      - text: Desplegable
+        isDrop: Yes
+        sub:
+          - text: Google
+            url: "http://google.com"
+          - isDiv: Yes
+          - text: Social
+            isHeader: Yes
+          - text: Facebook
+            url: "http://facebook.com"
+    right:
+...
