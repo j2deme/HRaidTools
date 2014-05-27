@@ -68,3 +68,7 @@ __COOKIE\_DURATION__: Server side cookies will last the specified time.
 
 
 The navbar supports both left (default) and right menus to set a new option use: Opt::nw()->init(text,url)
+
+# Authors
+- Jaime Delgado
+- Alfredo Barrón
