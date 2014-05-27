@@ -44,7 +44,7 @@ define('COOKIES_ENABLED', true);
 define('COOKIE_SECRET', 'secretseed');
 define('COOKIE_DURATION', '20 minutes');
 
-$\_ENV['SLIM\_MODE'] = 'development';//development,production
+$_ENV['SLIM_MODE'] = 'development';//development,production
 ```
 __TITLE__: Is the title or name for the app or website, it will appear on the title of the tab and on the navigation bar.
 
@@ -70,5 +70,5 @@ __COOKIE\_DURATION__: Server side cookies will last the specified time.
 The navbar supports both left (default) and right menus to set a new option use: Opt::nw()->init(text,url)
 
 # Authors
-- Jaime Delgado
-- Alfredo Barrón
+- Jaime Delgado Meraz
+- Alfredo Barrón Rodríguez
