@@ -22,7 +22,7 @@
   <li><a href="{{ item.url|raw }}" {% if item.data is iterable %}{% for key,value in item.data %}data-{{ key }}="{{ value }}"{% endfor %}{% endif %}>{% if item.icon is not null %}<i class="{{ item.icon }}"></i> {% endif %}{{ item.text }}</a></li>
   {% endif %}
 {% endmacro %}
-
+{#
 <div class="navbar navbar-inverse navbar-default" role="navigation">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -57,3 +57,4 @@
     </div><!--/.nav-collapse -->
   </div><!--/.container-fluid -->
 </div>
+#}

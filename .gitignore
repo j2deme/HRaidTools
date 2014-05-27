@@ -20,3 +20,5 @@ Thumbs.db
 .svn
 .CVS
 .idea
+
+*.sublime-workspace

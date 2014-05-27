@@ -1,5 +1,5 @@
 <?php
-define('TITLE', 'Seed');
+define('TITLE', 'HRaidTools');
 // Database
 define('DB_DRIVER', 'mysql');//mysql,pgsql
 define('DB_HOST', 'localhost');
