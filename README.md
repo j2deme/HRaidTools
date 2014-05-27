@@ -1,4 +1,4 @@
-# Seed
+# HRaidTools
 ## Description
 
 This repo contains a basic setup of the following frameworks:
