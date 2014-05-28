@@ -1,5 +1,5 @@
 <?php
-class User extends Elegant {
+class Experiment extends Elegant {
   private $rules = array(
   );
 }
