@@ -22,6 +22,23 @@
   <li><a href="{{ item.url|raw }}" {% if item.data is iterable %}{% for key,value in item.data %}data-{{ key }}="{{ value }}"{% endfor %}{% endif %}>{% if item.icon is not null %}<i class="{{ item.icon }}"></i> {% endif %}{{ item.text }}</a></li>
   {% endif %}
 {% endmacro %}
+<ul class="nav nav-pills pull-right">
+  {% if (user is defined) and (user is not null) %}
+    {% set nav = lang.navbar.user %}
+  {% else %}
+    {% set nav = lang.navbar.public %}
+  {% endif %}
+  {% if nav.left is iterable and nav.left is not empty %}
+  {% for item in nav.left %}
+    {{ nv.option(item) }}
+  {% endfor %}
+  {% endif %}
+  {% if nav.right is iterable and nav.right is not empty %}
+  {% for item in nav.right %}
+    {{ nv.option(item) }}
+  {% endfor %}
+  {% endif %}
+</ul>
 {#
 <div class="navbar navbar-inverse navbar-default" role="navigation">
   <div class="container-fluid">
