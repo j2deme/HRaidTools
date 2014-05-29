@@ -1,16 +1,16 @@
 <?php
 define('TITLE', 'HRaidTools');
 // Database
-define('DB_DRIVER', 'mysql');//mysql,pgsql
+define('DB_DRIVER', 'pgsql');//mysql,pgsql
 define('DB_HOST', 'localhost');
-define('DB_DATABASE', 'test');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', 'root');
+define('DB_DATABASE', 'hraid');
+define('DB_USERNAME', 'ht');
+define('DB_PASSWORD', 'ht.2014');
 define('DB_PREFIX', '');
 // Slim Vars
-define('COOKIE_PREFIX','seed');//Only lowercase letters[a-z], numbers[0-9] and _
+define('COOKIE_PREFIX','ht');//Only lowercase letters[a-z], numbers[0-9] and _
 define('COOKIES_ENABLED', true);//If you need to store more than 4 kb set to false
-define('COOKIE_SECRET', 'secretseed');//Change for a different secret
+define('COOKIE_SECRET', 'htsecret');//Change for a different secret
 define('COOKIE_DURATION', '20 minutes');//Default value, change as needed
 
 $_ENV['SLIM_MODE'] = 'development';//development,production
