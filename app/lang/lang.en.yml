@@ -15,13 +15,13 @@ browsehappy: You are using an <strong>outdated</strong> browser. Please <a href=
 navbar:
   public:
     left:
-      - text: Link 1
+      - text: Home
         url: "#1"
-      - text: Link 2
+      - text: Simulation Tools
         url: "#2"
-      - text: Link 3
+      - text: Results Collector
         url: "#3"
-      - text: Dropdown
+      - text: Dashboard
         isDrop: Yes
         sub:
           - text: Google
