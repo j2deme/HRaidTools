@@ -1,0 +1,27 @@
+{# index/home/simulationTools/RAID-designer #}
+{% extends 'base.twig' %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-7 col-md-offset-1"><h3>RAID Designer</h3><hr></div>
+  </div>
+  <div class="row">
+    <div class="col-md-7 col-md-offset-1">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#start" data-toggle="tab"><i class="fa fa-play-circle"></i> Start</a></li>
+        <li><a href="#network" data-toggle="tab"><i class="fa fa-signal"></i> Network</a></li>
+        <li><a href="#disks" data-toggle="tab"><i class="fa fa-hdd-o"></i> Disks</a></li>
+        <li><a href="#striping" data-toggle="tab"><i class="fa fa-dot-circle-o"></i> Striping Unit</a></li>
+        <li><a href="#distribution" data-toggle="tab"><i class="fa fa-sitemap"></i> Distribution</a></li>
+        <li><a href="#end" data-toggle="tab"><i class="fa fa-lock"></i> End</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="start">1</div>
+        <div class="tab-pane" id="network">2</div>
+        <div class="tab-pane" id="disks">3</div>
+        <div class="tab-pane" id="striping">4</div>
+        <div class="tab-pane" id="distribution">5</div>
+        <div class="tab-pane" id="end">6</div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
