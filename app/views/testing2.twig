@@ -40,9 +40,132 @@
               </div>
             </div>
           </div>
-          <div class="tab-pane" id="network">2</div>
-          <div class="tab-pane" id="disks">3</div>
-          <div class="tab-pane" id="striping">4</div>
+          <div class="tab-pane" id="network">
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-8 col-md-offset-1">
+                  <br>
+                  <p>Choose a network for you RAID:</p>
+                  {{ f.select('network', networks) }}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="disks">
+            <div class="row">
+              <div class="col-md-2 col-md-offset-1">
+                <br>
+                <h4><span class="label label-primary"># of Disks</span></h4>
+              </div>
+              <div class="col-md-3">
+                <br>
+                <h4><span class="label label-primary">Type of Disk</span></h4>
+              </div>
+              <div class="col-md-3">
+                <br>
+                <h4><span class="label label-primary">Subtotal</span></h4>
+              </div>
+            </div>
+            <div class="row">
+              {% set numbers = [1..99] %}
+              <div class="col-md-2 col-md-offset-1">
+                {{ f.select('n_disk1', range(1,99)) }}
+              </div>
+              <div class="col-md-3">
+                <div class="form-inline">
+                  {{ f.check('n_type_d1') }}
+                  {{ f.label('n_type_d1','Hawk 2XL') }}
+                </div>
+              </div>
+              <div class="col-md-3">
+                {{ f.label('n_subtotal1','0 GB') }}
+              </div>
+            </div>
+            <div class="row">
+              {% set numbers = [1..99] %}
+              <div class="col-md-2 col-md-offset-1">
+                {{ f.select('n_disk2', range(1,99)) }}
+              </div>
+              <div class="col-md-3">
+                <div class="form-inline">
+                  {{ f.check('n_type_d2') }}
+                  {{ f.label('n_type_d2','HP 97560') }}
+                </div>
+              </div>
+              <div class="col-md-3">
+                {{ f.label('n_subtotal2','0 GB') }}
+              </div>
+            </div>
+            <div class="row">
+              {% set numbers = [1..99] %}
+              <div class="col-md-2 col-md-offset-1">
+                {{ f.select('n_disk3', range(1,99)) }}
+              </div>
+              <div class="col-md-3">
+                <div class="form-inline">
+                  {{ f.check('n_type_d3') }}
+                  {{ f.label('n_type_d3','Hawk 4') }}
+                </div>
+              </div>
+              <div class="col-md-3">
+                {{ f.label('n_subtotal3','0 GB') }}
+              </div>
+            </div>
+            <div class="row">
+              {% set numbers = [1..99] %}
+              <div class="col-md-2 col-md-offset-1">
+                {{ f.select('n_disk4', range(1,99)) }}
+              </div>
+              <div class="col-md-3">
+                <div class="form-inline">
+                  {{ f.check('n_type_d4') }}
+                  {{ f.label('n_type_d4','Maxtor 90871U2') }}
+                </div>
+              </div>
+              <div class="col-md-3">
+                {{ f.label('n_subtotal4','0 GB') }}
+              </div>
+            </div>
+            <div class="row">
+              {% set numbers = [1..99] %}
+              <div class="col-md-2 col-md-offset-1">
+                {{ f.select('n_disk5', range(1,99)) }}
+              </div>
+              <div class="col-md-3">
+                <div class="form-inline">
+                  {{ f.check('n_type_d5') }}
+                  {{ f.label('n_type_d5','WD Caviar®') }}
+                </div>
+              </div>
+              <div class="col-md-3">
+                {{ f.label('n_subtotal5','0 GB') }}
+              </div>
+            </div>
+            <div class="row">
+              {% set numbers = [1..99] %}
+              <div class="col-md-2 col-md-offset-1">
+                {{ f.select('n_disk6', range(1,99)) }}
+              </div>
+              <div class="col-md-3">
+                <div class="form-inline">
+                  {{ f.check('n_type_d6') }}
+                  {{ f.label('n_type_d6','Seagate Cheetah') }}
+                </div>
+              </div>
+              <div class="col-md-3">
+                {{ f.label('n_subtotal6','0 GB') }}
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="striping">
+            <div class="row">
+              <div class="col-md-6 col-md-offset-1">
+                <br>
+                {{ f.label('size','Size:') }}
+                {{ f.text('size') }}
+              </div>
+            </div>
+          </div>
           <div class="tab-pane" id="distribution">5</div>
           <div class="tab-pane" id="end">6</div>
         </div>
