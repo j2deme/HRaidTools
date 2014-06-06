@@ -6,14 +6,18 @@
   <input type="password" class="form-control" id="{{ id }}" name="{{ id }}" placeholder="{{ placeholder }}" size="{{ size|default(60) }}" autocomplete="off" {% if read %}readonly{% endif %}>
 {% endmacro %}
 
+{% macro number(id, placeholder, min, max) %}
+  <input type="number" class="form-control" id="{{ id }}" name="{{ id }}" placeholder="{{ placeholder }}" min="{{ min }}" max="{{ max }}" >
+{% endmacro %}
+
 {% macro textarea(id, ph, text, rows) %}
 <textarea name="{{ id }}" id="{{ id }}" class="form-control" rows="{{ rows|default(3) }}" placeholder="{{ ph|default("") }}">{{ text|default("") }}</textarea>
 {% endmacro %}
 
-{% macro check(id, text, name, checked = false, inline = false) %}
+{% macro check(id, text, value, name, checked = false, inline = false) %}
 <div class="{% if inline %}checkbox-inline{% else%}checkbox{% endif %}">
   <label>
-    <input type="checkbox" name="{{ name|default(id) }}" id="{{ id }}" {% if checked %}checked{% endif %}> {{ text|default("") }}
+    <input type="checkbox" name="{{ name|default(id) }}" id="{{ id }}" value="{{ value }}" {% if checked %}checked{% endif %}> {{ text|default("") }}
   </label>
 </div>
 {% endmacro %}
@@ -73,3 +77,4 @@
 {% macro hide(id,value) %}
 <input type="hidden" id="{{ id|default("") }}" name="{{ id|default("") }}" value="{{ value|default("") }}">
 {% endmacro %}
+
