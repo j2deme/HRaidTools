@@ -1,13 +1,13 @@
-{% macro text(id, placeholder, value, size, read = false,focus = false) %}
-  <input type="text" class="form-control" id="{{ id }}" name="{{ id }}" placeholder="{{ placeholder }}" value="{{ value|default("")|e }}" size="{{ size|default(60) }}" autocomplete="off" {% if read %}readonly{% endif %} {% if focus %}autofocus{% endif %}>
+{% macro text(id, placeholder, value, size, read = false,focus = false,class) %}
+  <input type="text" class="form-control {{ class|default("") }}" id="{{ id }}" name="{{ id }}" placeholder="{{ placeholder }}" value="{{ value|default("")|e }}" size="{{ size|default(60) }}" autocomplete="off" {% if read %}readonly{% endif %} {% if focus %}autofocus{% endif %}>
 {% endmacro %}
 
-{% macro password(id, placeholder, size, read = false) %}
-  <input type="password" class="form-control" id="{{ id }}" name="{{ id }}" placeholder="{{ placeholder }}" size="{{ size|default(60) }}" autocomplete="off" {% if read %}readonly{% endif %}>
+{% macro password(id, placeholder, size, read = false,class) %}
+  <input type="password" class="form-control {{ class }}" id="{{ id }}" name="{{ id }}" placeholder="{{ placeholder }}" size="{{ size|default(60) }}" autocomplete="off" {% if read %}readonly{% endif %}>
 {% endmacro %}
 
-{% macro textarea(id, ph, text, rows) %}
-<textarea name="{{ id }}" id="{{ id }}" class="form-control" rows="{{ rows|default(3) }}" placeholder="{{ ph|default("") }}">{{ text|default("") }}</textarea>
+{% macro textarea(id, ph, text, rows,class) %}
+<textarea name="{{ id }}" id="{{ id }}" class="form-control {{ class }}" rows="{{ rows|default(3) }}" placeholder="{{ ph|default("") }}">{{ text|default("") }}</textarea>
 {% endmacro %}
 
 {% macro check(id, text, name, checked = false, inline = false) %}

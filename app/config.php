@@ -16,7 +16,8 @@ if(COOKIES_ENABLED) {
 
 $app->config(array(
   'templates.path' => VIEWS_FOLDER,
-  'view'           => new \Slim\Views\Twig(array('debug' => true))
+  'view'           => new \Slim\Views\Twig(array('debug' => true)),
+  'mode'           => SLIM_MODE
 ));
 
 $app->configureMode('production', function () use ($app) {

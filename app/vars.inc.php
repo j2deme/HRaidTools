@@ -13,7 +13,7 @@ define('COOKIES_ENABLED', true);//If you need to store more than 4 kb set to fal
 define('COOKIE_SECRET', 'htsecret');//Change for a different secret
 define('COOKIE_DURATION', '20 minutes');//Default value, change as needed
 
-$_ENV['SLIM_MODE'] = 'development';//development,production
+define('SLIM_MODE','development');//development,production
 
 // ATTENTION! Do not change, unless you know what you are doing.
 define('ROOT', basename(dirname(__DIR__)).'/');
