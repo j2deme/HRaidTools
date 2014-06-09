@@ -81,7 +81,7 @@ $app->view()->appendData(array(
   'langCookie' => $langCookie
 ));
 
-$app->view()->appendData(array('navbar' => $navbar));
+//$app->view()->appendData(array('navbar' => $navbar));
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 $capsule = new Capsule;
