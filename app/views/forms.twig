@@ -8,6 +8,7 @@
 
 {% macro textarea(id, ph, text, rows,class) %}
 <textarea name="{{ id }}" id="{{ id }}" class="form-control {{ class }}" rows="{{ rows|default(3) }}" placeholder="{{ ph|default("") }}">{{ text|default("") }}</textarea>
+{% endmacro %}
 
 {% macro number(id, placeholder, min, max) %}
   <input type="number" class="form-control" id="{{ id }}" name="{{ id }}" placeholder="{{ placeholder }}" min="{{ min }}" max="{{ max }}" >
