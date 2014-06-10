@@ -30,8 +30,8 @@
 </div>
 {% endmacro %}
 
-{% macro label(name, text = "") %}
-  <label for="{{ name }}" class="control-label">{{ text }}</label>
+{% macro label(name, text = "",class) %}
+  <label for="{{ name }}" class="control-label {{ class }}">{{ text }}</label>
 {% endmacro %}
 
 {% macro option(val, text = "", selected = false) %}
