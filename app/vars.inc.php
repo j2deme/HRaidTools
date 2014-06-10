@@ -3,7 +3,7 @@ define('TITLE', 'HRaidTools');
 // Database
 define('DB_DRIVER', 'pgsql');//mysql,pgsql
 define('DB_HOST', 'localhost');
-define('DB_DATABASE', 'hraid');
+define('DB_DATABASE', 'ht');
 define('DB_USERNAME', 'ht');
 define('DB_PASSWORD', 'ht.2014');
 define('DB_PREFIX', '');
