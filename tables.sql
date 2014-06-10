@@ -1,3 +1,4 @@
+-- create user ht with superuser login createdb password 'ht.2014';
 -- Organizations
 create table organizations(
   id serial primary key,
@@ -20,7 +21,7 @@ create table users(
   intro boolean default false,
   organization_id int not null,
   created_at timestamp not null,
-  updated_at timestamp not null
+  updated_at timestamp not null,
   foreign key (organization_id) references organizations(id)
 );
 -- Workgroups
@@ -55,16 +56,6 @@ create table projects(
   foreign key (user_id) references users(id),
   foreign key (status_id) references statuses(id)
 );
--- Project_Workgroup
-create table project_workgroup(
-  id serial primary key,
-  project_id integer not null,
-  workgroup_id integer not null,
-  created_at timestamp not null,
-  updated_at timestamp not null,
-  foreign key (project_id) references projects(id),
-  foreign key (workgroup_id) references workgroups(id)
-);
 -- User_Workgroup
 create table user_workgroup(
   id serial primary key,
@@ -76,6 +67,36 @@ create table user_workgroup(
   updated_at timestamp not null,
   foreign key (user_id) references users(id),
   foreign key (workgroup_id) references workgroups(id)
+);
+-- Project_Workgroup
+create table project_workgroup(
+  id serial primary key,
+  project_id integer not null,
+  workgroup_id integer not null,
+  created_at timestamp not null,
+  updated_at timestamp not null,
+  foreign key (project_id) references projects(id),
+  foreign key (workgroup_id) references workgroups(id)
+);
+-- Organization_Project
+create table organization_project(
+  id serial primary key,
+  organization_id integer not null,
+  project_id integer not null,
+  created_at timestamp not null,
+  updated_at timestamp not null,
+  foreign key (organization_id) references organizations(id),
+  foreign key (project_id) references projects(id)
+);
+-- Project_User
+create table project_user(
+  id serial primary key,
+  user_id integer not null,
+  project_id integer not null,
+  created_at timestamp not null,
+  updated_at timestamp not null,
+  foreign key (user_id) references users(id),
+  foreign key (project_id) references projects(id)
 );
 -- Disks
 create table disks(
@@ -94,6 +115,11 @@ create table disks(
   short_disk text not null,
   long_disk text not null,
   regions text not null,
+  manufacturer text not null,
+  product_name text not null,
+  display_name text not null,
+  display_size text not null,
+  available boolean not null default false,
   created_at timestamp not null,
   updated_at timestamp not null
 );
@@ -110,6 +136,7 @@ create table controllers(
   prefetching boolean not null default true,
   inmediate_report boolean not null default true,
   msg_size integer not null,
+  available boolean not null default false,
   created_at timestamp not null,
   updated_at timestamp not null
 );
@@ -119,10 +146,11 @@ create table drives(
   name text not null,
   controller_id integer not null,
   disk_id integer not null,
+  available boolean not null default false,
   created_at timestamp not null,
   updated_at timestamp not null,
   foreign key (controller_id) references controllers(id),
-  foreign key (disk_id) references disks(id),
+  foreign key (disk_id) references disks(id)
 );
 -- Networks
 create table networks(
@@ -131,6 +159,8 @@ create table networks(
   latency text not null,
   bandwidth text not null,
   network text not null,
+  available boolean not null default false,
+  display_name text not null,
   created_at timestamp not null,
   updated_at timestamp not null
 );
@@ -145,6 +175,7 @@ create table distributions(
   max_requests integer not null,
   report boolean not null default true,
   done_size integer not null,
+  available boolean not null default false,
   created_at timestamp not null,
   updated_at timestamp not null
 );
@@ -233,4 +264,52 @@ create table experiments(
   foreign key (scenario_id) references scenarios(id),
   foreign key (project_id) references projects(id),
   foreign key (status_id) references statuses(id)
+);
+-- Messages
+create table messages(
+  id serial primary key,
+  user_id integer not null,
+  is_important boolean not null default false,
+  subject text,
+  content text,
+  created_at timestamp not null,
+  updated_at timestamp not null,
+  foreign key (user_id) references users(id)
+);
+-- Message_User
+create table message_user(
+  id serial primary key,
+  message_id integer not null,
+  user_id integer not null,
+  is_read boolean not null default false,
+  created_at timestamp not null,
+  updated_at timestamp not null,
+  foreign key (message_id) references messages(id),
+  foreign key (user_id) references users(id)
+);
+-- Tasks
+create table tasks(
+  id serial primary key,
+  title text not null,
+  description text,
+  start_t timestamp not null,
+  end_t timestamp,
+  is_finished boolean not null default false,
+  parent integer,
+  user_id integer not null,
+  project_id integer not null,
+  created_at timestamp not null,
+  updated_at timestamp not null,
+  foreign key (user_id) references users(id),
+  foreign key (parent) references tasks(id)
+);
+-- Task_User
+create table task_user(
+  id serial primary key,
+  task_id integer not null,
+  user_id integer not null,
+  created_at timestamp not null,
+  updated_at timestamp not null,
+  foreign key (task_id) references tasks(id),
+  foreign key (user_id) references users(id)
 );
