@@ -1,4 +1,4 @@
-{# index/home/simulationTools/RAID_designer #}
+{# index/home/simulationTools/RAID-designer #}
 {% extends 'base.twig' %}
 {% import 'forms.twig' as f %}
 {% block content %}
@@ -19,22 +19,14 @@
             <br>
             <div class="row">
               <div class="form-group">
-                <div class="col-md-2 col-md-offset-1">
-                  {{ f.label('raid_name','RAID name:') }}
-                </div>
-                <div class="col-md-6">
-                  {{ f.text('raid_name') }}
-                </div>
+                {{ f.label('raid_name','RAID name:','col-md-2 col-md-offset-1') }}
+                <div class="col-md-5">{{ f.text('raid_name') }}</div>
               </div>
             </div>
             <div class="row">
               <div class="form-group">
-                <div class="col-md-2 col-md-offset-1">
-                  {{ f.label('raid_note','RAID notes:') }}
-                </div>
-                <div class="col-md-5">
-                  {{ f.textarea('raid_note') }}
-                </div>
+                {{ f.label('raid_note','RAID notes:','col-md-2 col-md-offset-1') }}
+                <div class="col-md-5">{{ f.textarea('raid_note') }}</div>
                 <div class="col-md-4">
                   <p class="text-justify"><b>W</b>rite a description of the RAID that will be designed. Or just use this space to write down some notes about the experiment.</p>
                 </div>
@@ -43,11 +35,11 @@
           </div>
           <div class="tab-pane" id="network">
             <div class="row">
-              <div class="form-group">
-                <div class="col-md-8 col-md-offset-1">
-                  <br>
-                  <p>Choose a network for you RAID:</p>
-                  {{ f.select('network', networks) }}
+              <div class="col-md-offset-1">
+                <br>
+                <p>Choose a network for you RAID:</p>
+                <div class="row">
+                  <div class="col-md-6">{{ f.select('network', networks) }}</div>
                 </div>
               </div>
             </div>
@@ -61,10 +53,10 @@
           </div>
           <div class="tab-pane" id="striping">
             <div class="row">
-              <div class="col-md-6 col-md-offset-1">
+              <div class="col-md-8 col-md-offset-1">
                 <br>
-                {{ f.label('size','Size:') }}
-                {{ f.text('size') }}
+                {{ f.label('size','Size:','col-md-2') }}
+                <div class="col-md-6">{{ f.text('size') }}</div>
               </div>
             </div>
             <div class="row">
