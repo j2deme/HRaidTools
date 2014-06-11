@@ -60,4 +60,12 @@ insert into networks(type,latency,bandwidth,network,display_name,display_order) 
 
 insert into networks(type,latency,bandwidth,network,display_name,display_order) values('FAST_ETHERNET',50,'12.5 MB/s','BUS','Fast Ethernet',3);
 
+--insert's table distributors
 
+insert into distributors(type,size,striping,overhead) values('RAID0',10,8192,1000);
+
+insert into distributors(type,size,striping,overhead,report) values('ADAPT_RAID0',10,1024,1200,false);
+
+insert into distributors(type,size,striping,overhead,report) values('ADAPT_RAID5',10,1024,1400,false);
+
+--insert's table
