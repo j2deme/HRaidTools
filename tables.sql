@@ -118,7 +118,8 @@ create table disks(
   manufacturer text not null,
   product_name text not null,
   display_name text not null,
-  display_size text not null,
+  display_size integer not null,
+  display_unit text not null,
   available boolean not null default false,
   created_at timestamp not null,
   updated_at timestamp not null
