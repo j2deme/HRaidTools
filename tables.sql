@@ -156,7 +156,7 @@ create table drives(
 -- Networks
 create table networks(
   id serial primary key,
-  type text not null 'None',
+  type text not null default 'None',
   latency integer not null default 999,
   bandwidth text not null default 'None',
   network text not null default 'BUS',
