@@ -1,6 +1,6 @@
 -- create user ht with superuser login createdb password 'ht.2014';
 -- Organizations
-create table organizations1(
+create table organizations(
   id serial primary key,
   name text not null,
   created_at timestamp not null default now(),
@@ -46,9 +46,9 @@ create table statuses(
 -- Projects
 create table projects(
   id serial primary key,
-  name text not null,
-  description text,
-  deadline timestamp,
+  name text not null default '',
+  description text default '',
+  deadline timestamp default null,
   user_id integer not null,
   status_id integer not null,
   created_at timestamp not null default now(),
@@ -184,19 +184,19 @@ create table distributors(
 -- Configurations
 create table configurations(
   id serial primary key,
-  short_name text,
+  short_name text default '',
   striping integer not null default 128,
   striping_unit varchar(5) not null default 'KB',
-  sas_size bigint not null,
-  notes text,
+  sas_size bigint not null default 999,
+  notes text default '',
   user_id integer not null,
   network_id integer not null,
-  distribution_id integer not null,
+  distributor_id integer not null,
   created_at timestamp not null default now(),
   updated_at timestamp not null default now(),
   foreign key (user_id) references users(id),
   foreign key (network_id) references networks(id),
-  foreign key (distribution_id) references distributions(id)
+  foreign key (distributor_id) references distributors(id)
 );
 -- Configuration_Drive
 create table configuration_drive(
@@ -212,20 +212,20 @@ create table configuration_drive(
 -- Workloads
 create table workloads(
   id serial primary key,
-  sas_size bigint not null,
-  distribution varchar(45) not null,
-  interarrival integer not null,
-  request_size integer not null,
-  read_ratio integer not null,
-  concurrency integer not null,
-  sample_size bigint not null,
-  idle_time text default '-',
-  sequential text default '-',
-  mean_burst_size text default '-',
-  notes text,
+  sas_size bigint not null default 999,
+  distribution varchar(45) not null default 'None',
+  interarrival integer not null default 999,
+  request_size integer not null default 999,
+  read_ratio integer not null default 999,
+  concurrency integer not null default 999,
+  sample_size bigint not null default 999,
+  idle_time text default null,
+  sequential text default null,
+  mean_burst_size text default null,
+  notes text default '',
   user_id integer not null,
   status_id integer not null,
-  project_id integer,
+  project_id integer default null,
   created_at timestamp not null default now(),
   updated_at timestamp not null default now(),
   foreign key (user_id) references users(id),
@@ -235,12 +235,12 @@ create table workloads(
 -- Scenarios
 create table scenarios(
   id serial primary key,
-  type_sim text not null,
+  type_sim text not null default 'None',
   user_id integer not null,
   configuration_id integer not null,
   workload_id integer not null,
-  workgroup_id integer,
-  project_id integer,
+  workgroup_id integer default null,
+  project_id integer default null,
   created_at timestamp not null default now(),
   updated_at timestamp not null default now(),
   foreign key (user_id) references users(id),
@@ -252,11 +252,11 @@ create table scenarios(
 -- Experiments
 create table experiments(
   id serial primary key,
-  type_sim text,
-  finished_at timestamp,
+  type_sim text default null,
+  finished_at timestamp default null,
   user_id integer not null,
   scenario_id integer not null,
-  project_id integer,
+  project_id integer default null,
   status_id integer not null,
   created_at timestamp not null default now(),
   updated_at timestamp not null default now(),
