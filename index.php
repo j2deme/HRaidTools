@@ -6,6 +6,11 @@ require 'vendor/autoload.php';
 include_once 'app/vars.inc.php';
 include_once APP_FOLDER.'config.php';
 
+//Load all the models
+foreach(glob(MODELS_FOLDER.'*.php') as $model) {
+  include_once $model;
+}
+
 $auth = function ($app) {
   return function () use ($app) {
     if (!isset($_SESSION['user'])) {
