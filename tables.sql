@@ -193,7 +193,7 @@ create table distributors(
   available boolean not null default false,
   created_at timestamp not null default now(),
   updated_at timestamp not null default now(),
-  foreign key (distribution_id) references distributions(id),
+  foreign key (distribution_id) references distributions(id)
 );
 -- Configurations
 create table configurations(
