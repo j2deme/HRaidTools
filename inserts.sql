@@ -18,21 +18,21 @@ insert into disks(name,type,sector,sector_track,track_cylinder,cylinders,rpm,tra
 
 -- insert's table controllers
 
-insert into controllers(name,type,block_size,cache_size,new_overhead,read_fence,write_fence,msg_size) values('1GB_CONTROLLER','SIMPLE_CONTROLLER',1024,'64 Kbytes',3200,'64 Kbytes','64 Kbytes','1 bytes');
+insert into controllers(name,type,block_size,cache_size,new_overhead,read_fence,write_fence,msg_size) values('1GB_CONTROLLER','SIMPLE_CONTROLLER',1024,'64 Kbytes',3200,'64 Kbytes','64 Kbytes',1);
 
-insert into controllers(name,type,block_size,cache_size,new_overhead,read_fence,write_fence,msg_size) values('2GB_CONTROLLER','SIMPLE_CONTROLLER',1024,'128 Kbytes',2200,'64 Kbytes','64 Kbytes','1 bytes');
+insert into controllers(name,type,block_size,cache_size,new_overhead,read_fence,write_fence,msg_size) values('2GB_CONTROLLER','SIMPLE_CONTROLLER',1024,'128 Kbytes',2200,'64 Kbytes','64 Kbytes',1);
 
-insert into controllers(name,type,block_size,cache_size,new_overhead,read_fence,write_fence,msg_size) values('4GB_CONTROLLER','SIMPLE_CONTROLLER',512,'512 Kbytes',1100,'64 Kbytes','64 Kbytes','1 bytes');
+insert into controllers(name,type,block_size,cache_size,new_overhead,read_fence,write_fence,msg_size) values('4GB_CONTROLLER','SIMPLE_CONTROLLER',512,'512 Kbytes',1100,'64 Kbytes','64 Kbytes',1);
 
-insert into controllers(name,type,block_size,cache_size,new_overhead,read_fence,write_fence,msg_size) values('8GB_CONTROLLER','SIMPLE_CONTROLLER',512,'1024 Kbytes',800,'64 Kbytes','64 Kbytes','1 bytes');
+insert into controllers(name,type,block_size,cache_size,new_overhead,read_fence,write_fence,msg_size) values('8GB_CONTROLLER','SIMPLE_CONTROLLER',512,'1024 Kbytes',800,'64 Kbytes','64 Kbytes',1);
 
-insert into controllers(name,type,block_size,cache_size,new_overhead,read_fence,write_fence,msg_size) values('18GB_CONTROLLER_SLOW','SIMPLE_CONTROLLER',512,'2048 Kbytes',800,'64 Kbytes','64 Kbytes','1 bytes');
+insert into controllers(name,type,block_size,cache_size,new_overhead,read_fence,write_fence,msg_size) values('18GB_CONTROLLER_SLOW','SIMPLE_CONTROLLER',512,'2048 Kbytes',800,'64 Kbytes','64 Kbytes',1);
 
-insert into controllers(name,type,block_size,cache_size,new_overhead,read_fence,write_fence,msg_size) values('18GB_CONTROLLER_FSLOW','SIMPLE_CONTROLLER',512,'2048 Kbytes',600,'64 Kbytes','64 Kbytes','1 bytes');
+insert into controllers(name,type,block_size,cache_size,new_overhead,read_fence,write_fence,msg_size) values('18GB_CONTROLLER_FSLOW','SIMPLE_CONTROLLER',512,'2048 Kbytes',600,'64 Kbytes','64 Kbytes',1);
 
-insert into controllers(name,type,block_size,cache_size,new_overhead,read_fence,write_fence,msg_size) values('36GB_CONTROLLER_F','SIMPLE_CONTROLLER',512,'4096 Kbytes',600,'64 Kbytes','64 Kbytes','1 bytes');
+insert into controllers(name,type,block_size,cache_size,new_overhead,read_fence,write_fence,msg_size) values('36GB_CONTROLLER_F','SIMPLE_CONTROLLER',512,'4096 Kbytes',600,'64 Kbytes','64 Kbytes',1);
 
-insert into controllers(name,type,block_size,cache_size,new_overhead,read_fence,write_fence,msg_size) values('36GB_CONTROLLER_F1','SIMPLE_CONTROLLER',512,'4096 Kbytes',300,'64 Kbytes','64 Kbytes','1 bytes');
+insert into controllers(name,type,block_size,cache_size,new_overhead,read_fence,write_fence,msg_size) values('36GB_CONTROLLER_F1','SIMPLE_CONTROLLER',512,'4096 Kbytes',300,'64 Kbytes','64 Kbytes',1);
 
 --insert's table drives
 
@@ -60,4 +60,12 @@ insert into networks(type,latency,bandwidth,network,display_name,display_order) 
 
 insert into networks(type,latency,bandwidth,network,display_name,display_order) values('FAST_ETHERNET',50,'12.5 MB/s','BUS','Fast Ethernet',3);
 
+--insert's table distributors
 
+insert into distributors(type,size,striping,overhead) values('RAID0',10,8192,1000);
+
+insert into distributors(type,size,striping,overhead,report) values('ADAPT_RAID0',10,1024,1200,false);
+
+insert into distributors(type,size,striping,overhead,report) values('ADAPT_RAID5',10,1024,1400,false);
+
+--insert's table
