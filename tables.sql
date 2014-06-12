@@ -166,6 +166,16 @@ create table networks(
   created_at timestamp not null default now(),
   updated_at timestamp not null default now()
 );
+-- Distributions
+create table distributions(
+  id serial primary key,
+  name text not null default 'None',
+  display_order integer not null default 999,
+  is_trace_generator boolean not null default false,
+  available boolean not null default false,
+  created_at timestamp not null default now(),
+  updated_at timestamp not null default now()
+);
 -- Distributors
 create table distributors(
   id serial primary key,
@@ -178,9 +188,12 @@ create table distributors(
   report boolean not null default true,
   done_size integer not null default 1,
   display_name text not null default 'None',
+  display_order integer not null default 999,
+  distribution_id integer not null,
   available boolean not null default false,
   created_at timestamp not null default now(),
-  updated_at timestamp not null default now()
+  updated_at timestamp not null default now(),
+  foreign key (distribution_id) references distributions(id),
 );
 -- Configurations
 create table configurations(
