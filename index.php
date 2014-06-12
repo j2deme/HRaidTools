@@ -7,8 +7,10 @@ include_once 'app/vars.inc.php';
 include_once APP_FOLDER.'config.php';
 
 //Load all the models
+include_once MODELS_FOLDER."Elegant.php";
 foreach(glob(MODELS_FOLDER.'*.php') as $model) {
-  include_once $model;
+  if($model != "Elegant.php")
+    include_once $model;
 }
 
 $auth = function ($app) {
