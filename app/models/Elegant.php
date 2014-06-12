@@ -2,7 +2,9 @@
 /**
 * Elegant
 */
-class Elegant extends Eloquent{
+use Illuminate\Database\Eloquent\Model;
+
+class Elegant extends Model{
   protected $rules = array();
   protected $errors;
 

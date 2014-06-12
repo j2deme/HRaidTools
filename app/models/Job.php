@@ -1,6 +1,6 @@
 <?php
 class Job extends Elegant {
-  private $rules = array(
+  protected $rules = array(
   );
 }
 ?>

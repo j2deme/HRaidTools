@@ -1,6 +1,6 @@
 <?php
 class Network extends Elegant {
-  private $rules = array(
+  protected $rules = array(
   );
 }
 ?>

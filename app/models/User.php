@@ -1,7 +1,7 @@
 <?php
 class User extends Elegant {
   protected $table = 'users';//default:users
-  private $rules = array(
+  protected $rules = array(
   );
   public function configurations(){
     return $this->hasMany('Configurations');
