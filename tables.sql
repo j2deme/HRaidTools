@@ -177,6 +177,7 @@ create table distributors(
   max_requests integer not null default 10,
   report boolean not null default true,
   done_size integer not null default 1,
+  display_name text not null default 'None',
   available boolean not null default false,
   created_at timestamp not null default now(),
   updated_at timestamp not null default now()
