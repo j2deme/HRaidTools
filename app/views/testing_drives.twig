@@ -1,0 +1,49 @@
+{# CRUD of drives #}
+{% extends 'base.twig' %}
+{% import 'forms.twig' as f %}
+{% block content %}
+  <form class="form-horizontal" action="{{ urlFor('add_drives') }}" method="post" role="form">
+    <div class="row">
+      <div class="col-md-4 text-center">
+        <h3>Drives</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          {{ f.label('name','Name:','col-md-2') }}
+          <div class="col-md-6">{{ f.text('name') }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          {{ f.label('controller_id','Controllers:','col-md-2') }}
+          <div class="col-md-6">{{ f.select('controller_id',controller) }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          {{ f.label('disk_id','Disks:','col-md-2') }}
+          <div class="col-md-6">{{ f.select('disk_id',disk) }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          {{ f.label('available','Available:','col-md-2') }}
+          <div class="col-md-6">{{ f.check('available','','true') }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 col-md-offset-1">
+        <button class="btn btn-primary btn-block">Save</button>
+      </div>
+    </div>
+  </form>
+{% endblock %}
