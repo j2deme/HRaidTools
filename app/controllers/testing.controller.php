@@ -22,7 +22,7 @@
 
   $app->get('/testing2', function () use($app){
     $data = array();
-    $data['networks'] = array('10 Gigabit Ethernet','Gigabit Ethernet','Fast Ethernet');
+    $data['networks'] = Network::select('id as value', 'display_name as label')->get();
     $app->render('testing2.twig', $data);
   })->name('testing2');
 
@@ -35,5 +35,94 @@
     $data = array();
     $app->render('testing.twig', $data);
   })->name('testing');
+
+ $app->get('/testing_disks', function () use($app){
+    $data = array();
+    $data['unit'] = array('KB','MB','GB','TB', 'PB');
+    $app->render('testing_disks.twig', $data);
+  })->name('testing_disks');
+
+$app->post('/add_disks', function () use($app){
+  $post = (object) $app->request->post();
+  $disk = new Disk();
+  $disk->name = $post->name;
+  $disk->type = $post->type;
+  $disk->sector = $post->sector;
+  $disk->sector_track = $post->sector_track;
+  $disk->track_cylinder = $post->track_cylinder;
+  $disk->cylinders = $post->cylinders;
+  $disk->rpm = $post->rpm;
+  $disk->track_overhead = $post->track_overhead;
+  $disk->track_skew = $post->track_skew;
+  $disk->cylinder_skew = $post->cylinder_skew;
+  $disk->limit_disk = $post->limit_disk;
+  $disk->short_disk = $post->short_disk;
+  $disk->long_disk = $post->long_disk;
+  $disk->regions = $post->regions;
+  $disk->manufacturer = $post->manufacturer;
+  $disk->product_name = $post->product_name;
+  $disk->display_name = $post->display_name;
+  $disk->display_size = $post->display_size;
+  $disk->display_unit = $post->display_unit;
+  $disk->available = $post->available;
+  $disk->save();
+  $app->redirect($app->urlFor('root'));
+})->name('add_disks');
+
+$app->get('/testing_controllers', function () use($app){
+  $data = array();
+  $app->render('testing_controllers.twig', $data);
+})->name('testing_controllers');
+
+$app->post('/add_controllers', function () use($app){
+  $post = (object) $app->request->post();
+  $controller = new Controller();
+  $controller->name = $post->name;
+  $controller->type = $post->type;
+  $controller->block_size = $post->block_size;
+  $controller->cache_size = $post->cache_size;
+  $controller->new_overhead = $post->new_overhead;
+  $controller->read_fence = $post->read_fence;
+  $controller->write_fence = $post->write_fence;
+  $controller->prefetching = $post->prefetching;
+  $controller->inmediate_report = $post->inmediate_report;
+  $controller->msg_size = $post->msg_size;
+  $controller->available = $post->available;
+  $controller->save();
+  $app->redirect($app->urlFor('root'));
+})->name('add_controllers');
+
+$app->get('/testing_drives', function () use($app){
+  $data = array();
+  $data['controller'] = Controller::select('id as value', 'name as label')->get();
+  $data['disk'] = Disk::select('id as value', 'name as label')->get();
+  $app->render('testing_drives.twig', $data);
+})->name('testing_drives');
+
+$app->post('/add_drives', function () use($app){
+  $post = (object) $app->request->post();
+  $drive = new Drives();
+  $drive->name = $post->name;
+  $drive->controller_id = $post->controller_id;
+  $drive->disk_id = $post->disk_id;
+  $drive->available = $post->available;
+  $drive->save();
+  $app->redirect($app->urlFor('root'));
+})->name('add_drives');
+
+$app->get('/testing_networks', function () use($app){
+  $data = array();
+  $app->render('testing_networks.twig', $data);
+})->name('testing_networks');
+
+$app->get('/testing_distributions', function () use($app){
+  $data = array();
+  $app->render('testing_distributions.twig', $data);
+})->name('testing_distributions');
+
+$app->get('/testing_distributors', function () use($app){
+  $data = array();
+  $app->render('testing_distributors.twig', $data);
+})->name('testing_distributors');
 
 ?>
