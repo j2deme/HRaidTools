@@ -95,7 +95,7 @@ create table project_user(
   project_id integer not null,
   created_at timestamp not null default now(),
   updated_at timestamp not null default now(),
-  foreign key (user_id) references users(id),
+  foreign key (user_id) references users(id),t
   foreign key (project_id) references projects(id)
 );
 -- Disks
