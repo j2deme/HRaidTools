@@ -1,0 +1,67 @@
+{# CRUD of controllers #}
+{% extends 'base.twig' %}
+{% import 'forms.twig' as f %}
+{% block content %}
+   <form class="form-horizontal" action="{{ urlFor('add_controllers') }}" method="post" role="form">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h3>Controllers</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          {{ f.label('name','Name:','col-md-4') }}
+          <div class="col-md-6">{{ f.text('name') }}</div>
+        </div>
+        <div class="form-group">
+          {{ f.label('block_size','Block Size:','col-md-4') }}
+          <div class="col-md-6">{{ f.text('block_size') }}</div>
+        </div>
+        <div class="form-group">
+          {{ f.label('new_overhead','New Overhead:','col-md-4') }}
+          <div class="col-md-6">{{ f.text('new_overhead') }}</div>
+        </div>
+        <div class="form-group">
+          {{ f.label('write_fence','Write Fence:','col-md-4') }}
+          <div class="col-md-6">{{ f.text('write_fence','','64 Kbytes') }}</div>
+        </div>
+        <div class="form-group">
+          {{ f.label('inmediate_report','Inmediate Report:','col-md-4') }}
+          <div class="col-md-6">{{ f.check('inmediate_report','','true') }}</div>
+        </div>
+        <div class="form-group">
+          {{ f.label('available','Available:','col-md-4') }}
+          <div class="col-md-6">{{ f.check('available','','true') }}</div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          {{ f.label('type','Type:','col-md-4') }}
+          <div class="col-md-6">{{ f.text('type','','SIMPLE_CONTROLLER') }}</div>
+        </div>
+        <div class="form-group">
+          {{ f.label('cache_size','Cache Size:','col-md-4') }}
+          <div class="col-md-6">{{ f.text('cache_size','','512 Kbytes') }}</div>
+        </div>
+        <div class="form-group">
+          {{ f.label('read_fence','Read Fence:','col-md-4') }}
+          <div class="col-md-6">{{ f.text('read_fence','','64 Kbytes') }}</div>
+        </div>
+        <div class="form-group">
+          {{ f.label('prefetching','Prefetching:','col-md-4') }}
+          <div class="col-md-6">{{ f.check('prefetching','','true') }}</div>
+        </div>
+        <div class="form-group">
+          {{ f.label('msg_size','Msg Size:','col-md-4') }}
+          <div class="col-md-6">{{ f.text('msg_size','','1') }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-4 col-md-offset-4">
+        <button class="btn btn-primary btn-block">Save</button>
+      </div>
+    </div>
+   </form>
+{% endblock %}
