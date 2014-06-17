@@ -1,31 +1,35 @@
 <?php
 class User extends Elegant {
-  protected $table = 'users';//default:users
+  //protected $table = 'users';//default:users
   protected $rules = array(
   );
+  protected $hidden = array('password');
   public function configurations(){
-    return $this->hasMany('Configurations');
+    return $this->hasMany('Configuration');
   }
   public function experiments(){
-    return $this->hasMany('Experiments');
+    return $this->hasMany('Experiment');
   }
   public function messages(){
-    return $this->hasMany('Messages');
+    return $this->hasMany('Message');
   }
   public function projects(){
-    return $this->hasMany('Projects');
+    return $this->hasMany('Project');
   }
   public function scenarios(){
-    return $this->hasMany('Scenarios');
+    return $this->hasMany('Scenario');
   }
   public function tasks(){
-    return $this->hasMany('Tasks');
+    return $this->hasMany('Task');
   }
   public function workgroups(){
-    return $this->hasMany('Workgroups');
+    return $this->hasMany('Workgroup');
+  }
+  public function memberships(){
+    return $this->belongsToMany('Workgroup')->withPivot('authorized','authorized_at')->withTimestamps();
   }
   public function workloads(){
-    return $this->hasMany('Workloads');
+    return $this->hasMany('Workload');
   }
 }
 ?>
