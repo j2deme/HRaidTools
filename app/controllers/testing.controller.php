@@ -101,7 +101,7 @@ $app->get('/testing_drives', function () use($app){
 
 $app->post('/add_drives', function () use($app){
   $post = (object) $app->request->post();
-  $drive = new Drives();
+  $drive = new Drive();
   $drive->name = $post->name;
   $drive->controller_id = $post->controller_id;
   $drive->disk_id = $post->disk_id;
@@ -115,14 +115,59 @@ $app->get('/testing_networks', function () use($app){
   $app->render('testing_networks.twig', $data);
 })->name('testing_networks');
 
+$app->post('/add_networks', function () use($app){
+  $post = (object) $app->request->post();
+  $network = new Network();
+  $network->type = $post->type;
+  $network->latency = $post->latency;
+  $network->bandwidth = $post->bandwidth;
+  $network->network = $post->network;
+  $network->display_name = $post->display_name;
+  $network->display_order = $post->display_order;
+  $network->available = $post->available;
+  $network->save();
+  $app->redirect($app->urlFor('root'));
+})->name('add_networks');
+
 $app->get('/testing_distributions', function () use($app){
   $data = array();
   $app->render('testing_distributions.twig', $data);
 })->name('testing_distributions');
 
+$app->post('/add_distributions', function() use($app){
+  $post = (object) $app->request->post();
+  $distribution = new Distribution();
+  $distribution->name = $post->name;
+  $distribution->display_order = $post->display_order;
+  $distribution->is_trace_generator = $post->is_trace_generator;
+  $distribution->available = $post->available;
+  $distribution->save();
+  $app->redirect($app->urlFor('root'));
+})->name('add_distributions');
+
 $app->get('/testing_distributors', function () use($app){
   $data = array();
+  //$data['distributions'] = Distribution::select('id as value', 'name as label')->get();
   $app->render('testing_distributors.twig', $data);
 })->name('testing_distributors');
+
+$app->post('/add_distributors', function () use($app){
+  $post = (object) $app->request->post();
+  $distributor = new Distributor();
+  $distributor->distributor = $post->distributor;
+  $distributor->type = $post->type;
+  $distributor->size = $post->size;
+  $distributor->striping = $post->striping;
+  $distributor->overhead = $post->overhead;
+  $distributor->max_requests = $post->max_requests;
+  $distributor->report = $post->report;
+  $distributor->done_size = $post->done_size;
+  $distributor->display_name = $post->display_name;
+  $distributor->display_order = $post->display_order;
+  $distributor->distribution_id = $post->distribution_id;
+  $distributor->available = $post->available;
+  $distributor->save();
+  $app->redirect($app->urlFor('root'));
+})->name('add_distributors');
 
 ?>
