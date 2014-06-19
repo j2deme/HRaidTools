@@ -18,7 +18,7 @@
     {{ f.select('n_disk1', range(1,99)) }}
   </div>
   <div class="col-md-6">
-   {{ f.check('n_type_d1','Hawk 2XL','1') }}
+   {{ f.check('n_type_d1',disks.display_name,'1') }}
   </div>
   <div class="col-md-3">
     {{ f.label('n_subtotal1','0 GB') }}

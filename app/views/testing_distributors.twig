@@ -2,7 +2,7 @@
 {% extends 'base.twig' %}
 {% import 'forms.twig' as f %}
 {% block content %}
-  <form class="form-horizontal" action="" method="" role="form">
+  <form class="form-horizontal" action="{{ urlFor('add_distributors') }}" method="post" role="form">
     <div class="row">
       <div class="col-md-12 text-center">
         <h3>Distributors</h3>
@@ -12,7 +12,7 @@
       <div class="col-md-6">
         <div class="form-group">
           {{ f.label('distributor','Distributor:','col-md-4') }}
-          <div class="col-md-6">{{ f.text('distributor') }}</div>
+          <div class="col-md-6">{{ f.text('distributor','','NODE0') }}</div>
         </div>
         <div class="form-group">
           {{ f.label('size','Size:','col-md-4') }}
@@ -24,7 +24,7 @@
         </div>
         <div class="form-group">
           {{ f.label('report','Report:','col-md-4') }}
-          <div class="col-md-6">{{ f.check('report','','true') }}</div>
+          <div class="col-md-6">{{ f.check('report','','true','',true) }}</div>
         </div>
         <div class="form-group">
           {{ f.label('display_name','Display Name:','col-md-4') }}

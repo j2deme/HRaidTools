@@ -19,14 +19,14 @@
             <br>
             <div class="row">
               <div class="form-group">
-                {{ f.label('raid_name','RAID name:','col-md-2 col-md-offset-1') }}
-                <div class="col-md-5">{{ f.text('raid_name') }}</div>
+                {{ f.label('short_name','RAID name:','col-md-2 col-md-offset-1') }}
+                <div class="col-md-5">{{ f.text('short_name') }}</div>
               </div>
             </div>
             <div class="row">
               <div class="form-group">
-                {{ f.label('raid_note','RAID notes:','col-md-2 col-md-offset-1') }}
-                <div class="col-md-5">{{ f.textarea('raid_note') }}</div>
+                {{ f.label('notes','RAID notes:','col-md-2 col-md-offset-1') }}
+                <div class="col-md-5">{{ f.textarea('notes') }}</div>
                 <div class="col-md-4">
                   <p class="text-justify"><b>W</b>rite a description of the RAID that will be designed. Or just use this space to write down some notes about the experiment.</p>
                 </div>
@@ -39,7 +39,7 @@
                 <br>
                 <p>Choose a network for you RAID:</p>
                 <div class="row">
-                  <div class="col-md-6">{{ f.select('network', networks) }}</div>
+                  <div class="col-md-6">{{ f.select('network_id', networks) }}</div>
                 </div>
               </div>
             </div>
@@ -55,24 +55,24 @@
             <div class="row">
               <div class="col-md-8 col-md-offset-1">
                 <br>
-                {{ f.label('size','Size:','col-md-2') }}
-                <div class="col-md-6">{{ f.text('size') }}</div>
+                {{ f.label('striping','Size:','col-md-2') }}
+                <div class="col-md-6">{{ f.text('striping') }}</div>
               </div>
             </div>
             <div class="row">
               <div class="col-md-2 col-md-offset-1">
                 <div class="form-inline">
-                  {{ f.label('measure','Measure:') }}
+                  {{ f.label('striping_unit','Measure:') }}
                 </div>
               </div>
               <div class="col-md-1">
-                  {{ f.radio('measure','measure1','kb','KB',true) }}
+                  {{ f.radio('striping_unit','measure1','kb','KB',true) }}
               </div>
               <div class="col-md-1">
-                  {{ f.radio('measure','measure2','mb','MB') }}
+                  {{ f.radio('striping_unit','measure2','mb','MB') }}
               </div>
               <div class="col-md-1">
-                  {{ f.radio('measure','measure3','gb','GB') }}
+                  {{ f.radio('striping_unit','measure3','gb','GB') }}
               </div>
             </div>
           </div>

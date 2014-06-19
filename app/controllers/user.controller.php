@@ -1,17 +1,23 @@
 <?php
 
-$app->post('/new_user', function () {
+$app->get('/new_user', function () use ($app) {
+  $data = array();
+  $app->render('new_user.twig', $data);
+})->name('new_user');
+
+$app->post('/sing_up', function () use ($app) {
   $post = (object) $app->request->post();
   $user = new User();
   $user->username = $post->username;
+  $user->email = $post->email;
   $user->password = $post->password;
   $user->name = $post->name;
   $user->lastname = $post->lastname;
   $user->lastname_second = $post->lastname_second;
-  $user->email = $post->email;
   $user->organization_id = $post->organization_id;
   $user->save();
-});
+  $app->redirect($app->urlFor('root'));
+})->name('sign_up');
 
 $app->group('/user', function () use ($app) {
   // Get book with ID
