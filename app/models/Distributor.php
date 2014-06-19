@@ -2,7 +2,7 @@
 class Distributor extends Elegant {
   protected $rules = array(
   );
-  public function distributor(){
+  public function distribution(){
     return $this->belongsTo('Distribution');
   }
 }
