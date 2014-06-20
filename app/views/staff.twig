@@ -1,0 +1,33 @@
+{# index/staff #}
+{% extends 'base.twig' %}
+{% block content %}
+    <div class="row">
+      <div class="col-md-7 col-md-offset-1">
+        <h3>Staff</h3><hr>
+        <h4>Project Director</h4>
+        <br>
+        <ul>
+          <li>Jose Luis González Compean</li>
+          <li><a href="http://personals.ac.upc.edu/toni/" target="_blank">Toni Cortes</a></li>
+        </ul>
+        <br>
+        <h4>Manager</h4>
+        <br>
+        <ul>
+          <li>Ana María Piedad Rubio</li>
+        </ul>
+        <br>
+        <h4>Research Students</h4>
+        <br>
+        <ul>
+          <li>Sonia Magdalena López Ocampo</li>
+          <li>Jaime Jesús Delgado Meraz</li>
+          <li>Leonardo Alberto Huerta Fajardo</li>
+          <li>Emigdio Miguel Hernández Ramírez</li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        {% include 'partners.twig' %}
+      </div>
+    </div>
+{% endblock %}
