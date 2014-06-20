@@ -32,17 +32,19 @@
   <div class="row">
     <div class="col-md-12">
       {% spaceless %}
-        {% include 'navegacionbar.twig' %}
+        {% include 'navigationbar.twig' %}
       {% endspaceless %}
     </div>
   </div>
+{#
   <div class="row">
     <div class="col-md-4">
       <div class="page-header">
         <h1>{{ title }} <small>by <a href="http://www.adaptivez.org.mx/gisaa/">GISAA</a></small></h1>
       </div>
     </div>
-  </div>
+  </div>#}
+  <hr>
   {% block content %}{% endblock %}
   <!-- JS -->
   <script src="{{ js }}jquery.min.js"></script>

@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="{{ css }}bootstrap.min.css">
     <link rel="stylesheet" href="{{ css }}ui.css"/>
     <link rel="stylesheet" href="{{ css }}main.css">
-
+    {% include 'navigationbar.twig' %}
     <div class="view-container">
         <section data-ng-view="" id="content" class="animate-fade-up"></section>
             <div class="page-err ng-scope">
@@ -14,7 +14,7 @@
                         <h2>Page not found.</h2>
                     </div>
                     <div class="err-body">
-                        <a href="#/" class="btn btn-lg btn-goback">
+                        <a href="{{ urlFor('root') }}" class="btn btn-lg btn-goback">
                             <span class="glyphicon glyphicon-home"></span>
                             <span class="space"></span>
                             Go Back to Home Page
