@@ -5,5 +5,8 @@ class Distributor extends Elegant {
   public function distribution(){
     return $this->belongsTo('Distribution');
   }
+  public function configurations(){
+    return $this->hasMany('Configuration');
+  }
 }
 ?>

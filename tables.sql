@@ -1,12 +1,12 @@
 -- create user ht with superuser login createdb password 'ht.2014';
--- Organizations
+-- Organizations [x]
 create table organizations(
   id serial primary key,
   name text not null,
   created_at timestamp not null default now(),
   updated_at timestamp not null default now()
 );
--- Users
+-- Users [x]
 create table users(
   id serial primary key,
   username text not null,
@@ -24,7 +24,7 @@ create table users(
   updated_at timestamp not null default now(),
   foreign key (organization_id) references organizations(id)
 );
--- Workgroups
+-- Workgroups [x]
 create table workgroups(
   id serial primary key,
   name text not null,
@@ -36,14 +36,14 @@ create table workgroups(
   foreign key (user_id) references users(id),
   foreign key (organization_id) references organizations(id)
 );
--- Statuses
+-- Statuses [x]
 create table statuses(
   id serial primary key,
   name text not null,
   created_at timestamp not null default now(),
   updated_at timestamp not null default now()
 );
--- Projects
+-- Projects [x]
 create table projects(
   id serial primary key,
   name text not null default '',
@@ -56,7 +56,7 @@ create table projects(
   foreign key (user_id) references users(id),
   foreign key (status_id) references statuses(id)
 );
--- User_Workgroup
+-- User_Workgroup [x]
 create table user_workgroup(
   id serial primary key,
   user_id integer not null,
@@ -68,7 +68,7 @@ create table user_workgroup(
   foreign key (user_id) references users(id),
   foreign key (workgroup_id) references workgroups(id)
 );
--- Project_Workgroup
+-- Project_Workgroup [x]
 create table project_workgroup(
   id serial primary key,
   project_id integer not null,
@@ -78,7 +78,7 @@ create table project_workgroup(
   foreign key (project_id) references projects(id),
   foreign key (workgroup_id) references workgroups(id)
 );
--- Organization_Project
+-- Organization_Project [x]
 create table organization_project(
   id serial primary key,
   organization_id integer not null,
@@ -88,7 +88,7 @@ create table organization_project(
   foreign key (organization_id) references organizations(id),
   foreign key (project_id) references projects(id)
 );
--- Project_User
+-- Project_User [x]
 create table project_user(
   id serial primary key,
   user_id integer not null,
@@ -98,7 +98,7 @@ create table project_user(
   foreign key (user_id) references users(id),
   foreign key (project_id) references projects(id)
 );
--- Disks
+-- Disks [x]
 create table disks(
   id serial primary key,
   name text not null default 'None',
@@ -124,7 +124,7 @@ create table disks(
   created_at timestamp not null default now(),
   updated_at timestamp not null default now()
 );
--- Controllers
+-- Controllers [x]
 create table controllers(
   id serial primary key,
   name text not null default 'None',
@@ -141,7 +141,7 @@ create table controllers(
   created_at timestamp not null default now(),
   updated_at timestamp not null default now()
 );
--- Drives
+-- Drives [x]
 create table drives(
   id serial primary key,
   name text not null default 'None',
@@ -153,7 +153,7 @@ create table drives(
   foreign key (controller_id) references controllers(id),
   foreign key (disk_id) references disks(id)
 );
--- Networks
+-- Networks [x]
 create table networks(
   id serial primary key,
   type text not null default 'None',
@@ -166,7 +166,7 @@ create table networks(
   created_at timestamp not null default now(),
   updated_at timestamp not null default now()
 );
--- Distributions
+-- Distributions [x]
 create table distributions(
   id serial primary key,
   name text not null default 'None',
@@ -176,7 +176,7 @@ create table distributions(
   created_at timestamp not null default now(),
   updated_at timestamp not null default now()
 );
--- Distributors
+-- Distributors [x]
 create table distributors(
   id serial primary key,
   distributor text not null default 'NODE0',
@@ -195,7 +195,7 @@ create table distributors(
   updated_at timestamp not null default now(),
   foreign key (distribution_id) references distributions(id)
 );
--- Configurations
+-- Configurations [x]
 create table configurations(
   id serial primary key,
   short_name text default '',
@@ -212,7 +212,7 @@ create table configurations(
   foreign key (network_id) references networks(id),
   foreign key (distributor_id) references distributors(id)
 );
--- Configuration_Drive
+-- Configuration_Drive [x]
 create table configuration_drive(
   id serial primary key,
   configuration_id integer not null,
@@ -223,7 +223,7 @@ create table configuration_drive(
   foreign key (configuration_id) references configurations(id),
   foreign key (drive_id) references drives(id)
 );
--- Workloads
+-- Workloads [x]
 create table workloads(
   id serial primary key,
   sas_size bigint not null default 999,
@@ -246,7 +246,7 @@ create table workloads(
   foreign key (status_id) references statuses(id),
   foreign key (project_id) references projects(id)
 );
--- Scenarios
+-- Scenarios [x]
 create table scenarios(
   id serial primary key,
   type_sim text not null default 'None',
@@ -263,7 +263,7 @@ create table scenarios(
   foreign key (workgroup_id) references workgroups(id),
   foreign key (project_id) references projects(id)
 );
--- Experiments
+-- Experiments [x]
 create table experiments(
   id serial primary key,
   type_sim text default null,
@@ -279,7 +279,7 @@ create table experiments(
   foreign key (project_id) references projects(id),
   foreign key (status_id) references statuses(id)
 );
--- Messages
+-- Messages [x]
 create table messages(
   id serial primary key,
   user_id integer not null,
@@ -290,7 +290,7 @@ create table messages(
   updated_at timestamp not null default now(),
   foreign key (user_id) references users(id)
 );
--- Message_User
+-- Message_User [x]
 create table message_user(
   id serial primary key,
   message_id integer not null,
@@ -301,7 +301,7 @@ create table message_user(
   foreign key (message_id) references messages(id),
   foreign key (user_id) references users(id)
 );
--- Tasks
+-- Tasks [x]
 create table tasks(
   id serial primary key,
   title text not null default '',
@@ -311,13 +311,16 @@ create table tasks(
   is_finished boolean not null default false,
   parent integer default null,
   user_id integer not null,
+  finished_by integer default null,
   project_id integer not null,
   created_at timestamp not null default now(),
   updated_at timestamp not null default now(),
   foreign key (user_id) references users(id),
-  foreign key (parent) references tasks(id)
+  foreign key (parent) references tasks(id),
+  foreign key (project_id) references projects(id),
+  foreign key (finished_by) references users(id)
 );
--- Task_User
+-- Task_User [x]
 create table task_user(
   id serial primary key,
   task_id integer not null,

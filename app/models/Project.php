@@ -2,6 +2,9 @@
 class Project extends Elegant {
   protected $rules = array(
   );
+  public function created_by(){
+    return $this->belongsTo('User');
+  }
   public function users(){
     return $this->belongsToMany('User')->withTimestamps();
   }
@@ -19,6 +22,9 @@ class Project extends Elegant {
   }
   public function tasks(){
     return $this->hasMany('Task');
+  }
+  public function status(){
+    return $this->belongsTo('Status');
   }
 }
 ?>

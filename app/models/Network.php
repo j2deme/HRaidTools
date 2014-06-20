@@ -2,7 +2,7 @@
 class Network extends Elegant {
   protected $rules = array(
   );
-  public function configuration(){
+  public function configurations(){
     return $this->hasMany('Configuration');
   }
 }

@@ -2,7 +2,7 @@
 class Experiment extends Elegant {
   protected $rules = array(
   );
-  public function user(){
+  public function owner(){
     return $this->belongsTo('User');
   }
   public function scenario(){
@@ -12,7 +12,7 @@ class Experiment extends Elegant {
     return $this->belongsTo('Project');
   }
   public function status(){
-    return $this->hasOne('Status','statuses');
+    return $this->belongsTo('Status');
   }
 }
 ?>
