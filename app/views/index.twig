@@ -2,53 +2,14 @@
 {% block content %}
 {# {{ lang.hello|replace({ ':url:': activeUrl }) }} #}
   <div class="row">
-    <div class="col-md-6 col-md-offset-1">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h1 class="panel-title">Hi name ape_pat ape_mat!</h1>
-        </div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-xs-12 col-md-12">
-              <p><b>Current Organization: "Adaptivez"</b> || There are 0 workgroup request »</p>
-              <hr>
-              <p><b>You were working on:</b></p>
-              <hr>
-              <p><i>There's is no active project. <small>[<a href="#">Active a Project</a>]</small></i></p>
-              <p><b>Involved Workgroups:</b></p>
-              <hr>
-              <p><small>Click on a Workgroups to Change the Active Workgroup</small></p>
-              <p><b>What will you do today?</b></p>
-              <div class="row">
-                <div class="col-md-4">
-                  <a href="#" class="btn btn-primary btn-lg" role="button"><i class="fa fa-rocket fa-3x"></i><br>Simulation <br> Launcher</a>
-                </div>
-                <div class="col-md-4">
-                  <a href="{{ urlFor('testing2') }}" class="btn btn-primary btn-lg" role="button"><i class="fa fa-cubes fa-3x"></i><br>RAID <br> Designer</a>
-                </div>
-                <div class="col-md-4">
-                  <a href="{{ urlFor('testing3') }}" class="btn btn-primary btn-lg" role="button"><i class="fa fa-desktop fa-3x"></i><br>Workload <br> Generator</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="col-md-7 col-md-offset-1">
+      <h3>Introduction</h3><hr>
+      <p class="text-justify">HRaidTools is an on-line suite of tools for simulating Heterogeneous RAID systems. This suite includes tools such as an API for choosing disks (the RAID-designer), an I/O synthetic workload generator (IO-SWG) and a friendly simulation launcher and results collector (SL-RC). This suite has been designed to reduce or even eliminate the errors in simulations produced by the humans as well as to eliminate the problems arise when using the simulator in different environments.</p>
+      <p class="text-justify">HRaidTools also includes an Adaptive Collaborative Work architecture (ACW) based on proﬁles of social networks that have been designed for handling the common hierarchies in research groups. ACW makes available on-line the simulation contents for the users (experiments, conﬁgurations, workloads, results and graphs). Finally, this suite includes several heterogeneous data distribution policies and redundancy levels unavailable in current RAID simulators.</p>
+      <p>More about HRaid <a href="{{ pdf }}JPDC_03.pdf" target="_blank"><small>here </small><i class="fa fa-file-pdf-o"></i></a></p>
     </div>
-    <div class="col-md-5">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-4"><p>Avatar</p></div>
-      </div>
-      <br><br><br><br>
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <p><b>Rank:</b></p>
-          <hr>
-          <p><b>Active Workgroup: </b>There's no active workgroup. <small>[<a href="#">Active a Workgroup</a>]</small></p>
-          <p><b>Ocupation:</b></p>
-          <p><b>Email:</b></p>
-        </div>
-      </div>
+    <div class="col-md-3">
+      {% include 'partners.twig' %}
     </div>
   </div>
 {% endblock %}

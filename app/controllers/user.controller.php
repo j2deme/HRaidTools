@@ -1,23 +1,10 @@
 <?php
 
-$app->get('/new_user', function () use ($app) {
+$app->get('/dashboard', function() use($app){
   $data = array();
-  $app->render('new_user.twig', $data);
-})->name('new_user');
-
-$app->post('/sing_up', function () use ($app) {
-  $post = (object) $app->request->post();
-  $user = new User();
-  $user->username = $post->username;
-  $user->email = $post->email;
-  $user->password = $post->password;
-  $user->name = $post->name;
-  $user->lastname = $post->lastname;
-  $user->lastname_second = $post->lastname_second;
-  $user->organization_id = $post->organization_id;
-  $user->save();
-  $app->redirect($app->urlFor('root'));
-})->name('sign_up');
+  $data['user'] = User::where('id',3)->firstOrFail();
+  $app->render('dashboard.twig', $data);
+})->name('dashboard');
 
 $app->group('/user', function () use ($app) {
   // Get book with ID

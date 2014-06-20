@@ -77,6 +77,7 @@ $app->view()->appendData(array(
   'css'  => CSS_FOLDER,
   'js'   => JS_FOLDER,
   'img'  => IMG_FOLDER,
+  'pdf' => PDF_FOLDER,
   'lang' => $lang,
   'langCookie' => $langCookie
 ));
