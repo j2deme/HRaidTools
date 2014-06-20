@@ -1,6 +1,17 @@
 {% extends 'base.twig' %}
 {% block content %}
-{{ lang.hello|replace({ ':url:': activeUrl }) }}
+{# {{ lang.hello|replace({ ':url:': activeUrl }) }} #}
+  <div class="row">
+    <div class="col-md-7 col-md-offset-1">
+      <h3>Introduction</h3><hr>
+      <p class="text-justify">HRaidTools is an on-line suite of tools for simulating Heterogeneous RAID systems. This suite includes tools such as an API for choosing disks (the RAID-designer), an I/O synthetic workload generator (IO-SWG) and a friendly simulation launcher and results collector (SL-RC). This suite has been designed to reduce or even eliminate the errors in simulations produced by the humans as well as to eliminate the problems arise when using the simulator in different environments.</p>
+      <p class="text-justify">HRaidTools also includes an Adaptive Collaborative Work architecture (ACW) based on proﬁles of social networks that have been designed for handling the common hierarchies in research groups. ACW makes available on-line the simulation contents for the users (experiments, conﬁgurations, workloads, results and graphs). Finally, this suite includes several heterogeneous data distribution policies and redundancy levels unavailable in current RAID simulators.</p>
+      <p>More about HRaid <a href="{{ pdf }}JPDC_03.pdf" target="_blank"><small>here </small><i class="fa fa-file-pdf-o"></i></a></p>
+    </div>
+    <div class="col-md-3">
+      {% include 'partners.twig' %}
+    </div>
+  </div>
 {% endblock %}
 
 {% block js %}

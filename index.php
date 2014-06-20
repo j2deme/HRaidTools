@@ -32,11 +32,6 @@ $app->hook('slim.before.dispatch', function() use ($app) {
   $app->view()->appendData(array('user' => $user));
 });
 
-$app->get('/',function() use($app){
-  $data = array();
-  $app->render('index.twig', $data);
-})->name('root');
-
 $app->get('/login',function() use($app){
   $flash = $app->view()->getData('flash');
   $error = '';

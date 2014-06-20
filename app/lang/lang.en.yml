@@ -16,7 +16,7 @@ navbar:
   public:
     left:
       - text: Home
-        url: "#1"
+        url: "{{ root }}"
       - text: Simulation Tools
         url: "#2"
       - text: Results Collector

@@ -22,6 +22,7 @@ define('PUBLIC_FOLDER', 'public/');
 define('CSS_FOLDER', PUBLIC_FOLDER.'css/');
 define('JS_FOLDER', PUBLIC_FOLDER.'js/');
 define('IMG_FOLDER', PUBLIC_FOLDER.'img/');
+define('PDF_FOLDER', PUBLIC_FOLDER.'pdf/');
 define('MODELS_FOLDER', APP_FOLDER.'models/');
 define('VIEWS_FOLDER', APP_FOLDER.'views/');
 define('CONTROLLERS_FOLDER', APP_FOLDER.'controllers/');

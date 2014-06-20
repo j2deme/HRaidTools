@@ -60,14 +60,30 @@ insert into networks(type,latency,bandwidth,network,display_name,display_order) 
 
 insert into networks(type,latency,bandwidth,network,display_name,display_order) values('FAST_ETHERNET',50,'12.5 MB/s','BUS','Fast Ethernet',3);
 
---insert's table distributors
-
-insert into distributors(type,size,striping,overhead,display_name,display_order,distribution_id) values('RAID0',10,8192,1000,'Raid 0');
-
-insert into distributors(type,size,striping,overhead,report,display_name,display_order,distribution_id) values('ADAPT_RAID0',10,1024,1200,false,'Adapt Raid 0');
-
-insert into distributors(type,size,striping,overhead,report,display_name,display_order,distribution_id) values('ADAPT_RAID5',10,1024,1400,false,'Adapt Raid 5');
-
 --insert's table distributions
 
-insert into distributions(name,display_order,is_trace_generator) values();
+insert into distributions(name,display_order,is_trace_generator) values('Static','1',false);
+
+insert into distributions(name,display_order,is_trace_generator) values('Heterogeneous','2',false);
+
+insert into distributions(name,display_order,is_trace_generator) values('Orthogonal','3',false);
+
+insert into distributions(name,display_order,is_trace_generator) values('Adaptive','4',false);
+
+insert into distributions(name,display_order,is_trace_generator) values('Pseudo-Random','5',false);
+
+insert into distributions(name,display_order,is_trace_generator) values('Uniform','6',true);
+
+insert into distributions(name,display_order,is_trace_generator) values('Poisson','7',true);
+
+insert into distributions(name,display_order,is_trace_generator) values('Normal','8',true);
+
+insert into distributions(name,display_order,is_trace_generator) values('Z','9',true);
+
+--insert's table distributors
+
+insert into distributors(type,size,striping,overhead,display_name,display_order,distribution_id) values('RAID0',10,8192,1000,'Raid 0',1,1);
+
+insert into distributors(type,size,striping,overhead,report,display_name,display_order,distribution_id) values('ADAPT_RAID0',10,1024,1200,false,'Adapt Raid 0',2,2);
+
+insert into distributors(type,size,striping,overhead,report,display_name,display_order,distribution_id) values('ADAPT_RAID5',10,1024,1400,false,'Adapt Raid 5',3,2);

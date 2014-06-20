@@ -64,7 +64,7 @@ $app->post('/add_disks', function () use($app){
   $disk->display_name = $post->display_name;
   $disk->display_size = $post->display_size;
   $disk->display_unit = $post->display_unit;
-  $disk->available = $post->available;
+  $disk->available = (isset($post->available)) ? $post->available : false;
   $disk->save();
   $app->redirect($app->urlFor('root'));
 })->name('add_disks');
@@ -87,7 +87,7 @@ $app->post('/add_controllers', function () use($app){
   $controller->prefetching = $post->prefetching;
   $controller->inmediate_report = $post->inmediate_report;
   $controller->msg_size = $post->msg_size;
-  $controller->available = $post->available;
+  $controller->available = (isset($post->available)) ? $post->available : false;
   $controller->save();
   $app->redirect($app->urlFor('root'));
 })->name('add_controllers');
@@ -101,11 +101,11 @@ $app->get('/testing_drives', function () use($app){
 
 $app->post('/add_drives', function () use($app){
   $post = (object) $app->request->post();
-  $drive = new Drives();
+  $drive = new Drive();
   $drive->name = $post->name;
   $drive->controller_id = $post->controller_id;
   $drive->disk_id = $post->disk_id;
-  $drive->available = $post->available;
+  $drive->available = (isset($post->available)) ? $post->available : false;
   $drive->save();
   $app->redirect($app->urlFor('root'));
 })->name('add_drives');
@@ -115,14 +115,59 @@ $app->get('/testing_networks', function () use($app){
   $app->render('testing_networks.twig', $data);
 })->name('testing_networks');
 
+$app->post('/add_networks', function () use($app){
+  $post = (object) $app->request->post();
+  $network = new Network();
+  $network->type = $post->type;
+  $network->latency = $post->latency;
+  $network->bandwidth = $post->bandwidth;
+  $network->network = $post->network;
+  $network->display_name = $post->display_name;
+  $network->display_order = $post->display_order;
+  $network->available = (isset($post->available)) ? $post->available : false;
+  $network->save();
+  $app->redirect($app->urlFor('root'));
+})->name('add_networks');
+
 $app->get('/testing_distributions', function () use($app){
   $data = array();
   $app->render('testing_distributions.twig', $data);
 })->name('testing_distributions');
 
+$app->post('/add_distributions', function() use($app){
+  $post = (object) $app->request->post();
+  $distribution = new Distribution();
+  $distribution->name = $post->name;
+  $distribution->display_order = $post->display_order;
+  $distribution->is_trace_generator = (isset($post->is_trace_generator)) ? $post->is_trace_generator : false;
+  $distribution->available = (isset($post->available)) ? $post->available : false;
+  $distribution->save();
+  $app->redirect($app->urlFor('root'));
+})->name('add_distributions');
+
 $app->get('/testing_distributors', function () use($app){
   $data = array();
+  $data['distributions'] = Distribution::select('id as value', 'name as label')->get();
   $app->render('testing_distributors.twig', $data);
 })->name('testing_distributors');
+
+$app->post('/add_distributors', function () use($app){
+  $post = (object) $app->request->post();
+  $distributor = new Distributor();
+  $distributor->distributor = $post->distributor;
+  $distributor->type = $post->type;
+  $distributor->size = $post->size;
+  $distributor->striping = $post->striping;
+  $distributor->overhead = $post->overhead;
+  $distributor->max_requests = $post->max_requests;
+  $distributor->report = (isset($post->available)) ? $post->available : false;
+  $distributor->done_size = $post->done_size;
+  $distributor->display_name = $post->display_name;
+  $distributor->display_order = $post->display_order;
+  $distributor->distribution_id = $post->distribution_id;
+  $distributor->available = (isset($post->available)) ? $post->available : false;
+  $distributor->save();
+  $app->redirect($app->urlFor('root'));
+})->name('add_distributors');
 
 ?>

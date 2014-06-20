@@ -5,7 +5,7 @@
     <div class="col-md-6 col-md-offset-1">
       <div class="panel panel-primary">
         <div class="panel-heading">
-          <h1 class="panel-title">Hi name ape_pat ape_mat!</h1>
+          <h1 class="panel-title">Hi {{ user.name }} {{ user.lastname }} {{ user.lastname_second }}!</h1>
         </div>
         <div class="panel-body">
           <div class="row">
@@ -42,11 +42,9 @@
       <br><br><br><br>
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
-          <p><b>Rank:</b></p>
           <hr>
           <p><b>Active Workgroup: </b>There's no active workgroup. <small>[<a href="#">Active a Workgroup</a>]</small></p>
-          <p><b>Ocupation:</b></p>
-          <p><b>Email:</b></p>
+          <p><b>E-mail:</b> {{ user.email }}</p>
         </div>
       </div>
     </div>

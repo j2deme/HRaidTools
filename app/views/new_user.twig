@@ -1,0 +1,67 @@
+{# index/register_user #}
+{% extends 'base.twig' %}
+{% import 'forms.twig' as f %}
+{% block content %}
+  <form class="form-horizontal" action="{{ urlFor('sign_up') }}" method="post" role="form">
+    <div class="row">
+      <div class="col-md-8">
+        <h3 class="text-center">Register here!</h3>
+        <hr>
+        <div class="form-group">
+          {{ f.label('email','E-mail:','col-md-4') }}
+          <div class="col-md-6">{{ f.text('email') }}</div>
+        </div>
+        <div class="form-group">
+          {{ f.label('password','Password:','col-md-4') }}
+          <div class="col-md-6">
+            <div class="input-group">
+              {{ f.password('password') }}
+              <span class="input-group-btn"><button class="btn btn-default reveal" type="button"><i class="glyphicon glyphicon-eye-open"></i></button></span>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          {{ f.label('name','Name (s):','col-md-4') }}
+          <div class="col-md-6">{{ f.text('name') }}</div>
+        </div>
+        <div class="form-group">
+          {{ f.label('lastname','Last Name:','col-md-4') }}
+          <div class="col-md-6">{{ f.text('lastname') }}</div>
+        </div>
+        <div class="form-group">
+          {{ f.label('lastname_second','2nd Last Name:','col-md-4') }}
+          <div class="col-md-6">{{ f.text('lastname_second') }}</div>
+        </div>
+        <div class="form-group">
+          {{ f.label('organization_id','Organization:','col-md-4') }}
+          <div class="col-md-6">{{ f.text('organization_id') }}</div>
+        </div>
+        {{ f.hide('username') }}
+        <div class="col-md-4 col-md-offset-4">
+          <button class="btn btn-primary">Request Account</button>
+        </div>
+      </div>
+      <div class="col-md-3">
+        {% include 'partners.twig' %}
+      </div>
+    </div>
+  </form>
+{% endblock %}
+{% block js %}
+    <script>
+    $(document).ready(function() {
+      $(".reveal").hover(function() {
+        $("#password").replaceWith($('#password').clone().attr('type', 'text'));
+      }, function() {
+        $("#password").replaceWith($('#password').clone().attr('type', 'password'));
+      });
+
+      $('#email').keyup(function(event){
+        var h = $('#email').val();
+        if(h){
+          $('#username').html(h);
+        }
+      });
+    });
+    </script>
+{% endblock %}

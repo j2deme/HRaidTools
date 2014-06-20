@@ -18,7 +18,9 @@
     {{ f.select('n_disk1', range(1,99)) }}
   </div>
   <div class="col-md-6">
-   {{ f.check('n_type_d1','Hawk 2XL','1') }}
+  {% for disk in disks %}
+    <label for="{{ disk.name }}"><input type="checkbox" id="{{ disk.name }}" name="{{ disk.name }}" value="{{ disk.id }}" >&nbsp;{{ disk.display_name }}</label><br>
+  {% endfor %}
   </div>
   <div class="col-md-3">
     {{ f.label('n_subtotal1','0 GB') }}

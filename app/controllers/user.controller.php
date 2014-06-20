@@ -1,4 +1,11 @@
 <?php
+
+$app->get('/dashboard', function() use($app){
+  $data = array();
+  $data['user'] = User::where('id',3)->firstOrFail();
+  $app->render('dashboard.twig', $data);
+})->name('dashboard');
+
 $app->group('/user', function () use ($app) {
   // Get book with ID
   $app->get('/:id', function ($id) use ($app) {
