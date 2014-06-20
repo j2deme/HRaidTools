@@ -5,7 +5,7 @@ class Workgroup extends Elegant {
   public function creator(){
     return $this->belongsTo('User');
   }
-  public function users(){
+  public function members(){
     return $this->belongsToMany('User')->withPivot('authorized','authorized_at')->withTimestamps();
   }
   public function organization(){
