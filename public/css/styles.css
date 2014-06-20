@@ -3,6 +3,11 @@
 * Remove or change as needed
 ***/
 body {
+  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857;
+  /*color: #767676;*/
+  background-color: #f3f3f3;
   padding-top: 20px;
   padding-bottom: 20px;
 }
