@@ -1,0 +1,232 @@
+{# index/simulationTools/workload_generator #}
+{% extends 'base.twig' %}
+{% import 'forms.twig' as f %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-7 col-md-offset-1">
+      <h3>I/O Synthetic Workload Generator</h3><hr>
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#start" data-toggle="tab"><i class="fa fa-play-circle"></i> Start</a></li>
+        <li><a href="#general" data-toggle="tab"><i class="fa fa-cog"></i> General Settings</a></li>
+        <li><a href="#distribution" data-toggle="tab"><i class="fa fa-cogs"></i> Distribution Settings</a></li>
+        <li><a href="#end" data-toggle="tab"><i class="fa fa-lock"></i> End</a></li>
+      </ul>
+      <form class="form-horizontal" action="" role="form">
+        <div class="tab-content">
+          <div class="tab-pane active" id="start">
+            <div class="col-md-12">
+              <br>
+              <p>Workloads are generated within a range of address space, in order to do that:</p>
+              <p><a href="#">Select a previously created RAID <i class="fa fa-search"></i></a> or <a href="#" id="raid_d">How Many Gigabytes are in your RAID ? <i class="fa fa-pencil"></i></a><p>
+              <div class="row">
+                <div class="col-md-4 col-md-offset-8">
+                  <button class="btn btn-primary hidden" id="save_raid">Save <i class="fa fa-save"></i></button>
+                </div>
+              </div>
+              <hr>
+              <div class="row hidden" id="designer_raid">
+                <div class="col-md-8 col-md-offset-1">
+                  {% include 'testing_RAID.twig' %}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="general">
+            <div class="row">
+              <div class="col-md-12">
+                <br>
+                {{ f.label('distribution1','Select a Distribution:') }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                {{ f.radio('distribution1','distribution1','uniform','Uniform') }}
+              </div>
+              <div class="col-md-3">
+                {{ f.radio('distribution1','distribution1','poisson','Poisson') }}
+              </div>
+              <div class="col-md-3">
+                {{ f.radio('distribution1','distribution1','normal','Normal') }}
+              </div>
+              <div class="col-md-3">
+                {{ f.radio('distribution1','distribution1','z','Z(Available Soon)') }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <hr>
+                <div class="row">
+                  <div class="col-md-5">
+                    {{ f.label('m_resquest_size','Set a Maximun Request Size:') }}
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group">
+                      {{ f.text('m_resquest_size') }}
+                      <span class="input-group-addon">KB</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-5">
+                    {{ f.label('io_interarrival','Set an I/O Interarrival:') }}
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group">
+                      {{ f.select('io_interarrival', range(1,60)) }}
+                      <span class="input-group-addon">Ms</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-5">
+                    {{ f.label('manny_read','How many readings?') }}
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group">
+                      {{ f.number('manny_read','0','0','100') }}
+                      <span class="input-group-addon">&nbsp;%&nbsp;</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-5">
+                    {{ f.label('concurrency','Requests Concurrency:') }}
+                  </div>
+                  <div class="col-md-4">
+                    {{ f.select('concurrency', range(1,20)) }}
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-5">
+                    {{ f.label('many_samples','How many samples:') }}
+                  </div>
+                  <div class="col-md-4">
+                    {{ f.text('many_samples') }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="distribution">
+            <br>
+            <div id="uniform">
+              <div class="row">
+                <div class="col-md-12">
+                  {{ f.label('uniform','Bursty Not Available when Uniform Distribution is selected.') }}
+                  <hr>
+                  <p>No more settings needed.</p>
+                  <hr>
+                </div>
+              </div>
+            </div>
+            <div id="poisson">
+              <div class="row">
+                <div class="col-md-12">
+                  <p><b>Bursty</b> Only available if Poisson Distribution was selected.</p>
+                  {{ f.check('poisson_distribution','','1') }}
+                  <div class="poisson_dis">
+                    <div class="row">
+                      <div class="col-md-4">
+                        {{ f.label('idle_time','Idle Time (Off Times): ') }}
+                      </div>
+                      <div class="col-md-3">
+                        {{ f.text('idle_time') }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        {{ f.label('sequential','Sequential Burst: ') }}
+                      </div>
+                      <div class="col-md-3">
+                        {{ f.text('sequential') }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4">
+                        {{ f.label('burt_size','Mean Burst Size: ') }}
+                      </div>
+                      <div class="col-md-3">
+                        {{ f.text('burt_size') }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {# Quitar el br xD #}
+            <br>
+            <div class="normal">
+              <div class="row">
+                <div class="col-md-12">
+                  <p><b>Bursty Not Available when Normal Distribution is selected.</b></p>
+                  <hr>
+                  <div class="row">
+                    <div class="col-md-3">
+                      {{ f.label('mean','Mean: ') }}
+                    </div>
+                    <div class="col-md-3">
+                      {{ f.number('mean','1','1','1024') }}
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3">
+                      {{ f.label('st_des','Standard Deviation: ') }}
+                    </div>
+                    <div class="col-md-3">
+                      {{ f.number('st_des','1','1','1024') }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="end">
+            <br>
+            <div class="row">
+              <div class="col-md-12">
+                {{ f.label('comments','Comments: ') }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                 {{ f.textarea('comments','','','4') }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <br>
+                <button class="btn btn-primary">Generate Trace</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <hr>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-3">
+      <h3>Configuration Selected</h3>
+      <hr><br>
+      <p><b>Adresss Space:</b><span id="adress_view"></span></p>
+      <p><b>Distribution:</b><span id="distribution_view"></span></p>
+      <p><b>Request Size:</b><span id="resquest_view"></span></p>
+      <p><b>Inter-arrival:</b><span id="inter_view"></span></p>
+      <p><b>Read Ratio:</b><span id="read_view"></span></p>
+      <p><b>Concurrency:</b><span id="concurrency_view"></span></p>
+      <p><b>Sample Size:</b><span id="sample_view"></span></p>
+    </div>
+  </div>
+{% endblock %}
+{% block js %}
+    <script>
+      $(document).ready(function() {
+        $('#raid_d').click(function(event){
+          $('#designer_raid').removeClass('hidden');
+          $('#save_raid').removeClass('hidden');
+        });
+      });
+    </script>
+{% endblock %}
