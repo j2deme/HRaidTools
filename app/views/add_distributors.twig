@@ -1,0 +1,86 @@
+{# CRUD of distributors #}
+{% extends 'base.twig' %}
+{% import 'forms.twig' as f %}
+{% block css %}
+  <link rel="stylesheet" href="{{ css }}AdminLTE.css">
+  <link rel="stylesheet" href="{{ css }}ui.css">
+  <link rel="stylesheet" href="{{ css }}ionicons.min.css">
+{% endblock %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-12 text-center page-header"><h2>Welcome System Administrator</h2></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      {% include 'navbar_admin.twig' %}
+    </div>
+    <div class="col-md-10">
+      <form class="form-horizontal" action="{{ urlFor('add_distributor') }}" method="post" role="form">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h3>New Distributor</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              {{ f.label('distributor','Distributor:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('distributor','','NODE0') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('size','Size:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('size','','10') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('overhead','Overhead:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('overhead') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('report','Report:','col-md-4') }}
+              <div class="col-md-6 col-md-offset-1">{{ f.check('report','','true','',true) }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('display_name','Display Name:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('display_name') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('distribution_id','Distribution:','col-md-4') }}
+              <div class="col-md-6">{{ f.select('distribution_id',distributions) }}</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              {{ f.label('type','Type:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('type') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('striping','Striping:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('striping') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('max_requests','Max Requests:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('max_requests','','10') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('done_size','Done Size:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('done_size','','1') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('display_order','Display Order:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('display_order') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('available','Available:','col-md-4') }}
+              <div class="col-md-6 col-md-offset-1">{{ f.check('available','','true') }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-4 col-md-offset-4">
+            <button class="btn btn-primary btn-block">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

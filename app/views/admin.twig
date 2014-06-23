@@ -1,0 +1,120 @@
+{% extends 'base.twig' %}
+{% block css %}
+  <link rel="stylesheet" href="{{ css }}AdminLTE.css">
+  <link rel="stylesheet" href="{{ css }}ui.css">
+  <link rel="stylesheet" href="{{ css }}ionicons.min.css">
+{% endblock %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-12 text-center page-header"><h2>Welcome System Administrator</h2></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      {% include 'navbar_admin.twig' %}
+    </div>
+    <div class="col-md-10">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="small-box bg-blue">
+            <div class="inner">
+              <h3>Disks</h3>
+              <p>View Disks</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-database"></i>
+            </div>
+            <a href="{{ urlFor('disks') }}" class="small-box-footer"> More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="small-box bg-blue">
+            <div class="inner">
+              <h3>Controllers</h3>
+              <p>View Controllers</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-gamepad"></i>
+            </div>
+            <a href="{{ urlFor('controllers') }}" class="small-box-footer"> More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="small-box bg-blue">
+            <div class="inner">
+              <h3>Drives</h3>
+              <p>View Drives</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-hdd-o"></i>
+            </div>
+            <a href="{{ urlFor('drives') }}" class="small-box-footer"> More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="small-box bg-blue">
+            <div class="inner">
+              <h3>Networks</h3>
+              <p>View Networks</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-signal"></i>
+            </div>
+            <a href="{{ urlFor('networks') }}" class="small-box-footer"> More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="small-box bg-blue">
+            <div class="inner">
+              <h3>Distributions</h3>
+              <p>View Distributions</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-sitemap"></i>
+            </div>
+            <a href="{{ urlFor('distributions') }}" class="small-box-footer"> More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="small-box bg-blue">
+            <div class="inner">
+              <h3>Distributors</h3>
+              <p>View Distributors</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-sliders"></i>
+            </div>
+            <a href="{{ urlFor('distributors') }}" class="small-box-footer"> More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-md-offset-2">
+          <div class="small-box bg-blue">
+            <div class="inner">
+              <h3>Statuses</h3>
+              <p>View Statuses</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-reorder"></i>
+            </div>
+            <a href="{{ urlFor('statuses') }}" class="small-box-footer"> More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="small-box bg-blue">
+            <div class="inner">
+              <h3>Users</h3>
+              <p>View Users</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-users"></i>
+            </div>
+            <a href="{{ urlFor('users') }}" class="small-box-footer"> More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
