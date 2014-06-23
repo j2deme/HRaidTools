@@ -28,6 +28,7 @@ $app->post('/login', function() use($app){
 
 $app->get('/register', function() use($app){
   $data = array();
+  $data['organizations'] = Organization::select('id as value', 'name as label')->get();
   $app->render('new_user.twig', $data);
 })->name('register');
 
