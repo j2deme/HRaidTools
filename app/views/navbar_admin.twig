@@ -1,0 +1,66 @@
+
+<ul class="nav nav-stacked bg-gray">
+  <li class="active"><a href="{{ urlFor('admin') }}"><i class="fa fa-dashboard"></i>&nbsp;Dashboard</a></li>
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-database"></i>&nbsp;Disks</a>
+    <ul class="dropdown-menu">
+      <li><a href="{{ urlFor('disks') }}"><i class="fa fa-list"></i>&nbsp;View Disks</a></li>
+      <li><a href="{{ urlFor('new_disk') }}"><i class="fa fa-plus"></i>&nbsp;Add Disk</a></li>
+      <li><a href="#"><i class="fa fa-pencil"></i>&nbsp;Edit Disk</a></li>
+      <li><a href="#"><i class="fa fa-times"></i>&nbsp;Delete Disk</a></li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-gamepad"></i>&nbsp;Controllers</a>
+    <ul class="dropdown-menu">
+      <li><a href="{{ urlFor('controllers') }}"><i class="fa fa-list"></i>&nbsp;View Controllers</a></li>
+      <li><a href="{{ urlFor('new_controller') }}"><i class="fa fa-plus"></i>&nbsp;Add Controller</a></li>
+      <li><a href="#"><i class="fa fa-pencil"></i>&nbsp;Edit Controller</a></li>
+      <li><a href="#"><i class="fa fa-times"></i>&nbsp;Delete Controller</a></li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-hdd-o"></i>&nbsp;Drives</a>
+    <ul class="dropdown-menu">
+      <li><a href="{{ urlFor('drives') }}"><i class="fa fa-list"></i>&nbsp;View Drives</a></li>
+      <li><a href="{{ urlFor('new_drive') }}"><i class="fa fa-plus"></i>&nbsp;Add Drive</a></li>
+      <li><a href="#"><i class="fa fa-pencil"></i>&nbsp;Edit Drive</a></li>
+      <li><a href="#"><i class="fa fa-times"></i>&nbsp;Delete Drive</a></li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-signal"></i>&nbsp;Networks</a>
+    <ul class="dropdown-menu">
+      <li><a href="{{ urlFor('networks') }}"><i class="fa fa-list"></i>&nbsp;View Networks</a></li>
+      <li><a href="{{ urlFor('new_network') }}"><i class="fa fa-plus"></i>&nbsp;Add Network</a></li>
+      <li><a href="#"><i class="fa fa-pencil"></i>&nbsp;Edit Network</a></li>
+      <li><a href="#"><i class="fa fa-times"></i>&nbsp;Delete Network</a></li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-sitemap"></i>&nbsp;Distributions</a>
+    <ul class="dropdown-menu">
+      <li><a href="{{ urlFor('distributions') }}"><i class="fa fa-list"></i>&nbsp;View Distributions</a></li>
+      <li><a href="{{ urlFor('new_distribution') }}"><i class="fa fa-plus"></i>&nbsp;Add Distribution</a></li>
+      <li><a href="#"><i class="fa fa-pencil"></i>&nbsp;Edit Distribution</a></li>
+      <li><a href="#"><i class="fa fa-times"></i>&nbsp;Delete Distribution</a></li>
+    </ul>
+  </li>
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-sliders"></i>&nbsp;Distributors</a>
+    <ul class="dropdown-menu">
+      <li><a href="{{ urlFor('distributors') }}"><i class="fa fa-list"></i>&nbsp;View Distributors</a></li>
+      <li><a href="{{ urlFor('new_distributor') }}"><i class="fa fa-plus"></i>&nbsp;Add Distributor</a></li>
+      <li><a href="#"><i class="fa fa-pencil"></i>&nbsp;Edit Distributor</a></li>
+      <li><a href="#"><i class="fa fa-times"></i>&nbsp;Delete Distributor</a></li>
+    </ul>
+  </li>
+  <li><a href="{{ urlFor('statuses') }}"><i class="fa fa-reorder"></i>&nbsp;Statuses</a></li>
+  <li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="fa fa-users"></i>&nbsp;Users</a>
+    <ul class="dropdown-menu">
+      <li><a href="{{ urlFor('users') }}"><i class="fa fa-list"></i>&nbsp;View Users</a></li>
+      <li><a href="#"><i class="fa fa-user"></i>&nbsp;Enabled User</a></li>
+    </ul>
+  </li>
+</ul>

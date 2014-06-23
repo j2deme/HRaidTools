@@ -1,0 +1,108 @@
+{% extends 'base.twig' %}
+{% block css %}
+  <link rel="stylesheet" href="{{ css }}AdminLTE.css">
+  <link rel="stylesheet" href="{{ css }}ui.css">
+  <link rel="stylesheet" href="{{ css }}ionicons.min.css">
+{% endblock %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-12 text-center page-header"><h2>Welcome System Administrator</h2></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      {% include 'navbar_admin.twig' %}
+    </div>
+    <div class="col-md-10">
+      <div class="row">
+        <div class="box">
+          <div class="box-header">
+            <h3 class="title-box text-center">Drives</h3>
+          </div>
+          <div class="box-body">
+            <table class="table table-bordered table-hover table-responsive">
+              <thead>
+                <tr role="row">
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Controller</th>
+                  <th>Disk</th>
+                  <th>Available</th>
+                  <th>More Information</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr role="row">
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Controller</th>
+                  <th>Disk</th>
+                  <th>Available</th>
+                  <th>More Information</th>
+                </tr>
+              </tfoot>
+              <tbody>
+                {% for drive in drives %}
+                  <tr>
+                    <th>{{ drive.id }}</th>
+                    <th>{{ drive.name }}</th>
+                    <th>{{ drive.controller_id }}</th>
+                    <th>{{ drive.disk_id }}</th>
+                    <th>
+                      {% if drive.available == false %}
+                        <span class="badge bg-red">Disabled</span>
+                      {% else %}
+                        <span class="badge bg-aqua">Enabled</span>
+                      {% endif %}
+                    </th>
+                    <th><a href="#" data-toggle="modal" data-target="#{{ drive.id }}"><i class="fa fa-question">&nbsp;More info</i></a></th>
+                  </tr>
+                  <div class="modal fade" id="{{ drive.id }}" tabindex="-{{ drive.id }}" role="dialog" aria-labelledby="{{ drive.id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel"><b><i class="fa fa-hdd-o"></i> {{ drive.name }}</b></h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <p><b>Read Fence:</b> {{ drive.read_fence }}</p>
+                              <p><b>Write Fence:</b> {{ drive.write_fence }}</p>
+                              {% if drive.prefetching == false %}
+                                <p><b>Prefetching: </b><span class="badge bg-red">Disabled</span></p>
+                              {% else %}
+                                <p><b>Prefetching: </b><span class="badge bg-aqua">Enabled</span></p>
+                              {% endif %}
+                              {% if drive.inmediate_report == false %}
+                                <p><b>Inmediate Report: </b><span class="badge bg-red">Disabled</span></p>
+                              {% else %}
+                                <p><b>Inmediate Report: </b><span class="badge bg-aqua">Enabled</span></p>
+                              {% endif %}
+                              <p><b>Msg Size:</b> {{ drive.msg_size }}</p>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <form action="">
+                            {% if drive.available == false %}
+                              <input type="hidden" id="available" name="available" value="true">
+                              <button class="btn btn-primary"><i class="fa fa-check"></i>&nbsp;Enabled</button>
+                            {% else %}
+                              <input type="hidden" id="available" name="available" value="false">
+                              <button class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;Disabled</button>
+                            {% endif %}
+                          </form>
+                          <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
