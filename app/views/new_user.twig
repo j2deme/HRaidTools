@@ -2,7 +2,7 @@
 {% extends 'base.twig' %}
 {% import 'forms.twig' as f %}
 {% block css %}
-    <link rel="stylesheet" href="{{ css }}bootstrapValidator.css">
+    <link rel="stylesheet" href="{{ css }}bootstrapValidator.min.css">
 {% endblock %}
 {% block content %}
 <form id="defaultForm" class="form-horizontal" action="{{ urlFor('signup-post') }}" method="post" role="form"
@@ -45,7 +45,7 @@
         </div>
         {{ f.hide('username') }}
         <div class="col-md-4 col-md-offset-4">
-          <button class="btn btn-primary">Request Account</button>
+          <button type="submit" class="btn btn-primary">Request Account</button>
         </div>
       </div>
       <div class="col-md-3">
@@ -55,7 +55,6 @@
   </form>
 {% endblock %}
 {% block js %}
-    <script type="text/javascript" src="{{ js }}jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="{{ js }}bootstrapValidator.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
@@ -65,13 +64,7 @@
       }, function() {
         $("#password").replaceWith($('#password').clone().attr('type', 'password'));
       });
-/*
-      $('#email').keyup(function(event){
-        var h = $('#email').val();
-        if(h){
-          $('#username').html(h);
-        }
-      }); */
+
     });
     </script>
 {% endblock %}
