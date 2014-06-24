@@ -22,7 +22,7 @@
           {{ f.label('password','Password:','col-md-4') }}
           <div class="col-md-6">
             <div class="input-group">
-              <input type="password" id="password" name="password" class="form-control" required data-bv-notempty-message="The password is required and cannot be empty">
+              <input type="password" id="password" name="password" class="form-control pwd" required data-bv-notempty-message="The password is required and cannot be empty">
               <span class="input-group-btn"><button class="btn btn-default reveal" type="button"><i class="glyphicon glyphicon-eye-open"></i></button></span>
             </div>
           </div>
@@ -56,15 +56,15 @@
 {% endblock %}
 {% block js %}
     <script type="text/javascript" src="{{ js }}bootstrapValidator.js"></script>
-    <script type="text/javascript">
+    <script>
     $(document).ready(function() {
 
       $('#defaultForm').bootstrapValidator();
 
-      $(".reveal").hover(function() {
-        $("#password").replaceWith($('#password').clone().attr('type', 'text'));
+     $(".reveal").hover(function() {
+        $(".pwd").replaceWith($('.pwd').clone().attr('type', 'text'));
       }, function() {
-        $("#password").replaceWith($('#password').clone().attr('type', 'password'));
+        $(".pwd").replaceWith($('.pwd').clone().attr('type', 'password'));
       });
 
     });
