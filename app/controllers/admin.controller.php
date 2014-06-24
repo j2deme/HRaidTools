@@ -211,9 +211,11 @@ $app->get('/users', function() use($app){
 })->name('users');
 
 $app->get('/users.json', function() use($app){
-  $data = array();
-    $data['users'] = User::with('organization')->get();
-    echo $data['users']->toJson();
+    $users = User::with('organization')->get();
+    for ($i=0; $i < $users->count(); $i++) {
+      $users[$i]->organization_name = $users[$i]->organization->name;
+    }
+    echo $users->toJson();
 });
 
 ?>
