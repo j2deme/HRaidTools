@@ -55,7 +55,7 @@
                     <th>{{ distributor.display_name }}</th>
                     <th>{{ distributor.striping }}</th>
                     <th>{{ distributor.overhead }}</th>
-                    <th>{{ distributor.distribution_id }}</th>
+                    <th>{{ distributor.distribution.name }}</th>
                     <th>
                       {% if distributor.available == false %}
                         <span class="badge bg-red">Disabled</span>
