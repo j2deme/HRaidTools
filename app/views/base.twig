@@ -29,6 +29,9 @@
   <i class="fa fa-warning"></i>
   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{ lang.browsehappy|raw }}</p>
   <![endif]-->
+  {% if user is defined and user is null %}
+  {% include 'loginForm.twig' %}
+  {% endif %}
   <div class="row">
     <div class="col-md-12">
       {% spaceless %}
@@ -36,20 +39,13 @@
       {% endspaceless %}
     </div>
   </div>
-{#
-  <div class="row">
-    <div class="col-md-4">
-      <div class="page-header">
-        <h1>{{ title }} <small>by <a href="http://www.adaptivez.org.mx/gisaa/">GISAA</a></small></h1>
-      </div>
-    </div>
-  </div>#}
   <hr>
   {% block content %}{% endblock %}
   <!-- JS -->
   <script src="{{ js }}jquery.min.js"></script>
   <script src="{{ js }}jquery.cookie.js"></script>
   <script src="{{ js }}bootstrap.min.js"></script>
+  <script src="{{ js }}bootstrap-floating-label.js"></script>
   <script src="{{ js }}moment-with-langs.min.js"></script>
   <script src="{{ js }}charts.min.js"></script>
   <script src="{{ js }}app.js"></script>
@@ -57,6 +53,11 @@
     $(document).ready(function() {
       $('*[data-lang]').click(function(event) {
         $.cookie('{{ langCookie }}', $(this).attr('data-lang'));
+      });
+      $('#loginForm').on('shown.bs.modal', function (e) {
+        $('#username').val();
+        $('#password').val();
+        $('#username').focus();
       });
     });
   </script>
