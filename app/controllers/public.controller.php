@@ -31,7 +31,7 @@ $app->post('/sign-up', function() use($app){
   $user = new User();
   $user->username = $post->username;
   $user->email = $post->email;
-  $user->password = $post->password;
+  $user->password = md5($post->password);
   $user->name = $post->name;
   $user->lastname = $post->lastname;
   $user->lastname_second = $post->lastname_second;

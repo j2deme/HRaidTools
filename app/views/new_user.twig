@@ -59,9 +59,7 @@
     <script type="text/javascript" src="{{ js }}bootstrapValidator.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
-
       $('#defaultForm').bootstrapValidator();
-
       $(".reveal").hover(function() {
         $("#password").replaceWith($('#password').clone().attr('type', 'text'));
       }, function() {
