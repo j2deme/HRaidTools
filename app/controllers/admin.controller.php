@@ -75,7 +75,7 @@ $app->post('/new_controller', function () use($app){
 
 $app->get('/drives', function() use($app){
   $data = array();
-  $data['drives'] = Drive::all();
+  $data['drives'] = Drive::with('disk','controller')->get();
   $app->render('view_drives.twig', $data);
 })->name('drives');
 
@@ -162,7 +162,7 @@ $app->post('/new_distribution', function() use($app){
 
 $app->get('/distributors', function() use($app){
   $data = array();
-  $data['distributors'] = Distributor::all();
+  $data['distributors'] = Distributor::with('distribution')->get();
   $app->render('view_distributors.twig', $data);
 })->name('distributors');
 
@@ -207,8 +207,13 @@ $app->post('/add_status', function () use($app){
 
 $app->get('/users', function() use($app){
   $data = array();
-  $data['users'] = User::all();
   $app->render('view_users.twig', $data);
 })->name('users');
+
+$app->get('/users_json', function() use($app){
+  $data = array();
+    $data['users'] = User::all();
+    echo $data['users']->toJson();
+});
 
 ?>
