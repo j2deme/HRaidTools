@@ -45,8 +45,8 @@
                   <tr>
                     <th>{{ drive.id }}</th>
                     <th>{{ drive.name }}</th>
-                    <th>{{ drive.controller_id }}</th>
-                    <th>{{ drive.disk_id }}</th>
+                    <th>{{ drive.controller.name }}</th>
+                    <th>{{ drive.disk.name }}</th>
                     <th>
                       {% if drive.available == false %}
                         <span class="badge bg-red">Disabled</span>
