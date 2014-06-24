@@ -210,9 +210,9 @@ $app->get('/users', function() use($app){
   $app->render('view_users.twig', $data);
 })->name('users');
 
-$app->get('/users_json', function() use($app){
+$app->get('/users.json', function() use($app){
   $data = array();
-    $data['users'] = User::all();
+    $data['users'] = User::with('organization')->get();
     echo $data['users']->toJson();
 });
 
