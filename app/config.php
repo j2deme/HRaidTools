@@ -61,7 +61,7 @@ $assetUri = $rootUri;
 $resourceUri = $_SERVER['REQUEST_URI'];
 
 include_once 'navbar.inc.php';
-$app->lang = $lang;
+$app->lang = (object) $lang;
 
 $view = $app->view();
 $app->view->parserExtensions = array(

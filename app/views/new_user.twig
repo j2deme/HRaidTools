@@ -5,12 +5,11 @@
     <link rel="stylesheet" href="{{ css }}bootstrapValidator.min.css">
 {% endblock %}
 {% block content %}
-<form id="defaultForm" class="form-horizontal" action="{{ urlFor('sign_up') }}" method="post" role="form"
+<form id="defaultForm" class="form-horizontal" action="{{ urlFor('signup-post') }}" method="post" role="form"
     data-bv-message="This value is not valid"
     data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
     data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
     data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
-
     <div class="row">
       <div class="col-md-8">
         <h3 class="text-center">Register here!</h3>

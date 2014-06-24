@@ -20,19 +20,13 @@ $app->get('/about', function() use($app){
   $app->render('about.twig', $data);
 })->name('about');
 
-$app->get('/login', function() use($app){
-});
-
-$app->post('/login', function() use($app){
-});
-
-$app->get('/register', function() use($app){
+$app->get('/sign-up', function() use($app){
   $data = array();
   $data['organizations'] = Organization::select('id as value', 'name as label')->get();
   $app->render('new_user.twig', $data);
-})->name('register');
+})->name('signup');
 
-$app->post('/register', function() use($app){
+$app->post('/sign-up', function() use($app){
   $post = (object) $app->request->post();
   $user = new User();
   $user->username = $post->username;
@@ -44,6 +38,6 @@ $app->post('/register', function() use($app){
   $user->organization_id = $post->organization_id;
   $user->save();
   $app->redirect($app->urlFor('root'));
-})->name('sign_up');
+})->name('signup-post');
 
 ?>

@@ -48,7 +48,6 @@ $app->get('/login',function() use($app){
   }
 
   $emailValue = $emailError = $passwordError = '';
-
   if(isset($flash['email'])) {
     $emailValue = $flash['email'];
   }
@@ -68,20 +67,27 @@ $app->get('/login',function() use($app){
     'passwordError' => $passwordError,
     'redirectTo' => $redirectTo
   );
-  $app->render('login.php', $data);
+  $app->render('login.twig', $data);
 })->name('login');
 
 $app->post('/login',function() use($app){
   $post = (object) $app->request()->post();
-  $email = (isset($post->email)) ? $post->email : '';
+  $username = (isset($post->username)) ? $post->username : '';
   $password = (isset($post->password)) ? $post->password : '';
 
   $errors = array();
-  if($email != "j2deme@gmail.com") {//Get it from database
-      $errors['email'] = $app->lang->emailError;
-  } elseif ($password != "12345") {//Get it from database
-    $app->flash('email', $email);
-    $errors['password'] = $app->lang->passwordError;
+  $user = User::where('username','=',$username)->orWhere('email','=',$username)->first();
+  //ldd($user);
+  if(!is_null($user)){
+    if($user->password == md5($password)){
+      // Get the user from the DB and pass it to the view through the session
+      $_SESSION['user'] = $user;
+    } else {
+      $errors['password'] = $app->lang->passwordError;
+    }
+  } else {
+    $app->flash('email', $username);
+    $errors['email'] = $app->lang->emailError;
   }
 
   if(count($errors) > 0) {
@@ -89,9 +95,6 @@ $app->post('/login',function() use($app){
     $app->flashKeep();
     $app->redirect($app->urlFor('login'));
   }
-
-  // Get the user from the DB and pass it to the view through the session
-  //$_SESSION['user'] = $user;
 
   if(isset($_SESSION['redirectTo'])) {
     $tmp = $_SESSION['redirectTo'];

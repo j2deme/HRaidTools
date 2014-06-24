@@ -1,7 +1,7 @@
 # YAML Syntax: http://en.wikipedia.org/wiki/YAML
 ---
 loginError: Login required!
-emailError: Sorry, there is no user with an email of ":email:".
+emailError: Sorry, there is no user with an email or username of ":email:".
 passwordError: Password does not match
 loginEmail: Email
 loginPassword: Password
