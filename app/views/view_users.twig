@@ -60,19 +60,28 @@
           </div>
         </div>
       </div> #}
-      <table data-toggle="table" data-url="{{ urlFor('root') }}users_json" data-height="246" data-show-columns="true" data-pagination="true" data-search="true">
-          <thead>
-          <tr>
-              <th data-field="id">#</th>
-              <th data-field="name">Names</th>
-              <th data-field="lastname">Last Name</th>
-              <th data-field="lastname_second">Second Last Name</th>
-              <th data-field="email">Email</th>
-              <th data-field="username" data-visible="false">Username</th>
-              <th data-field="organization_id" data-visible="false">Organization</th>
-          </tr>
-          </thead>
-      </table>
+      <div class="row">
+        <div class="box">
+          <div class="box-header">
+            <h3 class="title-box text-center">Users</h3>
+          </div>
+          <div class="box-body">
+            <table class="table table-bordered table-hover table-responsive" data-toggle="table" data-url="{{ urlFor('root') }}users_json" data-height="246" data-show-columns="true" data-pagination="true" data-search="true">
+                <thead>
+                <tr>
+                    <th data-field="id">#</th>
+                    <th data-field="name">Names</th>
+                    <th data-field="lastname">Last Name</th>
+                    <th data-field="lastname_second">Second Last Name</th>
+                    <th data-field="email">Email</th>
+                    <th data-field="username" data-visible="false">Username</th>
+                    <th data-field="organization_id" data-visible="false">Organization</th>
+                </tr>
+                </thead>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 {% endblock %}
