@@ -58,9 +58,12 @@
     <script type="text/javascript" src="{{ js }}bootstrapValidator.js"></script>
     <script>
     $(document).ready(function() {
+
+      $('#email').focus();
+
       $('#defaultForm').bootstrapValidator();
 
-     $(".reveal").hover(function() {
+      $(".reveal").hover(function() {
         $(".pwd").replaceWith($('.pwd').clone().attr('type', 'text'));
       }, function() {
         $(".pwd").replaceWith($('.pwd').clone().attr('type', 'password'));
