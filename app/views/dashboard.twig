@@ -1,52 +1,77 @@
 {# index/home #}
 {% extends 'base.twig' %}
+{% block css %}
+  <link rel="stylesheet" href="{{ css }}AdminLTE.css">
+  <link rel="stylesheet" href="{{ css }}ui.css">
+  <link rel="stylesheet" href="{{ css }}ionicons.min.css">
+{% endblock %}
 {% block content %}
-  <div class="row">
-    <div class="col-md-6 col-md-offset-1">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h1 class="panel-title">Hi {{ user.name }} {{ user.lastname }} {{ user.lastname_second }}!</h1>
-        </div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-xs-12 col-md-12">
-              <p><b>Current Organization: "Adaptivez"</b> || There are 0 workgroup request »</p>
-              <hr>
-              <p><b>You were working on:</b></p>
-              <hr>
-              <p><i>There's is no active project. <small>[<a href="#">Active a Project</a>]</small></i></p>
-              <p><b>Involved Workgroups:</b></p>
-              <hr>
-              <p><small>Click on a Workgroups to Change the Active Workgroup</small></p>
-              <p><b>What will you do today?</b></p>
-              <div class="row">
-                <div class="col-md-4">
-                  <a href="#" class="btn btn-primary btn-lg" role="button"><i class="fa fa-rocket fa-3x"></i><br>Simulation <br> Launcher</a>
-                </div>
-                <div class="col-md-4">
-                  <a href="{{ urlFor('testing2') }}" class="btn btn-primary btn-lg" role="button"><i class="fa fa-cubes fa-3x"></i><br>RAID <br> Designer</a>
-                </div>
-                <div class="col-md-4">
-                  <a href="{{ urlFor('testing3') }}" class="btn btn-primary btn-lg" role="button"><i class="fa fa-desktop fa-3x"></i><br>Workload <br> Generator</a>
-                </div>
+  <br>
+  <section class="content invoice">
+    <div class="row">
+      <div class="col-md-8">
+        <h2 class="page-header"><i class="fa fa-user fa-2x"></i>&nbsp;Hi {{ user.name }} {{ user.lastname }} {{ user.lastname_second }}!</h2>
+      </div>
+    </div>
+    <div class="row invoice-info">
+      <div class="col-md-8">
+        <p><b>Current Organization: "Adaptivez"</b> || There are 0 workgroup request »</p>
+        <p><b>You were working on:</b></p>
+        <p><i>There's is no active project. <small>[<a href="#">Active a Project</a>]</small></i></p>
+        <p><b>Involved Workgroups:</b></p>
+        <p><small>Click on a Workgroups to Change the Active Workgroup</small></p>
+        <p><b>What will you do today?</b></p>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="small-box bg-green">
+              <div class="inner">
+                <h3>Simulation</h3>
+                <h3>Launcher</h3>
               </div>
+              <div class="icon">
+                <i class="fa fa-rocket"></i>
+              </div>
+              <a href="#" class="small-box-footer"> More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="small-box bg-aqua">
+              <div class="inner">
+                <h3>RAID</h3>
+                <h3>Designer</h3>
+              </div>
+              <div class="icon">
+                <i class="fa fa-cubes"></i>
+              </div>
+              <a href="{{ urlFor('raid-designer') }}" class="small-box-footer"> More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="small-box bg-blue">
+              <div class="inner">
+                <h3>Workload</h3>
+                <h3>Generator</h3>
+              </div>
+              <div class="icon">
+                <i class="fa fa-desktop"></i>
+              </div>
+              <a href="{{ urlFor('workload-generator') }}" class="small-box-footer"> More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-5">
-      <div class="row">
-        <div class="col-md-6 col-md-offset-4"><p>Avatar</p></div>
-      </div>
-      <br><br><br><br>
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <hr>
-          <p><b>Active Workgroup: </b>There's no active workgroup. <small>[<a href="#">Active a Workgroup</a>]</small></p>
-          <p><b>E-mail:</b> {{ user.email }}</p>
+      <div class="col-md-4">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-4"><img src="{{ img }}user.png" class="img-circle" alt="User Image" ></div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <hr>
+            <p><b>Active Workgroup: </b>There's no active workgroup. <small>[<a href="#">Active a Workgroup</a>]</small></p>
+            <p><b>E-mail:</b> {{ user.email }}</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 {% endblock %}

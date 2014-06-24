@@ -1,0 +1,118 @@
+{# CRUD of disks #}
+{% extends 'base.twig' %}
+{% import 'forms.twig' as f %}
+{% block css %}
+  <link rel="stylesheet" href="{{ css }}AdminLTE.css">
+  <link rel="stylesheet" href="{{ css }}ui.css">
+  <link rel="stylesheet" href="{{ css }}ionicons.min.css">
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 text-center page-header"><h2>Welcome System Administrator</h2></div>
+</div>
+  <div class="row">
+    <div class="col-md-2">
+      {% include 'navbar_admin.twig' %}
+    </div>
+    <div class="col-md-10">
+      <form class="form-horizontal" action="{{ urlFor('add_disk') }}" method="post" role="form">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h3>New Disk</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              {{ f.label('name','Name:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('name') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('sector','Sector:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('sector','','512') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('track_cylinder','Track Cylinder:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('track_cylinder') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('rpm','RPMs:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('rpm') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('track_skew','Track Skew:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('track_skew') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('limit_disk','Limit Disk:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('limit_disk') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('long_disk','Long Disk','col-md-4') }}
+              <div class="col-md-6">{{ f.text('long_disk') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('manufacturer','Manufacturer:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('manufacturer') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('display_name','Display Name:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('display_name') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('display_unit','Display Unit:','col-md-4') }}
+              <div class="col-md-6">{{ f.select('display_unit',unit) }}</div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              {{ f.label('type','Type:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('type','','WILKES_DISK') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('sector_track','Sector Track:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('sector_track') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('cylinders','Cylinders:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('cylinders') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('track_overhead','Track Overhead:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('track_overhead') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('cylinder_skew','Cylinder Skew:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('cylinder_skew') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('short_disk','Short Disk:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('short_disk') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('regions','Regions:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('regions','','0:0 0:0') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('product_name','Product Name:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('product_name') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('display_size','Display Size:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('display_size') }}</div>
+            </div>
+            <div class="form-group">
+              {{ f.label('available','Available:','col-md-4') }}
+              <div class="col-md-6 col-md-offset-1">{{ f.check('available','','true') }}</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-4 col-md-offset-4">
+            <button class="btn btn-primary btn-block">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

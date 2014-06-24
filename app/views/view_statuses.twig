@@ -1,0 +1,68 @@
+{% extends 'base.twig' %}
+{% import 'forms.twig' as f %}
+{% block css %}
+  <link rel="stylesheet" href="{{ css }}AdminLTE.css">
+  <link rel="stylesheet" href="{{ css }}ui.css">
+  <link rel="stylesheet" href="{{ css }}ionicons.min.css">
+{% endblock %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-12 text-center page-header"><h2>Welcome System Administrator</h2></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      {% include 'navbar_admin.twig' %}
+    </div>
+    <div class="col-md-5">
+      <div class="row">
+        <div class="box">
+          <div class="box-header">
+            <h3 class="title-box text-center">Statuses</h3>
+          </div>
+          <div class="box-body">
+            <table class="table table-bordered table-hover table-responsive">
+              <thead>
+                <tr role="row">
+                  <th>#</th>
+                  <th>Name</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr role="row">
+                  <th>#</th>
+                  <th>Name</th>
+                </tr>
+              </tfoot>
+              <tbody>
+                {% for status in statuses %}
+                  <tr>
+                    <th>{{ status.id }}</th>
+                    <th>{{ status.name }}</th>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <form class="form-horizontal" action="{{ urlFor('add_status') }}" method="post" role="form">
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <h3>New Status</h3>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              {{ f.label('name','Name:','col-md-4') }}
+              <div class="col-md-6">{{ f.text('name') }}</div>
+            </div>
+          </div>
+          <div class="col-md-4 col-md-offset-4">
+            <button class="btn btn-primary btn-block">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+{% endblock %}

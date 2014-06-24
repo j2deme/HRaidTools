@@ -22,6 +22,7 @@ $app->get('/about', function() use($app){
 
 $app->get('/sign-up', function() use($app){
   $data = array();
+  $data['organizations'] = Organization::select('id as value', 'name as label')->get();
   $app->render('new_user.twig', $data);
 })->name('signup');
 
