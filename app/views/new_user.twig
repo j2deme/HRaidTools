@@ -16,13 +16,13 @@
         <hr>
         <div class="form-group">
           {{ f.label('email','Email:','col-md-4') }}
-          <div class="col-md-6"><input type="email" id="email" name="email" class="form-control" data-bv-notempty="true" required data-bv-notempty-message="The email is required and cannot be empty"></div>
+          <div class="col-md-6"><input type="email" id="email" name="email" class="form-control" data-bv-notempty="true" required data-bv-notempty-message="The email is required and cannot be empty" autocomplete="off"></div>
         </div>
         <div class="form-group">
           {{ f.label('password','Password:','col-md-4') }}
           <div class="col-md-6">
             <div class="input-group">
-              <input type="password" id="password" name="password" class="form-control pwd" required data-bv-notempty-message="The password is required and cannot be empty">
+              <input type="password" id="password" name="password" class="form-control pwd" required data-bv-notempty-message="The password is required and cannot be empty" autocomplete="off">
               <span class="input-group-btn"><button class="btn btn-default reveal" type="button"><i class="glyphicon glyphicon-eye-open"></i></button></span>
             </div>
           </div>
