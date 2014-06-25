@@ -1,8 +1,10 @@
 <?php
 
 $app->get('/dashboard', function() use($app){
+  //$user = $_SESSION['user'];
+  //$id = $user['id'];
   $data = array();
-  $data['user'] = User::where('id',3)->firstOrFail();
+  //$data['user'] = User::where('id',$id)->firstOrFail();
   $app->render('dashboard.twig', $data);
 })->name('dashboard');
 

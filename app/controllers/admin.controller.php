@@ -9,9 +9,14 @@ $app->get('/disks', function () use($app){
   $app->render('view_disks.twig');
 })->name('disks');
 
-$app->get('/disks.json', function() use($app){
+$app->get('/disks.json(/:id)', function($id = null) use($app){
+  if($id == null){
     $disks = Disk::all();
     echo $disks->toJson();
+  }else{
+    $disk = Disk::where('id',$id)->first();
+    echo $disk->toJson();
+  }
 });
 
 $app->get('/new_disk', function () use($app){
@@ -47,13 +52,25 @@ $app->post('/new_disk', function () use($app){
   $app->redirect($app->urlFor('disks'));
 })->name('add_disk');
 
+$app->get('/a/:id/disk/:value', function($id,$value) use($app){
+  $disk = Disk::where('id',$id)->first();
+  $disk['available'] = $value;
+  $disk->save();
+  $app->redirect($app->urlFor('disks'));
+});
+
 $app->get('/controllers', function() use($app){
   $app->render('view_controllers.twig');
 })->name('controllers');
 
-$app->get('/controllers.json', function() use($app){
+$app->get('/controllers.json(/:id)', function($id = null) use($app){
+  if($id == null){
     $controllers = Controller::all();
     echo $controllers->toJson();
+  }else{
+    $controller = Controller::where('id',$id)->first();
+    echo $controller->toJson();
+  }
 });
 
 $app->get('/new_controller', function () use($app){
@@ -83,13 +100,18 @@ $app->get('/drives', function() use($app){
   $app->render('view_drives.twig');
 })->name('drives');
 
-$app->get('/drives.json', function() use($app){
-  $drives = Drive::with('disk','controller')->get();
-  for ($i=0; $i < $drives->count(); $i++) {
+$app->get('/drives.json(/:id)', function($id = null) use($app){
+  if($id == null){
+    $drives = Drive::with('disk','controller')->get();
+    for ($i=0; $i < $drives->count(); $i++) {
       $drives[$i]->controller_name = $drives[$i]->controller->name;
       $drives[$i]->disk_name = $drives[$i]->disk->name;
     }
     echo $drives->toJson();
+  }else{
+    $drive = Drive::with('disk','controller')->where('id',$id)->first();
+    echo $drive->toJson();
+  }
 });
 
 $app->get('/new_drive', function () use($app){
@@ -100,19 +122,13 @@ $app->get('/new_drive', function () use($app){
 })->name('new_drive');
 
 $app->get('/views_c/:id', function($id) use($app){
-  $isAjax = $app->request()->isAjax();
-  if($isAjax){
-    $data['c'] = Controller::where('id',$id)->first();
-    echo $data['c']->toJson();
-  }
+    $controller = Controller::where('id',$id)->first();
+    echo $controller->toJson();
 });
 
 $app->get('/views_d/:id', function($id) use($app){
-  $isAjax = $app->request()->isAjax();
-  if($isAjax){
-    $data['d'] = Disk::where('id',$id)->first();
-    echo $data['d']->toJson();
-  }
+    $disk = Disk::where('id',$id)->first();
+    echo $disk->toJson();
 });
 
 $app->post('/add_drive', function () use($app){
@@ -130,9 +146,14 @@ $app->get('/networks', function() use($app){
   $app->render('view_networks.twig');
 })->name('networks');
 
-$app->get('/networks.json', function() use($app){
-    $networks = Network::all();
-    echo $networks->toJson();
+$app->get('/networks.json(/:id)', function($id = null) use($app){
+    if($id == null){
+      $networks = Network::all();
+      echo $networks->toJson();
+    }else{
+      $network = Network::where('id',$id)->first();
+      echo $network->toJson();
+    }
 });
 
 $app->get('/new_network', function () use($app){
@@ -158,9 +179,14 @@ $app->get('/distributions', function() use($app){
   $app->render('view_distributions.twig');
 })->name('distributions');
 
-$app->get('/distributions.json', function() use($app){
-    $distributions = Distribution::all();
-    echo $distributions->toJson();
+$app->get('/distributions.json(/:id)', function($id = null) use($app){
+    if($id == null){
+      $distributions = Distribution::all();
+      echo $distributions->toJson();
+    }else{
+      $distribution = Distribution::where('id',$id)->first();
+      echo $distribution->toJson();
+    }
 });
 
 $app->get('/new_distribution', function () use($app){
@@ -183,12 +209,17 @@ $app->get('/distributors', function() use($app){
   $app->render('view_distributors.twig');
 })->name('distributors');
 
-$app->get('/distributors.json', function() use($app){
-  $distributors = Distributor::with('distribution')->get();
-  for ($i=0; $i < $distributors->count(); $i++) {
+$app->get('/distributors.json(/:id)', function($id = null) use($app){
+  if($id == null){
+    $distributors = Distributor::with('distribution')->get();
+    for ($i=0; $i < $distributors->count(); $i++) {
       $distributors[$i]->distribution_name = $distributors[$i]->distribution->name;
     }
     echo $distributors->toJson();
+  }else{
+    $distributor = Distributor::with('distribution')->where('id',$id)->first();
+    echo $distributor->toJson();
+  }
 });
 
 $app->get('/new_distributor', function () use($app){
@@ -216,13 +247,25 @@ $app->post('/new_distributor', function () use($app){
   $app->redirect($app->urlFor('distributor'));
 })->name('add_distributor');
 
+$app->get('/a/:id/distributor/:value', function($id,$value) use($app){
+  $distributor = Distributor::where('id',$id)->first();
+  $distributor['available'] = $value;
+  $distributor->save();
+  $app->redirect($app->urlFor('distributors'));
+});
+
 $app->get('/statuses', function() use($app){
   $app->render('view_statuses.twig');
 })->name('statuses');
 
-$app->get('/statuses.json', function() use($app){
-    $statuses = Status::all();
-    echo $statuses->toJson();
+$app->get('/statuses.json(/:id)', function($id = null) use($app){
+    if($id == null){
+      $statuses = Status::all();
+      echo $statuses->toJson();
+    }else{
+      $status = Status::where('id',$id)->first();
+      echo $status->toJson();
+    }
 });
 
 $app->post('/add_status', function () use($app){
@@ -237,12 +280,17 @@ $app->get('/users', function() use($app){
   $app->render('view_users.twig');
 })->name('users');
 
-$app->get('/users.json', function() use($app){
-    $users = User::with('organization')->get();
-    for ($i=0; $i < $users->count(); $i++) {
-      $users[$i]->organization_name = $users[$i]->organization->name;
+$app->get('/users.json(/:id)', function($id = null) use($app){
+    if($id == null){
+      $users = User::with('organization')->get();
+      for ($i=0; $i < $users->count(); $i++) {
+        $users[$i]->organization_name = $users[$i]->organization->name;
+      }
+      echo $users->toJson();
+    }else{
+      $user = User::with('organization')->where('id',$id)->first();
+      echo $user->toJson();
     }
-    echo $users->toJson();
 });
 
 ?>
