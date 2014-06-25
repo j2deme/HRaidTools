@@ -81,11 +81,9 @@
               <div class="col-md-11 col-md-offset-1">
                 <br>
                 <ul class="nav nav-pills">
-                  <li class="active"><a href="#static" data-toggle="tab">Static</a></li>
-                  <li><a href="#heterogeneous" data-toggle="tab">Heterogeneous</a></li>
-                  <li><a href="#orthogonal" data-toggle="tab">Orthogonal</a></li>
-                  <li><a href="#adaptive" data-toggle="tab">Adaptive</a></li>
-                  <li><a href="#pseudo_random" data-toggle="tab">Pseudo-Random</a></li>
+                {% for distributor in distributors %}
+                  <li><a href="#{{ distributor.distribution.name }}" data-toggle="tab">{{ distributor.distribution.name }}</a></li>
+                {% endfor %}
                 </ul>
                 <div class="tab-content">
                   <div class="tab-pane active" id="static">
@@ -164,17 +162,12 @@
       var check5 = $('input[name=n_type_d5]');
       var check6 = $('input[name=n_type_d6]');
 
-      $('#network').change(function(event){
-        var sn = $("#network option:selected");
-        $('span#network_view').html(" "+sn.val());
+      $('#network_id').change(function(event){
+        var sn = $("#network_id option:selected");
+        $('span#network_view').html(" "+sn.text());
       });
 
-      $('select#n_disk1').attr('disabled', 'disabled');
-      $('select#n_disk2').attr('disabled', 'disabled');
-      $('select#n_disk3').attr('disabled', 'disabled');
-      $('select#n_disk4').attr('disabled', 'disabled');
-      $('select#n_disk5').attr('disabled', 'disabled');
-      $('select#n_disk6').attr('disabled', 'disabled');
+      $('select#id').attr('disabled', 'disabled');
 
       check1.change(function(event){
         var c1 = $("input[name=n_type_d1]:checked");

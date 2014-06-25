@@ -13,71 +13,17 @@
     <h4><span class="label label-primary">Subtotal</span></h4>
   </div>
 </div>
+{% for disk in disks %}
+<br>
 <div class="row">
   <div class="col-md-3">
-    {{ f.select('n_disk1', range(1,99)) }}
+    {{ f.select('id', range(1,99)) }}
   </div>
   <div class="col-md-6">
-  {% for disk in disks %}
     <label for="{{ disk.name }}"><input type="checkbox" id="{{ disk.name }}" name="{{ disk.name }}" value="{{ disk.id }}" >&nbsp;{{ disk.display_name }}</label><br>
-  {% endfor %}
   </div>
   <div class="col-md-3">
-    {{ f.label('n_subtotal1','0 GB') }}
+    <label id="size{{ disk.id }}">0 GB</label>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-3">
-    {{ f.select('n_disk2', range(1,99)) }}
-  </div>
-  <div class="col-md-6">
-    {{ f.check('n_type_d2','HP 97560','1') }}
-  </div>
-  <div class="col-md-3">
-    {{ f.label('n_subtotal2','0 GB') }}
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-3">
-    {{ f.select('n_disk3', range(1,99)) }}
-  </div>
-  <div class="col-md-6">
-    {{ f.check('n_type_d3','Hawk 4','1') }}
-  </div>
-  <div class="col-md-3">
-    {{ f.label('n_subtotal3','0 GB') }}
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-3">
-    {{ f.select('n_disk4', range(1,99)) }}
-  </div>
-  <div class="col-md-6">
-    {{ f.check('n_type_d4','Maxtor 90871U2','1') }}
-  </div>
-  <div class="col-md-3">
-    {{ f.label('n_subtotal4','0 GB') }}
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-3">
-    {{ f.select('n_disk5', range(1,99)) }}
-  </div>
-  <div class="col-md-6">
-    {{ f.check('n_type_d5','WD Caviar®','1') }}
-  </div>
-  <div class="col-md-3">
-    {{ f.label('n_subtotal5','0 GB') }}
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-3">
-    {{ f.select('n_disk6', range(1,99)) }}
-  </div>
-  <div class="col-md-6">
-    {{ f.check('n_type_d6','Seagate Cheetah','1') }}
-  </div>
-  <div class="col-md-3">
-    {{ f.label('n_subtotal6','0 GB') }}
-  </div>
-</div>
+{% endfor %}
