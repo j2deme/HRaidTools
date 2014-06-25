@@ -101,7 +101,8 @@ $app->post('/login',function() use($app){
     unset($_SESSION['redirectTo']);
     $app->redirect($tmp);
   }
-  $app->redirect($app->urlFor('root'));
+
+  $app->redirect($app->urlFor('dashboard'));
 })->name('login-post');
 
 $app->get('/logout', function() use($app){
