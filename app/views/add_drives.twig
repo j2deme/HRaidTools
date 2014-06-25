@@ -85,23 +85,23 @@
 
       $('#controller_id').change(function(event){
         var sn = $("#controller_id option:selected");
-        $.getJSON("{{ urlFor('root') }}views_c/"+sn.val(), function(c){
-          $('span#name_controller').text(c.name);
-          $('span#type_controller').text(c.type);
-          $('span#block_controller').text(c.block_size);
-          $('span#size_controller').text(c.cache_size);
-          $('span#new_overhead_controller').text(c.new_overhead);
+        $.getJSON("{{ urlFor('root') }}views_c/"+sn.val(), function(controller){
+          $('span#name_controller').text(controller.name);
+          $('span#type_controller').text(controller.type);
+          $('span#block_controller').text(controller.block_size);
+          $('span#size_controller').text(controller.cache_size);
+          $('span#new_overhead_controller').text(controller.new_overhead);
         });
       });
 
       $('#disk_id').change(function(event){
         var sn = $("#disk_id option:selected");
-        $.getJSON("{{ urlFor('root') }}views_d/"+sn.val(), function(d){
-          $('span#name_disk').text(d.name);
-          $('span#type_disk').text(d.type);
-          $('span#manufacturer_disk').text(d.manufacturer);
-          $('span#display_name_disk').text(d.display_name);
-          $('span#size_disk').text(d.display_size+" "+d.display_unit);
+        $.getJSON("{{ urlFor('root') }}views_d/"+sn.val(), function(disk){
+          $('span#name_disk').text(disk.name);
+          $('span#type_disk').text(disk.type);
+          $('span#manufacturer_disk').text(disk.manufacturer);
+          $('span#display_name_disk').text(disk.display_name);
+          $('span#size_disk').text(disk.display_size+" "+disk.display_unit);
         });
       });
     });
