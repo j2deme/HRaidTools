@@ -46,6 +46,50 @@
                 </tr>
                 </thead>
             </table>
+            {# Inicia Modal #}
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel"><b><i class="fa fa-database">&nbsp;<span id="display_name"></span></i></b></h4>
+                    <div class="row">
+                      <div class="col-md-6"><h4 class="modal-title"><span id="product_name"></span></h4></div>
+                      <div class="col-md-6"><p><b>Size: </b><span id="display_size"></span></p></div>
+                    </div>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-4">
+                      <p><b>Name: </b><span id="name"></span></p>
+                      <p><b>Type: </b><span id="type"></span></p>
+                      <p><b>Sector: </b><span id="sector"></span></p>
+                      <p><b>Sector Track: </b><span id="sector_track"></span></p>
+                      <p><b>Track Cylinder: </b><span id="track_cylinder"></span></p>
+                      <p><b>Cylinder: </b><span id="cylinders"></span></p>
+                      <p><b>RPMs: </b><span id="rpm"></span></p>
+                      <p><b>Track Overhead: </b><span id="track_overhead"></span></p>
+                    </div>
+                    <div class="col-md-6">
+                      <p><b>Track Skew: </b><span id="track_skew"></span></p>
+                      <p><b>Cylinder Skew: </b><span id="cylinder_skew"></span></p>
+                      <p><b>Limit Disk: </b><span id="limit_disk"></span></p>
+                      <p><b>Short Disk: </b><span id="short_disk"></span></p>
+                      <p><b>Long Disk: </b><span id="long_disk"></span></p>
+                      <p><b>Regions: </b><span id="regions"></span></p>
+                      <p><b>Manufacturer: </b><span id="manufacturer"></span></p>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <span id="available"></span>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+            {# Termina Modal #}
           </div>
         </div>
       </div>
@@ -64,7 +108,43 @@
     };
 
     function modalLink(value) {
-      return '<a href="#'+value+'"><i class="fa fa-question">&nbsp;More info</i></a>'
+      return '<a href="#" data-toggle="modal" data-id="'+value+'"><i class="fa fa-info">&nbsp;More info</i></a>'
     };
+
+    $(function() {
+      $(document).on('click', 'a[data-toggle="modal"]', function(event) {
+        event.preventDefault();
+        var link = $(this);
+        var id = link.data('id');
+        var id = link.attr('data-id');
+        $.getJSON("{{ urlFor('root') }}disks.json/"+id, function(disk){
+          //optional stuff to do after success
+          $('#display_name').text(disk.display_name);
+          $('#product_name').text(disk.product_name);
+          $('#name').text(disk.name);
+          $('#type').text(disk.type);
+          $('#sector').text(disk.sector);
+          $('#sector_track').text(disk.sector_track);
+          $('#track_cylinder').text(disk.track_cylinder);
+          $('#cylinders').text(disk.cylinders);
+          $('#rpm').text(disk.rpm);
+          $('#track_overhead').text(disk.track_overhead);
+          $('#track_skew').text(disk.track_skew);
+          $('#cylinder_skew').text(disk.cylinder_skew);
+          $('#limit_disk').text(disk.limit_disk);
+          $('#short_disk').text(disk.short_disk);
+          $('#long_disk').text(disk.long_disk);
+          $('#regions').text(disk.regions);
+          $('#manufacturer').text(disk.manufacturer);
+          $('#display_size').text(+disk.display_size+" "+disk.display_unit);
+          if(disk.available == false){
+            $('#available').html('<a href="{{ urlFor("root") }}a/'+disk.id+'/disk/true" class="btn btn-success"><i class="fa fa-check">&nbsp;</i>Enabled</a>');
+          }else{
+            $('#available').html('<a href="{{ urlFor("root") }}a/'+disk.id+'/disk/false" class="btn btn-danger"><i class="fa fa-times">&nbsp;</i>Disabled</a>');
+          }
+          $('#myModal').modal('show');
+        });
+      });
+    });
   </script>
 {% endblock %}

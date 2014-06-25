@@ -37,20 +37,32 @@
                 </tr>
                 </thead>
             </table>
-            <div class="modal fade" id="1" tabindex="-1" role="dialog" aria-labelledby="1" aria-hidden="true">
+            {# Inicia Modal #}
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel"><b><i class="fa fa-hdd-o"></i> Hola</b></h4>
+                    <h4 class="modal-title" id="myModalLabel"><b><i class="fa fa-sliders">&nbsp;<span id="display_name"></span></i></b></h4>
+                    <h4 class="modal-title"><span id="distribution"></span></h4>
                   </div>
                   <div class="modal-body">
                     <div class="row">
-                      <div class="col-md-12">
-                        <p>Hola</p>
+                      <div class="col-md-6">
+                      <p><b>Distributor: </b><span id="distributor"></span></p>
+                      <p><b>Type: </b><span id="type"></span></p>
+                      <p><b>Size: </b><span id="size"></span></p>
+                      <p><b>Striping: </b><span id="striping"></span></p>
+                    </div>
+                    <div class="col-md-6">
+                      <p><b>Overhead: </b><span id="overhead"></span></p>
+                      <p><b>Max Requets: </b><span id="max_requests"></span></p>
+                      <p><b>Report: </b><span id="report"></span></p>
+                      <p><b>Done Size: </b><span id="done_size"></span></p>
                     </div>
                   </div>
                   <div class="modal-footer">
+                    <span id="available"></span>
                     <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   </div>
@@ -58,6 +70,7 @@
                 </div>
               </div>
             </div>
+            {# Termina Modal #}
         </div>
       </div>
     </div>
@@ -75,7 +88,39 @@
     };
 
   function modalLink(value) {
-      return '<a href="#'+value+'" data-toggle="modal" data-target="#'+value+'"><i class="fa fa-question">&nbsp;More info</i></a>'
+      return '<a href="#" data-toggle="modal" data-id="'+value+'"><i class="fa fa-info">&nbsp;More info</i></a>'
     };
+
+    $(function() {
+      $(document).on('click', 'a[data-toggle="modal"]', function(event) {
+        event.preventDefault();
+        var link = $(this);
+        var id = link.data('id');
+        var id = link.attr('data-id');
+        $.getJSON("{{ urlFor('root') }}distributors.json/"+id, function(distributor){
+          //optional stuff to do after success
+          $('#display_name').text(distributor.display_name);
+          $('#distribution').text(distributor.distribution.name);
+          $('#distributor').text(distributor.distributor);
+          $('#type').text(distributor.type);
+          $('#size').text(distributor.size);
+          $('#striping').text(distributor.striping);
+          $('#overhead').text(distributor.overhead);
+          $('#max_requests').text(distributor.max_requests);
+          if(distributor.report == true){
+            $('#report').html('<span class="badge bg-green">Enabled</span>');
+          }else{
+            $('#report').html('<span class="badge bg-red">Disabled</span>');
+          }
+          $('#done_size').text(distributor.done_size);
+          if(distributor.available == false){
+            $('#available').html('<a href="{{ urlFor("root") }}a/'+distributor.id+'/distributor/true" class="btn btn-success"><i class="fa fa-check">&nbsp;</i>Enabled</a>');
+          }else{
+            $('#available').html('<a href="{{ urlFor("root") }}a/'+distributor.id+'/distributor/false" class="btn btn-danger"><i class="fa fa-times">&nbsp;</i>Disabled</a>');
+          }
+          $('#myModal').modal('show');
+        });
+      });
+    });
   </script>
 {% endblock %}

@@ -24,6 +24,7 @@
                 <tr>
                     <th data-field="id">#</th>
                     <th data-field="name">Name</th>
+                    <th data-field="id" data-formatter="modalLink">Info</th>
                 </tr>
                 </thead>
             </table>
@@ -53,4 +54,9 @@
 {% endblock %}
 {% block js %}
   <script src="{{ js }}bootstrap-table.js"></script>
+  <script>
+    function modalLink(value) {
+      return '<a href="#" data-toggle="modal" data-id="'+value+'"><i class="fa fa-warning">&nbsp;More info</i></a>'
+    };
+  </script>
 {% endblock %}
