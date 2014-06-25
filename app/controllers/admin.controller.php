@@ -6,10 +6,13 @@ $app->get('/admin', function () use($app){
 })->name('admin');
 
 $app->get('/disks', function () use($app){
-  $data = array();
-  $data['disks'] = Disk::all();
-  $app->render('view_disks.twig', $data);
+  $app->render('view_disks.twig');
 })->name('disks');
+
+$app->get('/disks.json', function() use($app){
+    $disks = Disk::all();
+    echo $disks->toJson();
+});
 
 $app->get('/new_disk', function () use($app){
   $data = array();
@@ -45,10 +48,13 @@ $app->post('/new_disk', function () use($app){
 })->name('add_disk');
 
 $app->get('/controllers', function() use($app){
-  $data = array();
-  $data['controllers'] = Controller::all();
-  $app->render('view_controllers.twig', $data);
+  $app->render('view_controllers.twig');
 })->name('controllers');
+
+$app->get('/controllers.json', function() use($app){
+    $controllers = Controller::all();
+    echo $controllers->toJson();
+});
 
 $app->get('/new_controller', function () use($app){
   $data = array();
@@ -74,10 +80,17 @@ $app->post('/new_controller', function () use($app){
 })->name('add_controller');
 
 $app->get('/drives', function() use($app){
-  $data = array();
-  $data['drives'] = Drive::with('disk','controller')->get();
-  $app->render('view_drives.twig', $data);
+  $app->render('view_drives.twig');
 })->name('drives');
+
+$app->get('/drives.json', function() use($app){
+  $drives = Drive::with('disk','controller')->get();
+  for ($i=0; $i < $drives->count(); $i++) {
+      $drives[$i]->controller_name = $drives[$i]->controller->name;
+      $drives[$i]->disk_name = $drives[$i]->disk->name;
+    }
+    echo $drives->toJson();
+});
 
 $app->get('/new_drive', function () use($app){
   $data = array();
@@ -114,10 +127,13 @@ $app->post('/add_drive', function () use($app){
 })->name('add_drive');
 
 $app->get('/networks', function() use($app){
-  $data = array();
-  $data['networks'] = Network::all();
-  $app->render('view_networks.twig', $data);
+  $app->render('view_networks.twig');
 })->name('networks');
+
+$app->get('/networks.json', function() use($app){
+    $networks = Network::all();
+    echo $networks->toJson();
+});
 
 $app->get('/new_network', function () use($app){
   $data = array();
@@ -139,10 +155,13 @@ $app->post('/new_network', function () use($app){
 })->name('add_network');
 
 $app->get('/distributions', function() use($app){
-  $data = array();
-  $data['distributions'] = Distribution::all();
-  $app->render('view_distributions.twig', $data);
+  $app->render('view_distributions.twig');
 })->name('distributions');
+
+$app->get('/distributions.json', function() use($app){
+    $distributions = Distribution::all();
+    echo $distributions->toJson();
+});
 
 $app->get('/new_distribution', function () use($app){
   $data = array();
@@ -161,10 +180,16 @@ $app->post('/new_distribution', function() use($app){
 })->name('add_distribution');
 
 $app->get('/distributors', function() use($app){
-  $data = array();
-  $data['distributors'] = Distributor::with('distribution')->get();
-  $app->render('view_distributors.twig', $data);
+  $app->render('view_distributors.twig');
 })->name('distributors');
+
+$app->get('/distributors.json', function() use($app){
+  $distributors = Distributor::with('distribution')->get();
+  for ($i=0; $i < $distributors->count(); $i++) {
+      $distributors[$i]->distribution_name = $distributors[$i]->distribution->name;
+    }
+    echo $distributors->toJson();
+});
 
 $app->get('/new_distributor', function () use($app){
   $data = array();
@@ -192,10 +217,13 @@ $app->post('/new_distributor', function () use($app){
 })->name('add_distributor');
 
 $app->get('/statuses', function() use($app){
-  $data = array();
-  $data['statuses'] = Status::all();
-  $app->render('view_statuses.twig', $data);
+  $app->render('view_statuses.twig');
 })->name('statuses');
+
+$app->get('/statuses.json', function() use($app){
+    $statuses = Status::all();
+    echo $statuses->toJson();
+});
 
 $app->post('/add_status', function () use($app){
   $post = (object) $app->request->post();
@@ -206,8 +234,7 @@ $app->post('/add_status', function () use($app){
 })->name('add_status');
 
 $app->get('/users', function() use($app){
-  $data = array();
-  $app->render('view_users.twig', $data);
+  $app->render('view_users.twig');
 })->name('users');
 
 $app->get('/users.json', function() use($app){

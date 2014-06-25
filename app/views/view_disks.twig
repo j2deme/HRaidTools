@@ -1,5 +1,6 @@
 {% extends 'base.twig' %}
 {% block css %}
+  <link rel="stylesheet" href="{{ css }}bootstrap-table.css">
   <link rel="stylesheet" href="{{ css }}AdminLTE.css">
 {% endblock %}
 {% block content %}
@@ -14,101 +15,56 @@
       <div class="row">
         <div class="box">
           <div class="box-header">
-            <h3 class="title-box text-center">Disks</h3>
+            <h3 class="title-box text-center"><i class="fa fa-database"></i>&nbsp;Disks</h3>
           </div>
           <div class="box-body">
-            <table class="table table-bordered table-hover table-responsive">
-              <thead>
-                <tr role="row">
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Type</th>
-                  <th>Manufacturer</th>
-                  <th>Display Name</th>
-                  <th>Size</th>
-                  <th>Available</th>
-                  <th>More Information</th>
+            <table class="table table-bordered table-hover table-responsive" data-toggle="table" data-url="{{ urlFor('root') }}disks.json" data-height="246" data-show-columns="true" data-pagination="true">
+                <thead>
+                <tr>
+                    <th data-field="id">#</th>
+                    <th data-field="name">Name</th>
+                    <th data-field="type">Type</th>
+                    <th data-field="sector" data-visible="false">Sector</th>
+                    <th data-field="sector_track" data-visible="false">Sector Track</th>
+                    <th data-field="track_cylinder" data-visible="false">Track Cylinder</th>
+                    <th data-field="cylinders" data-visible="false">Cylinders</th>
+                    <th data-field="rpm" data-visible="false">RPMs</th>
+                    <th data-field="track_overhead" data-visible="false">Track Overhead</th>
+                    <th data-field="track_skew" data-visible="false">Track Skew</th>
+                    <th data-field="cylinder_skew" data-visible="false">Cylinder Skew</th>
+                    <th data-field="limit_disk" data-visible="false">Limit Disk</th>
+                    <th data-field="short_disk" data-visible="false">Short Disk</th>
+                    <th data-field="long_disk" data-visible="false">Long Disk</th>
+                    <th data-field="regions" data-visible="false">Regions</th>
+                    <th data-field="manufacturer">Manufacturer</th>
+                    <th data-field="display_name">Display Name</th>
+                    <th data-field="product_name" data-visible="false">Product Name</th>
+                    <th data-field="display_size">Size</th>
+                    <th data-field="display_unit">Unit</th>
+                    <th data-field="available" data-formatter="priceFormatter">Available</th>
+                    <th data-field="id" data-formatter="modalLink">Info</th>
                 </tr>
-              </thead>
-              <tfoot>
-                <tr role="row">
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Type</th>
-                  <th>Manufacturer</th>
-                  <th>Display Name</th>
-                  <th>Size</th>
-                  <th>Available</th>
-                  <th>More Information</th>
-                </tr>
-              </tfoot>
-              <tbody>
-                {% for disk in disks %}
-                  <tr>
-                    <th>{{ disk.id }}</th>
-                    <th>{{ disk.name }}</th>
-                    <th>{{ disk.type }}</th>
-                    <th>{{ disk.manufacturer }}</th>
-                    <th>{{ disk.display_name }}</th>
-                    <th>{{ disk.display_size }} {{ disk.display_unit }}</th>
-                    <th>
-                      {% if disk.available == false %}
-                        <span class="badge bg-red">Disabled</span>
-                      {% else %}
-                        <span class="badge bg-aqua">Enabled</span>
-                      {% endif %}
-                    </th>
-                    <th><a href="#" data-toggle="modal" data-target="#{{ disk.id }}"><i class="fa fa-question">&nbsp;More info</i></a></th>
-                  </tr>
-                  <div class="modal fade" id="{{ disk.id }}" tabindex="-{{ disk.id }}" role="dialog" aria-labelledby="{{ disk.id }}" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          <h4 class="modal-title" id="myModalLabel"><b><i class="fa fa-hdd-o"></i> {{ disk.product_name }}</b></h4>
-                        </div>
-                        <div class="modal-body">
-                          <div class="row">
-                            <div class="col-md-6">
-                              <p><b>Sector:</b> {{ disk.sector }}</p>
-                              <p><b>Sector Track:</b> {{ disk.sector_track }}</p>
-                              <p><b>Track Cylinder:</b> {{ disk.track_cylinder }}</p>
-                              <p><b>Cylinders:</b> {{ disk.cylinders }}</p>
-                              <p><b>RPM:</b> {{ disk.rpm }}</p>
-                              <p><b>Track Overhead:</b> {{ disk.track_overhead }}</p>
-                            </div>
-                            <div class="col-md-6">
-                              <p><b>Track Skew: </b> {{ disk.track_skew }}</p>
-                              <p><b>Cylinder Skew:</b> {{ disk.cylinder_skew }}</p>
-                              <p><b>Limit Disk:</b> {{ disk.limit_disk }}</p>
-                              <p><b>Short Disk:</b> {{ disk.short_disk }}</p>
-                              <p><b>Long Disk:</b> {{ disk.long_disk }}</p>
-                              <p><b>Regions:</b> {{ disk.regions }}</p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                          <form action="">
-                            {% if disk.available == false %}
-                              <input type="hidden" id="available" name="available" value="true">
-                              <button class="btn btn-primary"><i class="fa fa-check"></i>&nbsp;Enabled</button>
-                            {% else %}
-                              <input type="hidden" id="available" name="available" value="false">
-                              <button class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;Disabled</button>
-                            {% endif %}
-                          </form>
-                          <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                {% endfor %}
-              </tbody>
+                </thead>
             </table>
           </div>
         </div>
       </div>
-    </div>
   </div>
+{% endblock %}
+{% block js %}
+  <script src="{{ js }}bootstrap-table.js"></script>
+  <script>
+    function priceFormatter(value) {
+      if (value == false) {
+        return '<span class="badge bg-red">Disabled</span>';
+        }
+      else{
+          return '<span class="badge bg-green">Enabled</span>';
+        }
+    };
+
+    function modalLink(value) {
+      return '<a href="#'+value+'"><i class="fa fa-question">&nbsp;More info</i></a>'
+    };
+  </script>
 {% endblock %}

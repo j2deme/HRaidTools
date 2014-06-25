@@ -1,5 +1,6 @@
 {% extends 'base.twig' %}
 {% block css %}
+  <link rel="stylesheet" href="{{ css }}bootstrap-table.css">
   <link rel="stylesheet" href="{{ css }}AdminLTE.css">
 {% endblock %}
 {% block content %}
@@ -14,102 +15,67 @@
       <div class="row">
         <div class="box">
           <div class="box-header">
-            <h3 class="title-box text-center">Distributors</h3>
+            <h3 class="title-box text-center"><i class="fa fa-sliders"></i>&nbsp;Distributors</h3>
           </div>
           <div class="box-body">
-            <table class="table table-bordered table-hover table-responsive">
-              <thead>
-                <tr role="row">
-                  <th>#</th>
-                  <th>Type</th>
-                  <th>Size</th>
-                  <th>Display Name</th>
-                  <th>Striping</th>
-                  <th>Overhead</th>
-                  <th>Distribution</th>
-                  <th>Available</th>
-                  <th>More Information</th>
+            <table class="table table-bordered table-hover table-responsive" data-toggle="table" data-url="{{ urlFor('root') }}distributors.json" data-height="246" data-show-columns="true" data-pagination="true">
+                <thead>
+                <tr>
+                    <th data-field="id">#</th>
+                    <th data-field="distributor">Distributor</th>
+                    <th data-field="type" data-visible="false">Type</th>
+                    <th data-field="size" data-visible="false">Size</th>
+                    <th data-field="display_name">Display Name</th>
+                    <th data-field="distribution_name">Distribution</th>
+                    <th data-field="striping" data-visible="false">Striping</th>
+                    <th data-field="overhead" data-visible="false">Overhead</th>
+                    <th data-field="max_requests" data-visible="false">Max Requests</th>
+                    <th data-field="report" data-visible="false" data-formatter="priceFormatter">Report</th>
+                    <th data-field="done_size" data-visible="false">Done Size</th>
+                    <th data-field="available" data-formatter="priceFormatter">Available</th>
+                    <th data-field="id" data-formatter="modalLink">Info</th>
                 </tr>
-              </thead>
-              <tfoot>
-                <tr role="row">
-                  <th>#</th>
-                  <th>Type</th>
-                  <th>Size</th>
-                  <th>Display Name</th>
-                  <th>Striping</th>
-                  <th>Overhead</th>
-                  <th>Distribution</th>
-                  <th>Available</th>
-                  <th>More Information</th>
-                </tr>
-              </tfoot>
-              <tbody>
-                {% for distributor in distributors %}
-                  <tr>
-                    <th>{{ distributor.id }}</th>
-                    <th>{{ distributor.type }}</th>
-                    <th>{{ distributor.size }}</th>
-                    <th>{{ distributor.display_name }}</th>
-                    <th>{{ distributor.striping }}</th>
-                    <th>{{ distributor.overhead }}</th>
-                    <th>{{ distributor.distribution.name }}</th>
-                    <th>
-                      {% if distributor.available == false %}
-                        <span class="badge bg-red">Disabled</span>
-                      {% else %}
-                        <span class="badge bg-aqua">Enabled</span>
-                      {% endif %}
-                    </th>
-                    <th><a href="#" data-toggle="modal" data-target="#{{ distributor.id }}"><i class="fa fa-question">&nbsp;More info</i></a></th>
-                  </tr>
-                  <div class="modal fade" id="{{ distributor.id }}" tabindex="-{{ distributor.id }}" role="dialog" aria-labelledby="{{ distributor.id }}" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          <h4 class="modal-title" id="myModalLabel"><b><i class="fa fa-hdd-o"></i> {{ distributor.display_name }}</b></h4>
-                        </div>
-                        <div class="modal-body">
-                          <div class="row">
-                            <div class="col-md-12">
-                              <p><b>Read Fence:</b> {{ distributor.read_fence }}</p>
-                              <p><b>Write Fence:</b> {{ distributor.write_fence }}</p>
-                              {% if distributor.prefetching == false %}
-                                <p><b>Prefetching: </b><span class="badge bg-red">Disabled</span></p>
-                              {% else %}
-                                <p><b>Prefetching: </b><span class="badge bg-aqua">Enabled</span></p>
-                              {% endif %}
-                              {% if distributor.inmediate_report == false %}
-                                <p><b>Inmediate Report: </b><span class="badge bg-red">Disabled</span></p>
-                              {% else %}
-                                <p><b>Inmediate Report: </b><span class="badge bg-aqua">Enabled</span></p>
-                              {% endif %}
-                              <p><b>Msg Size:</b> {{ distributor.msg_size }}</p>
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                          <form action="">
-                            {% if distributor.available == false %}
-                              <input type="hidden" id="available" name="available" value="true">
-                              <button class="btn btn-primary"><i class="fa fa-check"></i>&nbsp;Enabled</button>
-                            {% else %}
-                              <input type="hidden" id="available" name="available" value="false">
-                              <button class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;Disabled</button>
-                            {% endif %}
-                          </form>
-                          <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                      </div>
+                </thead>
+            </table>
+            <div class="modal fade" id="1" tabindex="-1" role="dialog" aria-labelledby="1" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel"><b><i class="fa fa-hdd-o"></i> Hola</b></h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <p>Hola</p>
                     </div>
                   </div>
-                {% endfor %}
-              </tbody>
-            </table>
-          </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
         </div>
       </div>
     </div>
-  </div>
+{% endblock %}
+{% block js %}
+  <script src="{{ js }}bootstrap-table.js"></script>
+  <script>
+    function priceFormatter(value) {
+      if (value == false) {
+        return '<span class="badge bg-red">Disabled</span>';
+        }
+      else{
+          return '<span class="badge bg-green">Enabled</span>';
+        }
+    };
+
+  function modalLink(value) {
+      return '<a href="#'+value+'" data-toggle="modal" data-target="#'+value+'"><i class="fa fa-question">&nbsp;More info</i></a>'
+    };
+  </script>
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'base.twig' %}
 {% import 'forms.twig' as f %}
 {% block css %}
+  <link rel="stylesheet" href="{{ css }}bootstrap-table.css">
   <link rel="stylesheet" href="{{ css }}AdminLTE.css">
 {% endblock %}
 {% block content %}
@@ -15,30 +16,16 @@
       <div class="row">
         <div class="box">
           <div class="box-header">
-            <h3 class="title-box text-center">Statuses</h3>
+            <h3 class="title-box text-center"><i class="fa fa-reorder"></i>&nbsp;Statuses</h3>
           </div>
           <div class="box-body">
-            <table class="table table-bordered table-hover table-responsive">
-              <thead>
-                <tr role="row">
-                  <th>#</th>
-                  <th>Name</th>
+            <table class="table table-bordered table-hover table-responsive" data-toggle="table" data-url="{{ urlFor('root') }}statuses.json" data-height="246" data-pagination="true">
+                <thead>
+                <tr>
+                    <th data-field="id">#</th>
+                    <th data-field="name">Name</th>
                 </tr>
-              </thead>
-              <tfoot>
-                <tr role="row">
-                  <th>#</th>
-                  <th>Name</th>
-                </tr>
-              </tfoot>
-              <tbody>
-                {% for status in statuses %}
-                  <tr>
-                    <th>{{ status.id }}</th>
-                    <th>{{ status.name }}</th>
-                  </tr>
-                {% endfor %}
-              </tbody>
+                </thead>
             </table>
           </div>
         </div>
@@ -63,4 +50,7 @@
       </form>
     </div>
   </div>
+{% endblock %}
+{% block js %}
+  <script src="{{ js }}bootstrap-table.js"></script>
 {% endblock %}

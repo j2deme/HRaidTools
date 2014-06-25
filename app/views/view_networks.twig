@@ -1,5 +1,6 @@
 {% extends 'base.twig' %}
 {% block css %}
+  <link rel="stylesheet" href="{{ css }}bootstrap-table.css">
   <link rel="stylesheet" href="{{ css }}AdminLTE.css">
 {% endblock %}
 {% block content %}
@@ -14,99 +15,43 @@
       <div class="row">
         <div class="box">
           <div class="box-header">
-            <h3 class="title-box text-center">Networks</h3>
+            <h3 class="title-box text-center"><i class="fa fa-signal"></i>&nbsp;Networks</h3>
           </div>
           <div class="box-body">
-            <table class="table table-bordered table-hover table-responsive">
-              <thead>
-                <tr role="row">
-                  <th>#</th>
-                  <th>Type</th>
-                  <th>Latency</th>
-                  <th>Bandwidth</th>
-                  <th>Network</th>
-                  <th>Display Name</th>
-                  <th>Available</th>
-                  <th>More Information</th>
+            <table class="table table-bordered table-hover table-responsive" data-toggle="table" data-url="{{ urlFor('root') }}networks.json" data-height="246" data-show-columns="true" data-pagination="true">
+                <thead>
+                <tr>
+                    <th data-field="id">#</th>
+                    <th data-field="display_name">Display Name</th>
+                    <th data-field="type">Type</th>
+                    <th data-field="latency">Latency</th>
+                    <th data-field="bandwidth">Bandwidth</th>
+                    <th data-field="network">Network</th>
+                    <th data-field="available" data-formatter="priceFormatter">Available</th>
+                    <th data-field="id" data-formatter="modalLink">Info</th>
                 </tr>
-              </thead>
-              <tfoot>
-                <tr role="row">
-                  <th>#</th>
-                  <th>Type</th>
-                  <th>Latency</th>
-                  <th>Bandwidth</th>
-                  <th>Network</th>
-                  <th>Display Name</th>
-                  <th>Available</th>
-                  <th>More Information</th>
-                </tr>
-              </tfoot>
-              <tbody>
-                {% for network in networks %}
-                  <tr>
-                    <th>{{ network.id }}</th>
-                    <th>{{ network.type }}</th>
-                    <th>{{ network.latency }}</th>
-                    <th>{{ network.bandwidth }}</th>
-                    <th>{{ network.network }}</th>
-                    <th>{{ network.display_name }}</th>
-                    <th>
-                      {% if network.available == false %}
-                        <span class="badge bg-red">Disabled</span>
-                      {% else %}
-                        <span class="badge bg-aqua">Enabled</span>
-                      {% endif %}
-                    </th>
-                    <th><a href="#" data-toggle="modal" data-target="#{{ network.id }}"><i class="fa fa-question">&nbsp;More info</i></a></th>
-                  </tr>
-                  <div class="modal fade" id="{{ network.id }}" tabindex="-{{ network.id }}" role="dialog" aria-labelledby="{{ network.id }}" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                          <h4 class="modal-title" id="myModalLabel"><b><i class="fa fa-signal"></i> {{ network.display_name }}</b></h4>
-                        </div>
-                        <div class="modal-body">
-                          <div class="row">
-                            <div class="col-md-12">
-                              <p><b>Read Fence:</b> {{ network.read_fence }}</p>
-                              <p><b>Write Fence:</b> {{ network.write_fence }}</p>
-                              {% if network.prefetching == false %}
-                                <p><b>Prefetching: </b><span class="badge bg-red">Disabled</span></p>
-                              {% else %}
-                                <p><b>Prefetching: </b><span class="badge bg-aqua">Enabled</span></p>
-                              {% endif %}
-                              {% if network.inmediate_report == false %}
-                                <p><b>Inmediate Report: </b><span class="badge bg-red">Disabled</span></p>
-                              {% else %}
-                                <p><b>Inmediate Report: </b><span class="badge bg-aqua">Enabled</span></p>
-                              {% endif %}
-                              <p><b>Msg Size:</b> {{ network.msg_size }}</p>
-                          </div>
-                        </div>
-                        <div class="modal-footer">
-                          <form action="">
-                            {% if network.available == false %}
-                              <input type="hidden" id="available" name="available" value="true">
-                              <button class="btn btn-primary"><i class="fa fa-check"></i>&nbsp;Enabled</button>
-                            {% else %}
-                              <input type="hidden" id="available" name="available" value="false">
-                              <button class="btn btn-danger"><i class="fa fa-times"></i>&nbsp;Disabled</button>
-                            {% endif %}
-                          </form>
-                          <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                {% endfor %}
-              </tbody>
+                </thead>
             </table>
           </div>
         </div>
       </div>
     </div>
   </div>
+{% endblock %}
+{% block js %}
+  <script src="{{ js }}bootstrap-table.js"></script>
+  <script>
+    function priceFormatter(value) {
+      if (value == false) {
+        return '<span class="badge bg-red">Disabled</span>';
+        }
+      else{
+          return '<span class="badge bg-green">Enabled</span>';
+        }
+    };
+
+    function modalLink(value) {
+      return '<a href="#'+value+'"><i class="fa fa-question">&nbsp;More info</i></a>'
+    };
+  </script>
 {% endblock %}

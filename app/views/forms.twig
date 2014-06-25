@@ -41,7 +41,7 @@
 {% macro select(name, elements, selected = "", mul = false) %}
   {% import _self as f %}
   <select name="{{ name }}" id="{{ name }}" class="form-control" {% if mul %}multiple{% endif %}>
-    {{ f.option('0',"Elige una opción...",true) }}
+    {{ f.option('0',"Choose an option...",true) }}
     {% for el in elements %}
       {% set value = "" %}
       {% set label = "" %}
