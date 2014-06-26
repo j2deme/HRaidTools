@@ -2,7 +2,7 @@
 {% extends 'base.twig' %}
 {% import 'forms.twig' as f %}
 {% block css %}
-  <link rel="stylesheet" href="{{ css }}AdminLTE.css">
+  <link rel="stylesheet" href="{{ urlFor('root') }}/public/css/AdminLTE.css">
 {% endblock %}
 {% block content %}
   <div class="row">
@@ -16,35 +16,71 @@
       <form class="form-horizontal" action="{{ urlFor('add-drive') }}" method="post" role="form">
           <div class="row">
             <div class="col-md-12 text-center">
-              <h3>New Drive</h3>
+              {% if drive.id is defined %}
+                <h3>Edit Drive</h3>
+              {% else %}
+                <h3>New Drive</h3>
+              {% endif %}
             </div>
           </div>
+            {% if drive.id is defined %}
+              <input type="hidden" id="id" name="id" value="{{ drive.id }}">
+            {% else %}
+              <input type="hidden" id="id" name="id" value="">
+            {% endif %}
           <div class="col-md-12">
             <div class="form-group">
               {{ f.label('name','Name:','col-md-4') }}
-              <div class="col-md-8">{{ f.text('name') }}</div>
+              <div class="col-md-8">
+                {% if drive.name is defined %}
+                  <input type="text" id="name" name="name" class="form-control" value="{{ drive.name }}">
+                {% else %}
+                  <input type="text" id="name" name="name" class="form-control" value="" >
+                {% endif %}
+              </div>
             </div>
           </div>
           <div class="col-md-12">
             <div class="form-group">
               {{ f.label('controller_id','Controller:','col-md-4') }}
-              <div class="col-md-8">{{ f.select('controller_id',controller) }}</div>
+              <div class="col-md-8">
+                {% if drive.controller_id is defined %}
+                  {{ f.select('controller_id',controller,drive.controller_id) }}
+                {% else %}
+                  {{ f.select('controller_id',controller) }}
+                {% endif %}
+              </div>
             </div>
           </div>
           <div class="col-md-12">
             <div class="form-group">
               {{ f.label('disk_id','Disk:','col-md-4') }}
-              <div class="col-md-8">{{ f.select('disk_id',disk) }}</div>
+              <div class="col-md-8">
+                {% if drive.disk_id is defined %}
+                  {{ f.select('disk_id',disk,drive.disk_id) }}
+                {% else %}
+                  {{ f.select('disk_id',disk) }}
+                {% endif %}
+              </div>
             </div>
           </div>
           <div class="col-md-12">
             <div class="form-group">
               {{ f.label('available','Available:','col-md-4') }}
-              <div class="col-md-7 col-md-offset-1">{{ f.check('available','','true') }}</div>
+              <div class="col-md-2">
+                {% if drive.available == true %}
+                  <input type="checkbox" id="available" name="available" class="form-control" value="{{ drive.available }}" checked>
+                {% else %}
+                  <input type="checkbox" id="available" name="available" class="form-control" value="false" >
+                {% endif %}
+              </div>
             </div>
           </div>
-          <div class="col-md-4 col-md-offset-4">
+          <div class="col-md-4 col-md-offset-2">
             <button class="btn btn-primary btn-block">Save</button>
+          </div>
+          <div class="col-md-4">
+            <a href="{{ urlFor('drives') }}" class="btn btn-default btn-block">Cancel</a>
           </div>
         </form>
       </div>
@@ -85,7 +121,7 @@
 
       $('#controller_id').change(function(event){
         var sn = $("#controller_id option:selected");
-        $.getJSON("{{ urlFor('root') }}views-c/"+sn.val(), function(controller){
+        $.getJSON("{{ urlFor('root') }}admin/drives/views-c/"+sn.val(), function(controller){
           $('span#name_controller').text(controller.name);
           $('span#type_controller').text(controller.type);
           $('span#block_controller').text(controller.block_size);
@@ -96,7 +132,7 @@
 
       $('#disk_id').change(function(event){
         var sn = $("#disk_id option:selected");
-        $.getJSON("{{ urlFor('root') }}views-d/"+sn.val(), function(disk){
+        $.getJSON("{{ urlFor('root') }}admin/drives/views-d/"+sn.val(), function(disk){
           $('span#name_disk').text(disk.name);
           $('span#type_disk').text(disk.type);
           $('span#manufacturer_disk').text(disk.manufacturer);

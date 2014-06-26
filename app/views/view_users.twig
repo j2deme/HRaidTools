@@ -1,7 +1,7 @@
 {% extends 'base.twig' %}
 {% block css %}
-  <link rel="stylesheet" href="{{ css }}bootstrap-table.css">
-  <link rel="stylesheet" href="{{ css }}AdminLTE.css">
+  <link rel="stylesheet" href="{{ urlFor('root') }}/public/css/bootstrap-table.css">
+  <link rel="stylesheet" href="{{ urlFor('root') }}/public/css/AdminLTE.css">
 {% endblock %}
 {% block content %}
   <div class="row">
@@ -18,7 +18,7 @@
             <h3 class="title-box text-center"><i class="fa fa-users"></i>&nbsp;Users</h3>
           </div>
           <div class="box-body">
-            <table class="table table-bordered table-hover table-responsive" data-toggle="table" data-url="{{ urlFor('root') }}users.json" data-height="246" data-show-columns="true" data-pagination="true" data-search="true">
+            <table class="table table-bordered table-hover table-responsive" data-toggle="table" data-url="{{ urlFor('root') }}admin/users/users.json" data-height="246" data-show-columns="true" data-pagination="true" data-search="true">
                 <thead>
                 <tr>
                     <th data-field="id" data-visible="false">#</th>
@@ -38,5 +38,5 @@
   </div>
 {% endblock %}
 {% block js %}
-  <script src="{{ js }}bootstrap-table.js"></script>
+  <script src="{{ urlFor('root') }}/public/js/bootstrap-table.js"></script>
 {% endblock %}

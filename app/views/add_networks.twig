@@ -14,16 +14,13 @@
     <div class="col-md-10">
     <form class="form-horizontal" action="{{ urlFor('add-network') }}" method="post" role="form">
       <div class="row">
-        {% if network.id is defined %}
-          <div class="col-md-12 text-center">
+        <div class="col-md-12 text-center">
+          {% if network.id is defined %}
             <h3>Edit Network</h3>
-          </div>
-        {% else %}
-          <div class="col-md-12 text-center">
+          {% else %}
             <h3>New Network</h3>
-          </div>
-        {% endif %}
-      </div>
+          {% endif %}
+        </div>
         {% if network.id is defined %}
           <input type="hidden" id="id" name="id" value="{{ network.id }}">
         {% else %}

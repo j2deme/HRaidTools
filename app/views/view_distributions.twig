@@ -1,7 +1,7 @@
 {% extends 'base.twig' %}
 {% block css %}
-  <link rel="stylesheet" href="{{ css }}bootstrap-table.css">
-  <link rel="stylesheet" href="{{ css }}AdminLTE.css">
+  <link rel="stylesheet" href="{{ urlFor('root') }}/public/css/bootstrap-table.css">
+  <link rel="stylesheet" href="{{ urlFor('root') }}/public/css/AdminLTE.css">
 {% endblock %}
 {% block content %}
   <div class="row">
@@ -18,7 +18,7 @@
             <h3 class="title-box text-center"><i class="fa fa-sitemap"></i>&nbsp;Distributions</h3>
           </div>
           <div class="box-body">
-            <table class="table table-bordered table-hover table-responsive" data-toggle="table" data-url="{{ urlFor('root') }}distributions.json" data-height="246" data-show-columns="true" data-pagination="true">
+            <table class="table table-bordered table-hover table-responsive" data-toggle="table" data-url="{{ urlFor('root') }}admin/distributions/distributions.json" data-height="246" data-show-columns="true" data-pagination="true">
                 <thead>
                 <tr>
                     <th data-field="id" data-visible="false">#</th>
@@ -61,7 +61,7 @@
   </div>
 {% endblock %}
 {% block js %}
-  <script src="{{ js }}bootstrap-table.js"></script>
+  <script src="{{ urlFor('root') }}/public/js/bootstrap-table.js"></script>
   <script>
     function priceFormatter(value) {
       if (value == false) {
@@ -91,7 +91,7 @@
         var link = $(this);
         var id = link.data('id');
         var id = link.attr('data-id');
-        $.getJSON("{{ urlFor('root') }}distributions.json/"+id, function(distribution){
+        $.getJSON("{{ urlFor('root') }}admin/distributions/distributions.json/"+id, function(distribution){
           //optional stuff to do after success
           $('#name').text(distribution.name);
           if(distribution.is_trace_generator == true){
@@ -100,12 +100,12 @@
             $('#is_trace_generator').html('<span class="badge bg-red">Is no trace</span>');
           }
           if(distribution.available == false){
-            $('#available').html('<a href="{{ urlFor("root") }}toggle-distribution/'+distribution.id+'" class="btn btn-success"><i class="fa fa-check">&nbsp;</i>Enabled</a>');
+            $('#available').html('<a href="{{ urlFor("root") }}admin/distributions/toggle-distribution/'+distribution.id+'" class="btn btn-success"><i class="fa fa-check">&nbsp;</i>Enabled</a>');
           }else{
-            $('#available').html('<a href="{{ urlFor("root") }}toggle-distribution/'+distribution.id+'" class="btn btn-danger"><i class="fa fa-times">&nbsp;</i>Disabled</a>');
+            $('#available').html('<a href="{{ urlFor("root") }}admin/distributions/toggle-distribution/'+distribution.id+'" class="btn btn-danger"><i class="fa fa-times">&nbsp;</i>Disabled</a>');
           }
-          $('#edit').html('<a href="{{ urlFor("root") }}edit-distribution/'+distribution.id+'" class="btn btn-primary"><i class="fa fa-pencil"></i>&nbsp;Edit</a>');
-          $('#delete').html('<a href="{{ urlFor("root") }}delete-distribution/'+distribution.id+'" class="btn btn-warning"><i class="fa fa-trash-o"></i>&nbsp;Delete</a>');
+          $('#edit').html('<a href="{{ urlFor("root") }}admin/distributions/edit-distribution/'+distribution.id+'" class="btn btn-primary"><i class="fa fa-pencil"></i>&nbsp;Edit</a>');
+          $('#delete').html('<a href="{{ urlFor("root") }}admin/distributions/delete-distribution/'+distribution.id+'" class="btn btn-warning"><i class="fa fa-trash-o"></i>&nbsp;Delete</a>');
           $('#myModal').modal('show');
         });
       });

@@ -1,8 +1,7 @@
-{# CRUD of disks #}
 {% extends 'base.twig' %}
 {% import 'forms.twig' as f %}
 {% block css %}
-  <link rel="stylesheet" href="{{ css }}AdminLTE.css">
+  <link rel="stylesheet" href="{{ urlFor('root') }}/public/css/AdminLTE.css">
 {% endblock %}
 {% block content %}
 <div class="row">
@@ -15,15 +14,13 @@
     <div class="col-md-10">
       <form class="form-horizontal" action="{{ urlFor('add-disk') }}" method="post" role="form">
         <div class="row">
+          <div class="col-md-12 text-center">
           {% if disk.id is defined %}
-          <div class="col-md-12 text-center">
             <h3>Edit Disk</h3>
-          </div>
-        {% else %}
-          <div class="col-md-12 text-center">
+          {% else %}
             <h3>New Disk</h3>
+          {% endif %}
           </div>
-        {% endif %}
         </div>
         {% if disk.id is defined %}
           <input type="hidden" id="id" name="id" value="{{ disk.id }}">
@@ -34,91 +31,214 @@
           <div class="col-md-6">
             <div class="form-group">
               {{ f.label('name','Name:','col-md-4') }}
-              <div class="col-md-6">{{ f.text('name') }}</div>
+              <div class="col-md-6">
+                {% if disk.name is defined %}
+                  <input type="text" id="name" name="name" class="form-control" value="{{ disk.name }}">
+                {% else %}
+                  <input type="text" id="name" name="name" class="form-control" value="" >
+                {% endif %}
+              </div>
             </div>
             <div class="form-group">
               {{ f.label('sector','Sector:','col-md-4') }}
-              <div class="col-md-6">{{ f.text('sector','','512') }}</div>
+              <div class="col-md-6">
+                {% if disk.sector is defined %}
+                  <input type="text" id="sector" name="sector" class="form-control" value="{{ disk.sector }}">
+                {% else %}
+                  <input type="text" id="sector" name="sector" class="form-control" value="512" >
+                {% endif %}
+              </div>
             </div>
             <div class="form-group">
               {{ f.label('track_cylinder','Track Cylinder:','col-md-4') }}
-              <div class="col-md-6">{{ f.text('track_cylinder') }}</div>
+              <div class="col-md-6">
+                {% if disk.track_cylinder is defined %}
+                  <input type="text" id="track_cylinder" name="track_cylinder" class="form-control" value="{{ disk.track_cylinder }}">
+                {% else %}
+                  <input type="text" id="track_cylinder" name="track_cylinder" class="form-control" value="" >
+                {% endif %}
+              </div>
             </div>
             <div class="form-group">
               {{ f.label('rpm','RPMs:','col-md-4') }}
-              <div class="col-md-6">{{ f.text('rpm') }}</div>
+              <div class="col-md-6">
+                {% if disk.rpm is defined %}
+                  <input type="text" id="rpm" name="rpm" class="form-control" value="{{ disk.rpm }}">
+                {% else %}
+                  <input type="text" id="rpm" name="rpm" class="form-control" value="" >
+                {% endif %}
+              </div>
             </div>
             <div class="form-group">
               {{ f.label('track_skew','Track Skew:','col-md-4') }}
-              <div class="col-md-6">{{ f.text('track_skew') }}</div>
+              <div class="col-md-6">
+                {% if disk.track_skew is defined %}
+                  <input type="text" id="track_skew" name="track_skew" class="form-control" value="{{ disk.track_skew }}">
+                {% else %}
+                  <input type="text" id="track_skew" name="track_skew" class="form-control" value="" >
+                {% endif %}
+              </div>
             </div>
             <div class="form-group">
               {{ f.label('limit_disk','Limit Disk:','col-md-4') }}
-              <div class="col-md-6">{{ f.text('limit_disk') }}</div>
+              <div class="col-md-6">
+                {% if disk.limit_disk is defined %}
+                  <input type="text" id="limit_disk" name="limit_disk" class="form-control" value="{{ disk.limit_disk }}">
+                {% else %}
+                  <input type="text" id="limit_disk" name="limit_disk" class="form-control" value="" >
+                {% endif %}
+              </div>
             </div>
             <div class="form-group">
               {{ f.label('long_disk','Long Disk','col-md-4') }}
-              <div class="col-md-6">{{ f.text('long_disk') }}</div>
+              <div class="col-md-6">
+                {% if disk.long_disk is defined %}
+                  <input type="text" id="long_disk" name="long_disk" class="form-control" value="{{ disk.long_disk }}">
+                {% else %}
+                  <input type="text" id="long_disk" name="long_disk" class="form-control" value="" >
+                {% endif %}
+              </div>
             </div>
             <div class="form-group">
               {{ f.label('manufacturer','Manufacturer:','col-md-4') }}
-              <div class="col-md-6">{{ f.text('manufacturer') }}</div>
+              <div class="col-md-6">
+                {% if disk.manufacturer is defined %}
+                  <input type="text" id="manufacturer" name="manufacturer" class="form-control" value="{{ disk.manufacturer }}">
+                {% else %}
+                  <input type="text" id="manufacturer" name="manufacturer" class="form-control" value="" >
+                {% endif %}
+              </div>
             </div>
             <div class="form-group">
               {{ f.label('display_name','Display Name:','col-md-4') }}
-              <div class="col-md-6">{{ f.text('display_name') }}</div>
+              <div class="col-md-6">
+                {% if disk.display_name is defined %}
+                  <input type="text" id="display_name" name="display_name" class="form-control" value="{{ disk.display_name }}">
+                {% else %}
+                  <input type="text" id="display_name" name="display_name" class="form-control" value="" >
+                {% endif %}
+              </div>
             </div>
             <div class="form-group">
               {{ f.label('display_unit','Display Unit:','col-md-4') }}
-              <div class="col-md-6">{{ f.select('display_unit',unit) }}</div>
+              <div class="col-md-6">
+                {% if disk.display_unit is defined %}
+                  {{ f.select('display_unit',unit,disk.display_unit) }}
+                {% else %}
+                  {{ f.select('display_unit',unit) }}
+                {% endif %}
+              </div>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group">
               {{ f.label('type','Type:','col-md-4') }}
-              <div class="col-md-6">{{ f.text('type','','WILKES_DISK') }}</div>
+              <div class="col-md-6">
+                {% if disk.type is defined %}
+                  <input type="text" id="type" name="type" class="form-control" value="{{ disk.type }}">
+                {% else %}
+                  <input type="text" id="type" name="type" class="form-control" value="WILKES_DISK" >
+                {% endif %}
+              </div>
             </div>
             <div class="form-group">
               {{ f.label('sector_track','Sector Track:','col-md-4') }}
-              <div class="col-md-6">{{ f.text('sector_track') }}</div>
+              <div class="col-md-6">
+                {% if disk.sector_track is defined %}
+                  <input type="text" id="sector_track" name="sector_track" class="form-control" value="{{ disk.sector_track }}">
+                {% else %}
+                  <input type="text" id="sector_track" name="sector_track" class="form-control" value="" >
+                {% endif %}
+              </div>
             </div>
             <div class="form-group">
               {{ f.label('cylinders','Cylinders:','col-md-4') }}
-              <div class="col-md-6">{{ f.text('cylinders') }}</div>
+              <div class="col-md-6">
+                {% if disk.cylinders is defined %}
+                  <input type="text" id="cylinders" name="cylinders" class="form-control" value="{{ disk.cylinders }}">
+                {% else %}
+                  <input type="text" id="cylinders" name="cylinders" class="form-control" value="" >
+                {% endif %}
+              </div>
             </div>
             <div class="form-group">
               {{ f.label('track_overhead','Track Overhead:','col-md-4') }}
-              <div class="col-md-6">{{ f.text('track_overhead') }}</div>
+              <div class="col-md-6">
+                {% if disk.track_overhead is defined %}
+                  <input type="text" id="track_overhead" name="track_overhead" class="form-control" value="{{ disk.track_overhead }}">
+                {% else %}
+                  <input type="text" id="track_overhead" name="track_overhead" class="form-control" value="" >
+                {% endif %}
+              </div>
             </div>
             <div class="form-group">
               {{ f.label('cylinder_skew','Cylinder Skew:','col-md-4') }}
-              <div class="col-md-6">{{ f.text('cylinder_skew') }}</div>
+              <div class="col-md-6">
+                {% if disk.cylinder_skew is defined %}
+                  <input type="text" id="cylinder_skew" name="cylinder_skew" class="form-control" value="{{ disk.cylinder_skew }}">
+                {% else %}
+                  <input type="text" id="cylinder_skew" name="cylinder_skew" class="form-control" value="" >
+                {% endif %}
+              </div>
             </div>
             <div class="form-group">
               {{ f.label('short_disk','Short Disk:','col-md-4') }}
-              <div class="col-md-6">{{ f.text('short_disk') }}</div>
+              <div class="col-md-6">
+                {% if disk.short_disk is defined %}
+                  <input type="text" id="short_disk" name="short_disk" class="form-control" value="{{ disk.short_disk }}">
+                {% else %}
+                  <input type="text" id="short_disk" name="short_disk" class="form-control" value="" >
+                {% endif %}
+              </div>
             </div>
             <div class="form-group">
               {{ f.label('regions','Regions:','col-md-4') }}
-              <div class="col-md-6">{{ f.text('regions','','0:0 0:0') }}</div>
+              <div class="col-md-6">
+                {% if disk.regions is defined %}
+                  <input type="text" id="regions" name="regions" class="form-control" value="{{ disk.regions }}">
+                {% else %}
+                  <input type="text" id="regions" name="regions" class="form-control" value="0:0 0:0" >
+                {% endif %}
+              </div>
             </div>
             <div class="form-group">
               {{ f.label('product_name','Product Name:','col-md-4') }}
-              <div class="col-md-6">{{ f.text('product_name') }}</div>
+              <div class="col-md-6">
+                {% if disk.product_name is defined %}
+                  <input type="text" id="product_name" name="product_name" class="form-control" value="{{ disk.product_name }}">
+                {% else %}
+                  <input type="text" id="product_name" name="product_name" class="form-control" value="" >
+                {% endif %}
+              </div>
             </div>
             <div class="form-group">
               {{ f.label('display_size','Display Size:','col-md-4') }}
-              <div class="col-md-6">{{ f.text('display_size') }}</div>
+              <div class="col-md-6">
+                {% if disk.display_size is defined %}
+                  <input type="text" id="display_size" name="display_size" class="form-control" value="{{ disk.display_size }}">
+                {% else %}
+                  <input type="text" id="display_size" name="display_size" class="form-control" value="" >
+                {% endif %}
+              </div>
             </div>
             <div class="form-group">
               {{ f.label('available','Available:','col-md-4') }}
-              <div class="col-md-6 col-md-offset-1">{{ f.check('available','','true') }}</div>
+              <div class="col-md-2">
+                {% if disk.available == true %}
+                  <input type="checkbox" id="available" name="available" class="form-control" value="{{ disk.available }}" checked>
+                {% else %}
+                  <input type="checkbox" id="available" name="available" class="form-control" value="false" >
+                {% endif %}
+              </div>
             </div>
           </div>
         </div>
         <div class="form-group">
-          <div class="col-md-4 col-md-offset-4">
+          <div class="col-md-2 col-md-offset-4">
             <button class="btn btn-primary btn-block">Save</button>
+          </div>
+          <div class="col-md-2">
+            <a href="{{ urlFor('disks') }}" class="btn btn-default btn-block">Cancel</a>
           </div>
         </div>
       </form>
