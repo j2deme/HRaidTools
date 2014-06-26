@@ -13,7 +13,7 @@
       {% include 'navbar_admin.twig' %}
     </div>
     <div class="col-md-4">
-      <form class="form-horizontal" action="{{ urlFor('add_drive') }}" method="post" role="form">
+      <form class="form-horizontal" action="{{ urlFor('add-drive') }}" method="post" role="form">
           <div class="row">
             <div class="col-md-12 text-center">
               <h3>New Drive</h3>
@@ -85,7 +85,7 @@
 
       $('#controller_id').change(function(event){
         var sn = $("#controller_id option:selected");
-        $.getJSON("{{ urlFor('root') }}views_c/"+sn.val(), function(controller){
+        $.getJSON("{{ urlFor('root') }}views-c/"+sn.val(), function(controller){
           $('span#name_controller').text(controller.name);
           $('span#type_controller').text(controller.type);
           $('span#block_controller').text(controller.block_size);
@@ -96,7 +96,7 @@
 
       $('#disk_id').change(function(event){
         var sn = $("#disk_id option:selected");
-        $.getJSON("{{ urlFor('root') }}views_d/"+sn.val(), function(disk){
+        $.getJSON("{{ urlFor('root') }}views-d/"+sn.val(), function(disk){
           $('span#name_disk').text(disk.name);
           $('span#type_disk').text(disk.type);
           $('span#manufacturer_disk').text(disk.manufacturer);

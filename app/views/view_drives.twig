@@ -30,6 +30,56 @@
                 </tr>
                 </thead>
             </table>
+            {# Inicia Modal #}
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel"><b><i class="fa fa-hdd-o">&nbsp;<span id="name"></span></i></b></h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="box box-primary">
+                          <div class="box-header">
+                            <h4 class="title-box text-center"><i class="fa fa-gamepad"></i>&nbsp;Controller</h4>
+                          </div>
+                          <div class="box-body">
+                            <p><b>Name: </b><span id="name_controller"></span></p>
+                            <p><b>Type: </b><span id="type_controller"></span></p>
+                            <p><b>Block Size: </b><span id="block_controller"></span></p>
+                            <p><b>Cache Size: </b><span id="size_controller"></span></p>
+                            <p><b>New Overhead: </b><span id="new_overhead_controller"></span></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="box box-info">
+                          <div class="box-header">
+                            <h4 class="title-box text-center"><i class="fa fa-database"></i>&nbsp;Disk</h4>
+                          </div>
+                          <div class="box-body">
+                            <p><b>Name: </b><span id="name_disk"></span></p>
+                            <p><b>Type: </b><span id="type_disk"></span></p>
+                            <p><b>Manufacturer: </b><span id="manufacturer_disk"></span></p>
+                            <p><b>Display Name: </b><span id="display_name_disk"></span></p>
+                            <p><b>Size: </b><span id="size_disk"></span></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <span id="available"></span>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+            {# Termina Modal #}
           </div>
         </div>
       </div>
@@ -49,7 +99,37 @@
     };
 
     function modalLink(value) {
-      return '<a href="#'+value+'"><i class="fa fa-question">&nbsp;More info</i></a>'
+      return '<a href="#" data-toggle="modal" data-id="'+value+'"><i class="fa fa-info">&nbsp;More info</i></a>';
     };
+
+    $(function() {
+      $(document).on('click', 'a[data-toggle="modal"]', function(event) {
+        event.preventDefault();
+        var link = $(this);
+        var id = link.data('id');
+        var id = link.attr('data-id');
+        $.getJSON("{{ urlFor('root') }}drives.json/"+id, function(drive){
+          //optional stuff to do after success
+          $('#name').text(drive.name);
+          $('#name_controller').text(drive.controller.name);
+          $('#type_controller').text(drive.controller.type);
+          $('#block_controller').text(drive.controller.block_size);
+          $('#size_controller').text(drive.controller.cache_size);
+          $('#new_overhead_controller').text(drive.controller.new_overhead);
+          $('#name_disk').text(drive.disk.name);
+          $('#type_disk').text(drive.disk.type);
+          $('#manufacturer_disk').text(drive.disk.manufacturer);
+          $('#display_name_disk').text(drive.disk.display_name);
+          $('#size_disk').text(drive.disk.display_size+" "+drive.disk.display_unit);
+          if(drive.available == false){
+            $('#available').html('<a href="{{ urlFor("root") }}toggle-drive/'+drive.id+'" class="btn btn-success"><i class="fa fa-check">&nbsp;</i>Enabled</a>');
+          }else{
+            $('#available').html('<a href="{{ urlFor("root") }}toggle-drive/'+drive.id+'" class="btn btn-danger"><i class="fa fa-times">&nbsp;</i>Disabled</a>');
+          }
+          $('#myModal').modal('show');
+        });
+      });
+    });
+
   </script>
 {% endblock %}

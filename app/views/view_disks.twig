@@ -60,7 +60,7 @@
                   </div>
                   <div class="modal-body">
                     <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                       <p><b>Name: </b><span id="name"></span></p>
                       <p><b>Type: </b><span id="type"></span></p>
                       <p><b>Sector: </b><span id="sector"></span></p>
@@ -108,7 +108,7 @@
     };
 
     function modalLink(value) {
-      return '<a href="#" data-toggle="modal" data-id="'+value+'"><i class="fa fa-info">&nbsp;More info</i></a>'
+      return '<a href="#" data-toggle="modal" data-id="'+value+'"><i class="fa fa-info">&nbsp;More info</i></a>';
     };
 
     $(function() {
@@ -136,11 +136,11 @@
           $('#long_disk').text(disk.long_disk);
           $('#regions').text(disk.regions);
           $('#manufacturer').text(disk.manufacturer);
-          $('#display_size').text(+disk.display_size+" "+disk.display_unit);
+          $('#display_size').text(disk.display_size+" "+disk.display_unit);
           if(disk.available == false){
-            $('#available').html('<a href="{{ urlFor("root") }}a/'+disk.id+'/disk/true" class="btn btn-success"><i class="fa fa-check">&nbsp;</i>Enabled</a>');
+            $('#available').html('<a href="{{ urlFor("root") }}toggle-disk/'+disk.id+'" class="btn btn-success"><i class="fa fa-check">&nbsp;</i>Enabled</a>');
           }else{
-            $('#available').html('<a href="{{ urlFor("root") }}a/'+disk.id+'/disk/false" class="btn btn-danger"><i class="fa fa-times">&nbsp;</i>Disabled</a>');
+            $('#available').html('<a href="{{ urlFor("root") }}toggle-disk/'+disk.id+'" class="btn btn-danger"><i class="fa fa-times">&nbsp;</i>Disabled</a>');
           }
           $('#myModal').modal('show');
         });

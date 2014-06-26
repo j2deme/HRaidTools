@@ -88,7 +88,7 @@
     };
 
   function modalLink(value) {
-      return '<a href="#" data-toggle="modal" data-id="'+value+'"><i class="fa fa-info">&nbsp;More info</i></a>'
+      return '<a href="#" data-toggle="modal" data-id="'+value+'"><i class="fa fa-info">&nbsp;More info</i></a>';
     };
 
     $(function() {
@@ -114,9 +114,9 @@
           }
           $('#done_size').text(distributor.done_size);
           if(distributor.available == false){
-            $('#available').html('<a href="{{ urlFor("root") }}a/'+distributor.id+'/distributor/true" class="btn btn-success"><i class="fa fa-check">&nbsp;</i>Enabled</a>');
+            $('#available').html('<a href="{{ urlFor("root") }}toggle-distributor/'+distributor.id+'" class="btn btn-success"><i class="fa fa-check">&nbsp;</i>Enabled</a>');
           }else{
-            $('#available').html('<a href="{{ urlFor("root") }}a/'+distributor.id+'/distributor/false" class="btn btn-danger"><i class="fa fa-times">&nbsp;</i>Disabled</a>');
+            $('#available').html('<a href="{{ urlFor("root") }}toggle-distributor/'+distributor.id+'" class="btn btn-danger"><i class="fa fa-times">&nbsp;</i>Disabled</a>');
           }
           $('#myModal').modal('show');
         });

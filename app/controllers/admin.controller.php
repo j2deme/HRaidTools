@@ -19,13 +19,13 @@ $app->get('/disks.json(/:id)', function($id = null) use($app){
   }
 });
 
-$app->get('/new_disk', function () use($app){
+$app->get('/new-disk', function () use($app){
   $data = array();
   $data['unit'] = array('KB','MB','GB','TB', 'PB');
   $app->render('add_disks.twig', $data);
-})->name('new_disk');
+})->name('new-disk');
 
-$app->post('/new_disk', function () use($app){
+$app->post('/new-disk', function () use($app){
   $post = (object) $app->request->post();
   $disk = new Disk();
   $disk->name = $post->name;
@@ -50,14 +50,14 @@ $app->post('/new_disk', function () use($app){
   $disk->available = (isset($post->available)) ? $post->available : false;
   $disk->save();
   $app->redirect($app->urlFor('disks'));
-})->name('add_disk');
+})->name('add-disk');
 
-$app->get('/a/:id/disk/:value', function($id,$value) use($app){
+$app->get('/toggle-disk/:id', function($id) use($app){
   $disk = Disk::where('id',$id)->first();
-  $disk['available'] = $value;
+  $disk->available = ($disk->available) ? false : true;
   $disk->save();
   $app->redirect($app->urlFor('disks'));
-});
+})->name('toggle-disk');
 
 $app->get('/controllers', function() use($app){
   $app->render('view_controllers.twig');
@@ -73,12 +73,12 @@ $app->get('/controllers.json(/:id)', function($id = null) use($app){
   }
 });
 
-$app->get('/new_controller', function () use($app){
+$app->get('/new-controller', function () use($app){
   $data = array();
   $app->render('add_controllers.twig', $data);
-})->name('new_controller');
+})->name('new-controller');
 
-$app->post('/new_controller', function () use($app){
+$app->post('/new-controller', function () use($app){
   $post = (object) $app->request->post();
   $controller = new Controller();
   $controller->name = $post->name;
@@ -94,7 +94,14 @@ $app->post('/new_controller', function () use($app){
   $controller->available = (isset($post->available)) ? $post->available : false;
   $controller->save();
   $app->redirect($app->urlFor('controllers'));
-})->name('add_controller');
+})->name('add-controller');
+
+$app->get('/toggle-controller/:id', function($id) use($app){
+  $controller = Controller::where('id',$id)->first();
+  $controller->available = ($controller->available) ? false : true;
+  $controller->save();
+  $app->redirect($app->urlFor('controllers'));
+})->name('toggle-controller');
 
 $app->get('/drives', function() use($app){
   $app->render('view_drives.twig');
@@ -114,24 +121,24 @@ $app->get('/drives.json(/:id)', function($id = null) use($app){
   }
 });
 
-$app->get('/new_drive', function () use($app){
+$app->get('/new-drive', function () use($app){
   $data = array();
-  $data['controller'] = Controller::select('id as value', 'name as label')->get();
-  $data['disk'] = Disk::select('id as value', 'name as label')->get();
+  $data['controller'] = Controller::select('id as value', 'name as label')->where('available',true)->get();
+  $data['disk'] = Disk::select('id as value', 'name as label')->where('available',true)->get();
   $app->render('add_drives.twig', $data);
-})->name('new_drive');
+})->name('new-drive');
 
-$app->get('/views_c/:id', function($id) use($app){
+$app->get('/views-c/:id', function($id) use($app){
     $controller = Controller::where('id',$id)->first();
     echo $controller->toJson();
 });
 
-$app->get('/views_d/:id', function($id) use($app){
+$app->get('/views-d/:id', function($id) use($app){
     $disk = Disk::where('id',$id)->first();
     echo $disk->toJson();
 });
 
-$app->post('/add_drive', function () use($app){
+$app->post('/add-drive', function () use($app){
   $post = (object) $app->request->post();
   $drive = new Drive();
   $drive->name = $post->name;
@@ -140,7 +147,14 @@ $app->post('/add_drive', function () use($app){
   $drive->available = (isset($post->available)) ? $post->available : false;
   $drive->save();
   $app->redirect($app->urlFor('drives'));
-})->name('add_drive');
+})->name('add-drive');
+
+$app->get('/toggle-drive/:id', function($id) use($app){
+  $drive = Drive::where('id',$id)->first();
+  $drive->available = ($drive->available) ? false : true;
+  $drive->save();
+  $app->redirect($app->urlFor('drives'));
+})->name('toggle-drive');
 
 $app->get('/networks', function() use($app){
   $app->render('view_networks.twig');
@@ -156,12 +170,12 @@ $app->get('/networks.json(/:id)', function($id = null) use($app){
     }
 });
 
-$app->get('/new_network', function () use($app){
+$app->get('/new-network', function () use($app){
   $data = array();
   $app->render('add_networks.twig', $data);
-})->name('new_network');
+})->name('new-network');
 
-$app->post('/new_network', function () use($app){
+$app->post('/new-network', function () use($app){
   $post = (object) $app->request->post();
   $network = new Network();
   $network->type = $post->type;
@@ -173,7 +187,19 @@ $app->post('/new_network', function () use($app){
   $network->available = (isset($post->available)) ? $post->available : false;
   $network->save();
   $app->redirect($app->urlFor('networks'));
-})->name('add_network');
+})->name('add-network');
+
+$app->get('/edit-network/:id', function($id) use($app){
+  $data['network'] = Network::where('id',$id)->first();
+  $app->render('add_networks.twig', $data);
+})->name('edit-network');
+
+$app->get('/toggle-network/:id', function($id) use($app){
+  $network = Network::where('id',$id)->first();
+  $network->available = ($network->available) ? false : true;
+  $network->save();
+  $app->redirect($app->urlFor('networks'));
+})->name('toggle-network');
 
 $app->get('/distributions', function() use($app){
   $app->render('view_distributions.twig');
@@ -189,12 +215,12 @@ $app->get('/distributions.json(/:id)', function($id = null) use($app){
     }
 });
 
-$app->get('/new_distribution', function () use($app){
+$app->get('/new-distribution', function () use($app){
   $data = array();
   $app->render('add_distributions.twig', $data);
-})->name('new_distribution');
+})->name('new-distribution');
 
-$app->post('/new_distribution', function() use($app){
+$app->post('/new-distribution', function() use($app){
   $post = (object) $app->request->post();
   $distribution = new Distribution();
   $distribution->name = $post->name;
@@ -203,7 +229,14 @@ $app->post('/new_distribution', function() use($app){
   $distribution->available = (isset($post->available)) ? $post->available : false;
   $distribution->save();
   $app->redirect($app->urlFor('distributions'));
-})->name('add_distribution');
+})->name('add-distribution');
+
+$app->get('/toggle-distribution/:id', function($id) use($app){
+  $distribution = Distribution::where('id',$id)->first();
+  $distribution->available = ($distribution->available) ? false : true;
+  $distribution->save();
+  $app->redirect($app->urlFor('distributions'));
+})->name('toggle-distribution');
 
 $app->get('/distributors', function() use($app){
   $app->render('view_distributors.twig');
@@ -222,13 +255,13 @@ $app->get('/distributors.json(/:id)', function($id = null) use($app){
   }
 });
 
-$app->get('/new_distributor', function () use($app){
+$app->get('/new-distributor', function () use($app){
   $data = array();
   $data['distributions'] = Distribution::select('id as value', 'name as label')->where('is_trace_generator',false)->get();
   $app->render('add_distributors.twig', $data);
-})->name('new_distributor');
+})->name('new-distributor');
 
-$app->post('/new_distributor', function () use($app){
+$app->post('/new-distributor', function () use($app){
   $post = (object) $app->request->post();
   $distributor = new Distributor();
   $distributor->distributor = $post->distributor;
@@ -245,14 +278,14 @@ $app->post('/new_distributor', function () use($app){
   $distributor->available = (isset($post->available)) ? $post->available : false;
   $distributor->save();
   $app->redirect($app->urlFor('distributor'));
-})->name('add_distributor');
+})->name('add-distributor');
 
-$app->get('/a/:id/distributor/:value', function($id,$value) use($app){
+$app->get('/toggle-distributor/:id', function($id) use($app){
   $distributor = Distributor::where('id',$id)->first();
-  $distributor['available'] = $value;
+  $distributor->available = ($distributor->available) ? false : true;
   $distributor->save();
   $app->redirect($app->urlFor('distributors'));
-});
+})->name('toggle-distributor');
 
 $app->get('/statuses', function() use($app){
   $app->render('view_statuses.twig');
@@ -268,13 +301,13 @@ $app->get('/statuses.json(/:id)', function($id = null) use($app){
     }
 });
 
-$app->post('/add_status', function () use($app){
+$app->post('/add-status', function () use($app){
   $post = (object) $app->request->post();
   $drive = new Status();
   $drive->name = $post->name;
   $drive->save();
   $app->redirect($app->urlFor('statuses'));
-})->name('add_status');
+})->name('add-status');
 
 $app->get('/users', function() use($app){
   $app->render('view_users.twig');

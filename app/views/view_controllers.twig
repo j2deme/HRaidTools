@@ -37,6 +37,40 @@
                 </tr>
                 </thead>
             </table>
+            {# Inicia Modal #}
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel"><b><i class="fa fa-gamepad">&nbsp;<span id="name"></span></i></b></h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                      <p><b>Type: </b><span id="type"></span></p>
+                      <p><b>Block Size: </b><span id="block_size"></span></p>
+                      <p><b>Cache Size: </b><span id="cache_size"></span></p>
+                      <p><b>New Overhead: </b><span id="new_overhead"></span></p>
+                      <p><b>Read Fence: </b><span id="read_fence"></span></p>
+                    </div>
+                    <div class="col-md-6">
+                      <p><b>Write Fence: </b><span id="write_fence"></span></p>
+                      <p><b>Prefetching: </b><span id="prefetching"></span></p>
+                      <p><b>Inmediate Report: </b><span id="inmediate_report"></span></p>
+                      <p><b>Msg Size: </b><span id="msg_size"></span></p>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <span id="available"></span>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+            {# Termina Modal #}
           </div>
         </div>
       </div>
@@ -55,7 +89,43 @@
     };
 
     function modalLink(value) {
-      return '<a href="#'+value+'"><i class="fa fa-question">&nbsp;More info</i></a>'
+      return '<a href="#" data-toggle="modal" data-id="'+value+'"><i class="fa fa-info">&nbsp;More info</i></a>'
     };
+
+    $(function() {
+      $(document).on('click', 'a[data-toggle="modal"]', function(event) {
+        event.preventDefault();
+        var link = $(this);
+        var id = link.data('id');
+        var id = link.attr('data-id');
+        $.getJSON("{{ urlFor('root') }}controllers.json/"+id, function(controller){
+          //optional stuff to do after success
+          $('#name').text(controller.name);
+          $('#type').text(controller.type);
+          $('#block_size').text(controller.block_size);
+          $('#cache_size').text(controller.cache_size);
+          $('#new_overhead').text(controller.new_overhead);
+          $('#read_fence').text(controller.read_fence);
+          $('#write_fence').text(controller.write_fence);
+          if(controller.prefetching == true){
+            $('#prefetching').html('<span class="badge bg-green">Enabled</span>');
+          }else{
+            $('#prefetching').html('<span class="badge bg-red">Disabled</span>');
+          }
+          if(controller.inmediate_report == true){
+            $('#inmediate_report').html('<span class="badge bg-green">Enabled</span>');
+          }else{
+            $('#inmediate_report').html('<span class="badge bg-red">Disabled</span>');
+          }
+          $('#msg_size').text(controller.msg_size);
+          if(controller.available == false){
+            $('#available').html('<a href="{{ urlFor("root") }}toggle-controller/'+controller.id+'" class="btn btn-success"><i class="fa fa-check">&nbsp;</i>Enabled</a>');
+          }else{
+            $('#available').html('<a href="{{ urlFor("root") }}toggle-controller/'+controller.id+'" class="btn btn-danger"><i class="fa fa-times">&nbsp;</i>Disabled</a>');
+          }
+          $('#myModal').modal('show');
+        });
+      });
+    });
   </script>
 {% endblock %}
