@@ -22,11 +22,33 @@
             <table class="table table-bordered table-hover table-responsive" data-toggle="table" data-url="{{ urlFor('root') }}statuses.json" data-height="246" data-pagination="true">
                 <thead>
                 <tr>
-                    <th data-field="id">#</th>
+                    <th data-field="id" data-visible="false">#</th>
                     <th data-field="name">Name</th>
                     <th data-field="id" data-formatter="modalLink">Info</th>
                 </tr>
                 </thead>
+                {# Inicia Modal #}
+                  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel"><b><i class="fa fa-reorder">&nbsp;<span id="name"></span></i></b></h4>
+                        </div>
+                        <div class="modal-footer">
+                          <div class="row">
+                            <div class="col-md-12">
+                              <span id="edit"></span>
+                              <span id="delete"></span>
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                  {# Termina Modal #}
             </table>
           </div>
         </div>
@@ -40,6 +62,7 @@
           </div>
           <div class="col-md-12">
             <div class="form-group">
+              <input type="hidden" id="id" name="id">
               {{ f.label('name','Name:','col-md-4') }}
               <div class="col-md-6">{{ f.text('name') }}</div>
             </div>
@@ -56,7 +79,25 @@
   <script src="{{ js }}bootstrap-table.js"></script>
   <script>
     function modalLink(value) {
-      return '<a href="#" data-toggle="modal" data-id="'+value+'"><i class="fa fa-warning">&nbsp;More info</i></a>'
+      return '<a href="#" data-toggle="modal" data-id="'+value+'"><i class="fa fa-info">&nbsp;More info</i></a>';
     };
+
+    $(function() {
+      $(document).on('click', 'a[data-toggle="modal"]', function(event) {
+        event.preventDefault();
+        var link = $(this);
+        var id = link.data('id');
+        var id = link.attr('data-id');
+        $.getJSON("{{ urlFor('root') }}statuses.json/"+id, function(status){
+          //optional stuff to do after success
+          $('#name').text(status.name);
+          $('input#id').val(status.id);
+          $('input#name').val(status.name);
+          $('#edit').html('<button class="btn btn-primary" data-dismiss="modal"><i class="fa fa-pencil"></i>&nbsp;Edit</button>');
+          $('#delete').html('<a href="{{ urlFor("root") }}delete-status/'+status.id+'" class="btn btn-warning"><i class="fa fa-trash-o"></i>&nbsp;Delete</a>');
+          $('#myModal').modal('show');
+        });
+      });
+    });
   </script>
 {% endblock %}

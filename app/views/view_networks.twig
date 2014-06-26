@@ -21,7 +21,7 @@
             <table class="table table-bordered table-hover table-responsive" data-toggle="table" data-url="{{ urlFor('root') }}networks.json" data-height="246" data-show-columns="true" data-pagination="true">
                 <thead>
                 <tr>
-                    <th data-field="id">#</th>
+                    <th data-field="id" data-visible="false">#</th>
                     <th data-field="display_name">Display Name</th>
                     <th data-field="type">Type</th>
                     <th data-field="latency">Latency</th>
@@ -50,9 +50,14 @@
                     </div>
                   </div>
                   <div class="modal-footer">
-                    <span id="available"></span>
-                    <span id="edit"></span>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <span id="available"></span>
+                        <span id="edit"></span>
+                        <span id="delete"></span>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 </div>
@@ -99,7 +104,8 @@
           }else{
             $('#available').html('<a href="{{ urlFor("root") }}toggle-network/'+network.id+'" class="btn btn-danger"><i class="fa fa-times">&nbsp;</i>Disabled</a>');
           }
-          $('#edit').html('<a href="{{ urlFor("root") }}edit-network/'+network.id+'" class="btn btn-primary"><i class="fa fa-pencil"></i>&nbsp;Edit</a>')
+          $('#edit').html('<a href="{{ urlFor("root") }}edit-network/'+network.id+'" class="btn btn-primary"><i class="fa fa-pencil"></i>&nbsp;Edit</a>');
+          $('#delete').html('<a href="{{ urlFor("root") }}delete-network/'+network.id+'" class="btn btn-warning"><i class="fa fa-trash-o"></i>&nbsp;Delete</a>');
           $('#myModal').modal('show');
         });
       });

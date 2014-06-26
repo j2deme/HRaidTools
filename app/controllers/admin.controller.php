@@ -27,7 +27,12 @@ $app->get('/new-disk', function () use($app){
 
 $app->post('/new-disk', function () use($app){
   $post = (object) $app->request->post();
-  $disk = new Disk();
+  $id = (isset($post->id) and !empty($post->id)) ? $post->id : 0;
+  if($id != 0){
+    $disk = Disk::where('id',$id)->first();
+  }else{
+    $disk = new Disk();
+  }
   $disk->name = $post->name;
   $disk->type = $post->type;
   $disk->sector = $post->sector;
@@ -52,12 +57,23 @@ $app->post('/new-disk', function () use($app){
   $app->redirect($app->urlFor('disks'));
 })->name('add-disk');
 
+$app->get('/edit-disk/:id', function($id) use($app){
+  $data['disk'] = Disk::where('id',$id)->first();
+  $app->render('add_disks.twig', $data);
+})->name('edit-disk');
+
 $app->get('/toggle-disk/:id', function($id) use($app){
   $disk = Disk::where('id',$id)->first();
   $disk->available = ($disk->available) ? false : true;
   $disk->save();
   $app->redirect($app->urlFor('disks'));
 })->name('toggle-disk');
+
+$app->get('/delete-disk/:id', function($id) use($app){
+  $disk = Disk::where('id',$id)->first();
+  $disk->delete();
+  $app->redirect($app->urlFor('disks'));
+})->name('delete-disk');
 
 $app->get('/controllers', function() use($app){
   $app->render('view_controllers.twig');
@@ -80,7 +96,12 @@ $app->get('/new-controller', function () use($app){
 
 $app->post('/new-controller', function () use($app){
   $post = (object) $app->request->post();
-  $controller = new Controller();
+  $id = (isset($post->id) and !empty($post->id)) ? $post->id : 0;
+  if($id != 0){
+    $controller = Controller::where('id',$id)->first();
+  }else{
+    $controller = new Controller();
+  }
   $controller->name = $post->name;
   $controller->type = $post->type;
   $controller->block_size = $post->block_size;
@@ -96,12 +117,23 @@ $app->post('/new-controller', function () use($app){
   $app->redirect($app->urlFor('controllers'));
 })->name('add-controller');
 
+$app->get('/edit-controller/:id', function($id) use($app){
+  $data['controller'] = Controller::where('id',$id)->first();
+  $app->render('add_controllers.twig', $data);
+})->name('edit-controller');
+
 $app->get('/toggle-controller/:id', function($id) use($app){
   $controller = Controller::where('id',$id)->first();
   $controller->available = ($controller->available) ? false : true;
   $controller->save();
   $app->redirect($app->urlFor('controllers'));
 })->name('toggle-controller');
+
+$app->get('/delete-controller/:id', function($id) use($app){
+  $controller = Controller::where('id',$id)->first();
+  $controller->delete();
+  $app->redirect($app->urlFor('controllers'));
+})->name('delete-controller');
 
 $app->get('/drives', function() use($app){
   $app->render('view_drives.twig');
@@ -140,7 +172,12 @@ $app->get('/views-d/:id', function($id) use($app){
 
 $app->post('/add-drive', function () use($app){
   $post = (object) $app->request->post();
-  $drive = new Drive();
+  $id = (isset($post->id) and !empty($post->id)) ? $post->id : 0;
+  if($id != 0){
+    $drive = Drive::where('id',$id)->first();
+  }else{
+    $drive = new Drive();
+  }
   $drive->name = $post->name;
   $drive->controller_id = $post->controller_id;
   $drive->disk_id = $post->disk_id;
@@ -149,12 +186,23 @@ $app->post('/add-drive', function () use($app){
   $app->redirect($app->urlFor('drives'));
 })->name('add-drive');
 
+$app->get('/edit-drive/:id', function($id) use($app){
+  $data['drive'] = Drive::where('id',$id)->first();
+  $app->render('add_drives.twig', $data);
+})->name('edit-drive');
+
 $app->get('/toggle-drive/:id', function($id) use($app){
   $drive = Drive::where('id',$id)->first();
   $drive->available = ($drive->available) ? false : true;
   $drive->save();
   $app->redirect($app->urlFor('drives'));
 })->name('toggle-drive');
+
+$app->get('/delete-drive/:id', function($id) use($app){
+  $drive = Drive::where('id',$id)->first();
+  $drive->delete();
+  $app->redirect($app->urlFor('drives'));
+})->name('delete-drive');
 
 $app->get('/networks', function() use($app){
   $app->render('view_networks.twig');
@@ -177,7 +225,12 @@ $app->get('/new-network', function () use($app){
 
 $app->post('/new-network', function () use($app){
   $post = (object) $app->request->post();
-  $network = new Network();
+  $id = (isset($post->id) and !empty($post->id)) ? $post->id : 0;
+  if($id != 0){
+    $network = Network::where('id',$id)->first();
+  }else{
+    $network = new Network();
+  }
   $network->type = $post->type;
   $network->latency = $post->latency;
   $network->bandwidth = $post->bandwidth;
@@ -201,6 +254,12 @@ $app->get('/toggle-network/:id', function($id) use($app){
   $app->redirect($app->urlFor('networks'));
 })->name('toggle-network');
 
+$app->get('/delete-network/:id', function($id) use($app){
+  $network = Network::where('id',$id)->first();
+  $network->delete();
+  $app->redirect($app->urlFor('networks'));
+})->name('delete-network');
+
 $app->get('/distributions', function() use($app){
   $app->render('view_distributions.twig');
 })->name('distributions');
@@ -222,6 +281,12 @@ $app->get('/new-distribution', function () use($app){
 
 $app->post('/new-distribution', function() use($app){
   $post = (object) $app->request->post();
+  $id = (isset($post->id) and !empty($post->id)) ? $post->id : 0;
+  if($id != 0){
+    $distribution = Distribution::where('id',$id)->first();
+  }else{
+    $distribution = new Distribution();
+  }
   $distribution = new Distribution();
   $distribution->name = $post->name;
   $distribution->display_order = $post->display_order;
@@ -231,12 +296,23 @@ $app->post('/new-distribution', function() use($app){
   $app->redirect($app->urlFor('distributions'));
 })->name('add-distribution');
 
+$app->get('/edit-distribution/:id', function($id) use($app){
+  $data['distribution'] = Distribution::where('id',$id)->first();
+  $app->render('add_distributions.twig', $data);
+})->name('edit-distribution');
+
 $app->get('/toggle-distribution/:id', function($id) use($app){
   $distribution = Distribution::where('id',$id)->first();
   $distribution->available = ($distribution->available) ? false : true;
   $distribution->save();
   $app->redirect($app->urlFor('distributions'));
 })->name('toggle-distribution');
+
+$app->get('/delete-distribution/:id', function($id) use($app){
+  $distribution = distribution::where('id',$id)->first();
+  $distribution->delete();
+  $app->redirect($app->urlFor('distributions'));
+})->name('delete-distribution');
 
 $app->get('/distributors', function() use($app){
   $app->render('view_distributors.twig');
@@ -263,7 +339,12 @@ $app->get('/new-distributor', function () use($app){
 
 $app->post('/new-distributor', function () use($app){
   $post = (object) $app->request->post();
-  $distributor = new Distributor();
+  $id = (isset($post->id) and !empty($post->id)) ? $post->id : 0;
+  if($id != 0){
+    $distributor = Distributor::where('id',$id)->first();
+  }else{
+    $distributor = new Distributor();
+  }
   $distributor->distributor = $post->distributor;
   $distributor->type = $post->type;
   $distributor->size = $post->size;
@@ -280,12 +361,23 @@ $app->post('/new-distributor', function () use($app){
   $app->redirect($app->urlFor('distributor'));
 })->name('add-distributor');
 
+$app->get('/edit-distributor/:id', function($id) use($app){
+  $data['distributor'] = Distributor::where('id',$id)->first();
+  $app->render('add_distributors.twig', $data);
+})->name('edit-distributor');
+
 $app->get('/toggle-distributor/:id', function($id) use($app){
   $distributor = Distributor::where('id',$id)->first();
   $distributor->available = ($distributor->available) ? false : true;
   $distributor->save();
   $app->redirect($app->urlFor('distributors'));
 })->name('toggle-distributor');
+
+$app->get('/delete-distributor/:id', function($id) use($app){
+  $distributor = Distributor::where('id',$id)->first();
+  $distributor->delete();
+  $app->redirect($app->urlFor('distributors'));
+})->name('delete-distributor');
 
 $app->get('/statuses', function() use($app){
   $app->render('view_statuses.twig');
@@ -303,11 +395,22 @@ $app->get('/statuses.json(/:id)', function($id = null) use($app){
 
 $app->post('/add-status', function () use($app){
   $post = (object) $app->request->post();
-  $drive = new Status();
-  $drive->name = $post->name;
-  $drive->save();
+  $id = (isset($post->id) and !empty($post->id)) ? $post->id : 0;
+  if($id != 0){
+    $status = Status::where('id',$id)->first();
+  }else{
+    $status = new Status();
+  }
+  $status->name = $post->name;
+  $status->save();
   $app->redirect($app->urlFor('statuses'));
 })->name('add-status');
+
+$app->get('/delete-status/:id', function($id) use($app){
+  $status = Status::where('id',$id)->first();
+  $status->delete();
+  $app->redirect($app->urlFor('statuses'));
+})->name('delete-status');
 
 $app->get('/users', function() use($app){
   $app->render('view_users.twig');

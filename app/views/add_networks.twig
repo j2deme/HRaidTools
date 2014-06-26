@@ -1,4 +1,3 @@
-{# CRUD of networks #}
 {% extends 'base.twig' %}
 {% import 'forms.twig' as f %}
 {% block css %}
@@ -15,47 +14,103 @@
     <div class="col-md-10">
     <form class="form-horizontal" action="{{ urlFor('add-network') }}" method="post" role="form">
       <div class="row">
-        <div class="col-md-12 text-center">
-          <h3>New Network</h3>
-        </div>
+        {% if network.id is defined %}
+          <div class="col-md-12 text-center">
+            <h3>Edit Network</h3>
+          </div>
+        {% else %}
+          <div class="col-md-12 text-center">
+            <h3>New Network</h3>
+          </div>
+        {% endif %}
       </div>
+        {% if network.id is defined %}
+          <input type="hidden" id="id" name="id" value="{{ network.id }}">
+        {% else %}
+          <input type="hidden" id="id" name="id" value="">
+        {% endif %}
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
             {{ f.label('type','Type:','col-md-4') }}
-            <div class="col-md-6">{{ f.text('type') }}</div>
+            <div class="col-md-6">
+              {% if network.type is defined %}
+                <input type="text" id="type" name="type" class="form-control" value="{{ network.type }}">
+              {% else %}
+                <input type="text" id="type" name="type" class="form-control" value="" >
+              {% endif %}
+            </div>
           </div>
           <div class="form-group">
             {{ f.label('bandwidth','Bandwidth:','col-md-4') }}
-            <div class="col-md-6">{{ f.text('bandwidth') }}</div>
+            <div class="col-md-6">
+              {% if network.bandwidth is defined %}
+                <input type="text" id="bandwidth" name="bandwidth" class="form-control" value="{{ network.bandwidth }}">
+              {% else %}
+                <input type="text" id="bandwidth" name="bandwidth" class="form-control" value="" >
+              {% endif %}
+            </div>
           </div>
           <div class="form-group">
             {{ f.label('display_name','Display Name:','col-md-4') }}
-            <div class="col-md-6">{{ f.text('display_name') }}</div>
+            <div class="col-md-6">
+              {% if network.display_name is defined %}
+                <input type="text" id="display_name" name="display_name" class="form-control" value="{{ network.display_name }}">
+              {% else %}
+                <input type="text" id="display_name" name="display_name" class="form-control" value="" >
+              {% endif %}
+            </div>
           </div>
            <div class="form-group">
             {{ f.label('available','Available:','col-md-4') }}
-            <div class="col-md-6 col-md-offset-1">{{ f.check('available','','true') }}</div>
+            <div class="col-md-2">
+              {% if network.available == true %}
+                <input type="checkbox" id="available" name="available" class="form-control" value="{{ network.available }}" checked>
+              {% else %}
+                <input type="checkbox" id="available" name="available" class="form-control" value="false" >
+              {% endif %}
+            </div>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
             {{ f.label('latency','Latency:','col-md-4') }}
-            <div class="col-md-6">{{ f.text('latency') }}</div>
+            <div class="col-md-6">
+              {% if network.latency is defined %}
+                <input type="text" id="latency" name="latency" class="form-control" value="{{ network.latency }}">
+              {% else %}
+                <input type="text" id="latency" name="latency" class="form-control" value="" >
+              {% endif %}
+            </div>
           </div>
           <div class="form-group">
             {{ f.label('network','Network:','col-md-4') }}
-            <div class="col-md-6">{{ f.text('network','','BUS') }}</div>
+            <div class="col-md-6">
+              {% if network.network is defined %}
+                <input type="text" id="network" name="network" class="form-control" value="{{ network.network }}">
+              {% else %}
+                <input type="text" id="network" name="network" class="form-control" value="BUS" >
+              {% endif %}
+            </div>
           </div>
           <div class="form-group">
             {{ f.label('display_order','Display Order:','col-md-4') }}
-            <div class="col-md-6">{{ f.text('display_order') }}</div>
+            <div class="col-md-6">
+              {% if network.display_order is defined %}
+                <input type="text" id="display_order" name="display_order" class="form-control" value="{{ network.display_order }}">
+              {% else %}
+                <input type="text" id="display_order" name="display_order" class="form-control" value="" >
+              {% endif %}
+            </div>
           </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-md-2 col-md-offset-4">
           <button class="btn btn-primary btn-block">Save</button>
+        </div>
+        <div class="col-md-2">
+          <a href="{{ urlFor('networks') }}" class="btn btn-default btn-block">Cancel</a>
         </div>
       </div>
      </form>

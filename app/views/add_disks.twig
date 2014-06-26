@@ -15,10 +15,21 @@
     <div class="col-md-10">
       <form class="form-horizontal" action="{{ urlFor('add-disk') }}" method="post" role="form">
         <div class="row">
+          {% if disk.id is defined %}
+          <div class="col-md-12 text-center">
+            <h3>Edit Disk</h3>
+          </div>
+        {% else %}
           <div class="col-md-12 text-center">
             <h3>New Disk</h3>
           </div>
+        {% endif %}
         </div>
+        {% if disk.id is defined %}
+          <input type="hidden" id="id" name="id" value="{{ disk.id }}">
+        {% else %}
+          <input type="hidden" id="id" name="id" value="">
+        {% endif %}
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">

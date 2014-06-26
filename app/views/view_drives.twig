@@ -21,7 +21,7 @@
             <table class="table table-bordered table-hover table-responsive" data-toggle="table" data-url="{{ urlFor('root') }}drives.json" data-height="246" data-show-columns="true" data-pagination="true">
                 <thead>
                 <tr>
-                    <th data-field="id">#</th>
+                    <th data-field="id" data-visible="false">#</th>
                     <th data-field="name">Name</th>
                     <th data-field="controller_name">Controller</th>
                     <th data-field="disk_name">Disk</th>
@@ -72,7 +72,8 @@
                   </div>
                   <div class="modal-footer">
                     <span id="available"></span>
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-pencil"></i>&nbsp;Edit</button>
+                    <span id="edit"></span>
+                    <span id="delete"></span>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                   </div>
                 </div>
@@ -126,6 +127,8 @@
           }else{
             $('#available').html('<a href="{{ urlFor("root") }}toggle-drive/'+drive.id+'" class="btn btn-danger"><i class="fa fa-times">&nbsp;</i>Disabled</a>');
           }
+          $('#edit').html('<a href="{{ urlFor("root") }}edit-drive/'+drive.id+'" class="btn btn-primary"><i class="fa fa-pencil"></i>&nbsp;Edit</a>');
+          $('#delete').html('<a href="{{ urlFor("root") }}delete-drive/'+drive.id+'" class="btn btn-warning"><i class="fa fa-trash-o"></i>&nbsp;Delete</a>');
           $('#myModal').modal('show');
         });
       });
