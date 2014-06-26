@@ -2,8 +2,8 @@
 {% extends 'base.twig' %}
 {% import 'forms.twig' as f %}
 {% block css %}
-    <link rel="stylesheet" href="{{ css }}bootstrapValidator.min.css">
-    <link rel="stylesheet" href="{{ css }}examples.css">
+    <link rel="stylesheet" href="{{ urlFor('root') }}/public/css/bootstrapValidator.min.css">
+    <link rel="stylesheet" href="{{ urlFor('root') }}/public/css/examples.css">
 {% endblock %}
 {% block content %}
 <form id="defaultForm" class="form-horizontal" action="{{ urlFor('signup-post') }}" method="post" role="form"
@@ -60,8 +60,8 @@
   </form>
 {% endblock %}
 {% block js %}
-    <script type="text/javascript" src="{{ js }}bootstrapValidator.js"></script>
-    <script type="text/javascript" src="{{ js }}typeahead.jquery.min.js"></script>
+    <script type="text/javascript" src="{{ urlFor('root') }}/public/js/bootstrapValidator.js"></script>
+    <script type="text/javascript" src="{{ urlFor('root') }}/public/js/typeahead.jquery.min.js"></script>
     <script>
     $(document).ready(function() {
 
