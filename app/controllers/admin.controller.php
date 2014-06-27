@@ -15,7 +15,6 @@ $app->group('/admin', function() use($app){
   require_once('admin.distributors.controller.php');
 
   $app->group('/statuses', function() use($app){
-
     $app->get('', function() use($app){
       $app->render('view_statuses.twig');
     })->name('statuses');
@@ -48,11 +47,9 @@ $app->group('/admin', function() use($app){
       $status->delete();
       $app->redirect($app->urlFor('statuses'));
     })->name('delete-status');
-
   });
 
   $app->group('/users', function() use($app){
-
     $app->get('', function() use($app){
       $app->render('view_users.twig');
     })->name('users');
@@ -69,9 +66,13 @@ $app->group('/admin', function() use($app){
           echo $user->toJson();
         }
     });
-
   });
 
 });
 
+$app->get('/organizations.json', function() use($app){
+  //$organizations = Organization::select('name')->get();
+  //echo $organizations->toJson();
+  echo Organization::all();
+})->name('organizations-json');
 ?>
