@@ -22,7 +22,7 @@ $app->get('/about', function() use($app){
 
 $app->get('/sign-up', function() use($app){
   $data = array();
-  $data['organizations'] = Organization::select('id as value', 'name as label')->get();
+  $data['organizations'] = Organization::all();
   $app->render('new_user.twig', $data);
 })->name('signup');
 
@@ -35,7 +35,13 @@ $app->post('/sign-up', function() use($app){
   $user->name = $post->name;
   $user->lastname = $post->lastname;
   $user->lastname_second = $post->lastname_second;
-  $user->organization_id = $post->organization_id;
+  $org = Organization::where('name','=',$post->organization_id)->first();
+  if(is_null($org)){
+    $org = new Organization();
+    $org->name = trim($post->organization_id);
+    $org->save();
+  }
+  $user->organization_id = $org->id;
   $user->save();
   $app->redirect($app->urlFor('root'));
 })->name('signup-post');

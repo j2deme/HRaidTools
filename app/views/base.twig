@@ -29,9 +29,9 @@
   <i class="fa fa-warning"></i>
   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>{{ lang.browsehappy|raw }}</p>
   <![endif]-->
-  {% if user is defined and user is null %}
   {% include 'loginForm.twig' %}
-  {% endif %}
+  {# if user is defined and user is null %}
+  {% endif #}
   <div class="row">
     <div class="col-md-12">
       {% spaceless %}
@@ -48,6 +48,8 @@
   <script src="{{ urlFor('root') }}/public/js/bootstrap-floating-label.js"></script>
   <script src="{{ urlFor('root') }}/public/js/moment-with-langs.min.js"></script>
   <script src="{{ urlFor('root') }}/public/js/charts.min.js"></script>
+  <script src="{{ urlFor('root') }}/public/js/bootstrapValidator.js"></script>
+  <script src="{{ urlFor('root') }}/public/js/typeahead.jquery.min.js"></script>
   <script src="{{ urlFor('root') }}/public/js/app.js"></script>
   <script>
     $(document).ready(function() {

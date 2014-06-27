@@ -42,10 +42,8 @@
         </div>
         <div class="form-group">
           {{ f.label('organization_id','Organization:','col-md-4') }}
-          <div id="the-basics">
-            <div class="col-md-6">
-              <input class="typeahead form-control" type="text" id="organization_id" name="organization_id" placeholder="Organization">
-            </div>
+          <div class="col-md-6">
+            <input class="form-control typeahead" type="text" id="organization_id" name="organization_id" dir="auto" spellcheck="false">
           </div>
         </div>
         {{ f.hide('username') }}
@@ -60,67 +58,41 @@
   </form>
 {% endblock %}
 {% block js %}
-    <script type="text/javascript" src="{{ urlFor('root') }}/public/js/bootstrapValidator.js"></script>
-    <script type="text/javascript" src="{{ urlFor('root') }}/public/js/typeahead.jquery.min.js"></script>
-    <script>
-    $(document).ready(function() {
-
-      $('#email').focus();
-
-      $('#defaultForm').bootstrapValidator();
-
-      $(".reveal").hover(function() {
-        $(".pwd").replaceWith($('.pwd').clone().attr('type', 'text'));
-      }, function() {
-        $(".pwd").replaceWith($('.pwd').clone().attr('type', 'password'));
-      });
-
+<script>
+  $(document).ready(function() {
+    $('#email').focus();
+    $('#defaultForm').bootstrapValidator();
+    $(".reveal").hover(function() {
+      $(".pwd").replaceWith($('.pwd').clone().attr('type', 'text'));
+    }, function() {
+      $(".pwd").replaceWith($('.pwd').clone().attr('type', 'password'));
     });
+
+    var organizations = [{% for organization in organizations %}'{{ organization.name }}',{% endfor %}];
 
     var substringMatcher = function(strs) {
       return function findMatches(q, cb) {
         var matches, substringRegex;
-
-        // an array that will be populated with substring matches
         matches = [];
-
-        // regex used to determine if a string contains the substring `q`
         substrRegex = new RegExp(q, 'i');
-
-        // iterate through the pool of strings and for any string that
-        // contains the substring `q`, add it to the `matches` array
         $.each(strs, function(i, str) {
-          if (substrRegex.test(str)) {
-            // the typeahead jQuery plugin expects suggestions to a
-            // JavaScript object, refer to typeahead docs for more info
-            matches.push({ value: str });
-          }
-        });
-
-        cb(matches);
+        if (substrRegex.test(str)) {
+          matches.push({ value: str });
+        }
+      });
+      cb(matches);
       };
     };
 
-    var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-      'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-      'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-      'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-      'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-      'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-      'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-      'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-      'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-    ];
-
-    $('#the-basics .typeahead').typeahead({
+    $('#organization_id').typeahead({
       hint: true,
       highlight: true,
       minLength: 1
-    },
-    {
-      name: 'states',
+    },{
+      name: 'organizations',
       displayKey: 'value',
-      source: substringMatcher(states)
+      source: substringMatcher(organizations)
     });
-    </script>
+  });
+</script>
 {% endblock %}
