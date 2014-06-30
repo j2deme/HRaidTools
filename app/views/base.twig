@@ -35,7 +35,10 @@
   <div class="row">
     <div class="col-md-12">
       {% spaceless %}
-        {% include 'navigationbar.twig' %}
+      {% if user is defined and user is not null %}
+      {% else %}
+        {% include 'navigation_bars/public.twig' %}
+      {% endif %}
       {% endspaceless %}
     </div>
   </div>
