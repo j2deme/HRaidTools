@@ -1,6 +1,6 @@
 {
-  "name": "j2deme/seed",
-  "description": "Webapp skeleton using Slim + Twig + Eloquent + Bootstrap",
+  "name": "j2deme/HRaidTools",
+  "description": "An online simulation storage system",
   "license": "MIT",
   "authors": [
       {
@@ -17,6 +17,7 @@
     "illuminate/database": "*",
     "illuminate/validation": "*",
     "raulfraile/ladybug": "~1.0",
-    "symfony/yaml": "~2.1"
+    "symfony/yaml": "~2.1",
+    "mrrio/shellwrap": "*"
   }
 }
