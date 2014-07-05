@@ -16,7 +16,7 @@ foreach(glob(MODELS_FOLDER.'*.php') as $model) {
 $auth = function ($app) {
   return function () use ($app) {
     if (!isset($_SESSION['user'])) {
-      $_SESSION['redirectTo'] = $app->request()->getPathInfo();
+      //$_SESSION['redirectTo'] = $app->request()->getPathInfo();
       $app->flash('error', $app->lang->loginError);
       $app->flashKeep();
       $app->redirect($app->urlFor('login'));
@@ -32,20 +32,20 @@ $app->hook('slim.before.dispatch', function() use ($app) {
   $app->view()->appendData(array('user' => $user));
 });
 
-$app->get('/login',function() use($app){
+$app->get('/login', function() use($app){
   $flash = $app->view()->getData('flash');
   $error = '';
   if(isset($flash['error'])) {
     $error = $flash['error'];
   }
   $redirectTo = $app->urlFor('root');
-  if($app->request()->get('r') and ($app->request()->get('r') != $app->urlFor('logout')) and ($app->request()->get('r') != $app->urlFor('login'))) {
+  /*if($app->request()->get('r') and ($app->request()->get('r') != $app->urlFor('logout')) and ($app->request()->get('r') != $app->urlFor('login'))) {
     $_SESSION['redirectTo'] = $app->request()->get('r');
   }
 
   if(isset($_SESSION['redirectTo'])) {
     $redirectTo = $_SESSION['redirectTo'];
-  }
+  }*/
 
   $emailValue = $emailError = $passwordError = '';
   if(isset($flash['email'])) {
@@ -70,16 +70,17 @@ $app->get('/login',function() use($app){
   $app->render('login.twig', $data);
 })->name('login');
 
-$app->post('/login',function() use($app){
+$app->post('/login', function() use($app){
   $post = (object) $app->request()->post();
   $username = (isset($post->username)) ? $post->username : '';
   $password = (isset($post->password)) ? $post->password : '';
   if($username == "admin" and $password == "admin") {
+    $_SESSION['user'] = 'admin';
     $app->redirect($app->urlFor('admin'));
   }
 
   $errors = array();
-  $user = User::where('username','=',$username)->orWhere('email','=',$username)->first();
+  $user = User::with('Organization')->where('username','=',$username)->orWhere('email','=',$username)->first();
   if(!is_null($user)){
     if($user->password == md5($password)){
       $_SESSION['user'] = $user;
@@ -97,11 +98,11 @@ $app->post('/login',function() use($app){
     $app->redirect($app->urlFor('login'));
   }
 
-  if(isset($_SESSION['redirectTo'])) {
+  /*if(isset($_SESSION['redirectTo'])) {
     $tmp = $_SESSION['redirectTo'];
     unset($_SESSION['redirectTo']);
     $app->redirect($tmp);
-  }
+  }*/
 
   $app->redirect($app->urlFor('dashboard'));
 })->name('login-post');

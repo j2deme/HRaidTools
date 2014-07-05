@@ -14,6 +14,10 @@ body {
 
 div#loginForm div.modal-footer {  border-top: none; }
 .navbar { margin-bottom: 20px; }
+.browsehappy {
+  margin-top: 50px;
+  margin-bottom: -30px;
+}
 
 /***
 * LOADING BAR

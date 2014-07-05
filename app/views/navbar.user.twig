@@ -8,21 +8,49 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{ urlFor('root') }}" rel="stylesheet">{{ title }}</a> <small>by <a href="http://www.adaptivez.org.mx/gisaa/">GISAA</a></small>
+        <a class="navbar-brand" href="{{ urlFor('dashboard') }}" rel="stylesheet">{{ title }}</a> <small>by <a href="http://www.adaptivez.org.mx/gisaa/">GISAA</a></small>
       </div>
       <div class="navbar-collapse collapse pull-right">
         <ul class="nav navbar-nav">
-          <li>
-            <a href="#">Dashboard</a>
+          <li><a href="{{ urlFor('dashboard') }}">Dashboard</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">RAID Designer</a></li>
+              <li><a href="#">Workload Generator</a></li>
+              <li><a href="#">Simulation Launcher</a></li>
+            </ul>
           </li>
-          <li>
-            <a href="#">Staff</a>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Results<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">My RAIDs</a></li>
+              <li><a href="#">My Workloads</a></li>
+              <li><a href="#">My Simulations</a></li>
+            </ul>
           </li>
-          <li>
-            <a href="#">About Us</a>
-          </li>
-          <li>
-            <a href="#" data-toggle="modal" data-target="#loginForm1">Logout</a>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username|default(user.email) }} <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li class="bg-blue">
+                <div class="row">
+                  <div class="col-md-6 col-md-offset-3">
+                  <br>
+                  {% if user.avatar_uri is empty %}
+                    <img src="{{ urlFor('avatar',{text: user.email }) }}" class="img-responsive img-rounded" alt="User avatar" >
+                  {% else %}
+                    <img src="{{ user.avatar_uri }}" class="img-responsive img-rounded" alt="User avatar" >
+                  {% endif %}
+                  </div>
+                </div>
+              </li>
+              <li class="text-center bg-blue"><strong>{{ user.name ~ ' ' ~ user.lastname }}</strong></li>
+              <li class="text-center bg-blue"><small>Member since {{ user.created_at|date('M, y') }}</small></li>
+              <li class="divider"></li>
+              <li><a href="#">Profile</a></li>
+              <li class="divider"></li>
+              <li><a href="{{ urlFor('logout') }}">Logout</a></li>
+            </ul>
           </li>
         </ul>
       </div><!--/.nav-collapse -->

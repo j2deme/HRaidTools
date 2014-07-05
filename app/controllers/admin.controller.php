@@ -1,7 +1,6 @@
 <?php
 
-$app->group('/admin', function() use($app){
-
+$app->group('/admin', $auth($app), function() use($app){
   $app->get('', function() use($app){
     $data = array();
     $app->render('admin.twig', $data);
