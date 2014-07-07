@@ -11,7 +11,7 @@ define('DB_PREFIX', '');
 define('COOKIE_PREFIX','ht');//Only lowercase letters[a-z], numbers[0-9] and _
 define('COOKIES_ENABLED', true);//If you need to store more than 4 kb set to false
 define('COOKIE_SECRET', 'htsecret');//Change for a different secret
-define('COOKIE_DURATION', '20 minutes');//Default value, change as needed
+define('COOKIE_DURATION', '5 minutes');//Default value, change as needed
 
 define('SLIM_MODE','development');//development,production
 

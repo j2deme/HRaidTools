@@ -7,7 +7,7 @@
   <title>{{ title }}</title>
   <link rel="shortcut icon" href="{{ img }}favicon.ico" type="image/x-icon">
   <link rel="icon" href="{{ img }}favicon.ico" type="image/x-icon">
-  <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+  <!--<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">-->
   <!-- PACE js -->
   <link rel="stylesheet" href="{{ urlFor('root') }}/public/css/pace-theme-minimal.css">
   <script data-pace-options='{ "ajax": false, "restartOnRequestAfter": false }' src="{{ urlFor('root') }}/public/js/pace.min.js"></script>
@@ -35,7 +35,15 @@
   <div class="row">
     <div class="col-md-12">
       {% spaceless %}
-        {% include 'navigationbar.twig' %}
+      {% if user is defined and user is not null %}
+        {% if user.id is defined %}
+          {% include 'navbar.user.twig' %}
+        {% else %}
+          {% include 'navbar.admin.twig' %}
+        {% endif %}
+      {% else %}
+        {% include 'navbar.public.twig' %}
+      {% endif %}
       {% endspaceless %}
     </div>
   </div>

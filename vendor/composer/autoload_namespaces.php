@@ -17,6 +17,7 @@ return array(
     'Symfony\\Component\\Config\\' => array($vendorDir . '/symfony/config'),
     'Slim\\Views' => array($vendorDir . '/slim/views'),
     'Slim' => array($vendorDir . '/slim/slim'),
+    'MrRio' => array($vendorDir . '/mrrio/shellwrap/src'),
     'Ladybug\\Theme' => array($vendorDir . '/raulfraile/ladybug-themes', $vendorDir . '/raulfraile/ladybug/data/themes'),
     'Ladybug\\Plugin\\Extra\\' => array($vendorDir . '/raulfraile/ladybug-themes'),
     'Ladybug\\Plugin' => array($vendorDir . '/raulfraile/ladybug-plugins', $vendorDir . '/raulfraile/ladybug/data/plugins'),
@@ -28,4 +29,5 @@ return array(
     'Illuminate\\Container' => array($vendorDir . '/illuminate/container'),
     'CssEmbed' => array($vendorDir . '/ptachoire/cssembed/src'),
     'Carbon' => array($vendorDir . '/nesbot/carbon/src'),
+    'Boris' => array($vendorDir . '/d11wtq/boris/lib'),
 );
